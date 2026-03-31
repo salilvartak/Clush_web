@@ -33,8 +33,8 @@ const SecurityMetric = ({ icon: Icon, value, label, delay }) => (
     <div className="w-12 h-12 rounded-full bg-white border border-[var(--color-bone)] flex items-center justify-center mb-2 mx-auto">
        <Icon className="w-5 h-5 text-[var(--color-gold)]" />
     </div>
-    <div className="text-3xl font-[Gabarito] font-bold italic w-full">{value}</div>
-    <div className="text-[10px] uppercase tracking-widest font-bold text-[var(--color-ink-muted)] w-full">{label}</div>
+    <div className="text-2xl md:text-3xl font-[Gabarito] font-bold italic w-full">{value}</div>
+    <div className="text-[9px] md:text-[10px] uppercase tracking-widest font-bold text-[var(--color-ink-muted)] w-full">{label}</div>
   </motion.div>
 );
 
@@ -69,7 +69,7 @@ const Safety = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-6xl md:text-8xl font-[Gabarito] font-bold italic leading-[0.9] mb-12"
+              className="text-5xl md:text-8xl font-[Gabarito] font-bold italic leading-[0.9] mb-12"
             >
               Secure<br />By <span className="text-[var(--color-rose)]">Essence</span>.
             </motion.h1>
@@ -78,7 +78,7 @@ const Safety = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="font-[Figtree] text-2xl text-[var(--color-ink-muted)] mb-4 leading-relaxed font-light"
+              className="font-[Figtree] text-xl md:text-2xl text-[var(--color-ink-muted)] mb-4 leading-relaxed font-light"
             >
               We believe true connection requires a sanctuary. Our multi-layered security stack ensures that what happens on Clush, stays on Clush.
             </motion.p>
@@ -125,7 +125,7 @@ const Safety = () => {
       <section className="py-40 px-6 bg-white border-t border-[var(--color-bone)] relative overflow-hidden">
         <div className="max-w-4xl mx-auto text-center relative z-10">
            <SectionHeading>The Transparency Report</SectionHeading>
-           <h2 className="text-5xl md:text-7xl font-[Gabarito] font-bold italic mb-16 px-4">Our promise is written in <span className="text-[var(--color-rose)]">code.</span></h2>
+           <h2 className="text-4xl md:text-7xl font-[Gabarito] font-bold italic mb-16 px-4">Our promise is written in <span className="text-[var(--color-rose)]">code.</span></h2>
            
            <div className="clush-card p-12 md:p-24 bg-[var(--color-tan)] border border-[var(--color-bone)] text-left relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-rose-pale)] blur-[120px] opacity-40 -z-10" />
@@ -166,9 +166,9 @@ const Safety = () => {
       {/* Safety Support Callout */}
       <section className="py-24 px-6 bg-[var(--color-rose-pale)]/30 border-t border-[var(--color-bone)]">
          <div className="max-w-4xl mx-auto flex flex-col items-center text-center gap-10">
-            <PhoneCall className="w-16 h-16 text-[var(--color-rose)] animate-bounce" />
-            <h2 className="text-4xl md:text-5xl font-[Gabarito] font-bold italic">We've got your back.</h2>
-            <p className="text-2xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed font-light italic">
+            <PhoneCall className="w-12 h-12 md:w-16 md:h-16 text-[var(--color-rose)] animate-bounce" />
+            <h2 className="text-3xl md:text-5xl font-[Gabarito] font-bold italic">We've got your back.</h2>
+            <p className="text-xl md:text-2xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed font-light italic">
               A dedicated safety concierge is available 24/7 to address any concerns. If you ever feel uncomfortable, we are just a pulse away.
             </p>
             <div className="flex flex-wrap justify-center gap-6">

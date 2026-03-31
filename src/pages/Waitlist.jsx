@@ -23,7 +23,7 @@ const Waitlist = () => {
               <Star className="w-4 h-4 text-[var(--color-gold)]" />
               <span className="font-[Figtree] text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--color-ink-black)]">Limited Access</span>
             </div>
-            <h1 className="text-6xl md:text-7xl font-[Gabarito] font-bold italic leading-tight mb-8">Join the Vanguard of<br />True Romance.</h1>
+            <h1 className="text-5xl md:text-7xl font-[Gabarito] font-bold italic leading-tight mb-8">Join the Vanguard of<br />True Romance.</h1>
             <p className="text-xl text-[var(--color-ink-muted)] leading-relaxed">
                We're opening spaces in waves to ensure every member experiences the highest level of care and curated connection.
             </p>
@@ -36,12 +36,12 @@ const Waitlist = () => {
               <motion.div 
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="clush-card p-12 md:p-16 border border-[var(--color-bone)] bg-white shadow-2xl relative"
+                className="clush-card p-8 md:p-16 border border-[var(--color-bone)] bg-white shadow-2xl relative"
               >
                  <div className="absolute top-0 right-0 p-8">
                     <Sparkles className="w-12 h-12 text-[var(--color-gold)]/20" />
                  </div>
-                 <h2 className="text-4xl md:text-5xl font-[Gabarito] font-bold italic mb-8">Reserve Your Spot.</h2>
+                 <h2 className="text-3xl md:text-5xl font-[Gabarito] font-bold italic mb-8">Reserve Your Spot.</h2>
                  <form onSubmit={handleSubmit} className="space-y-8 font-[Figtree]">
                     <div className="space-y-2">
                        <label className="text-xs uppercase tracking-widest font-bold text-[var(--color-ink-muted)] block ml-1">Email Address</label>

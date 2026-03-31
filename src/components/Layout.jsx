@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { CheckCircle2, Lightbulb, X, Send } from 'lucide-react';
+import { CheckCircle2, Lightbulb, X, Send, Menu } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const FeedbackModal = ({ isOpen, onClose }) => {
@@ -86,19 +86,21 @@ const DevStatusBar = () => (
 
 const Layout = ({ children }) => {
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="min-h-screen text-[var(--color-ink-black)] overflow-x-hidden selection:bg-[var(--color-rose-pale)] selection:text-[var(--color-ink-black)]">
       <DevStatusBar />
       {/* Header */}
-      <header className="fixed top-12 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl clush-pill-header px-8 py-3.5">
+      <header className="fixed top-12 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl clush-pill-header px-4 md:px-8 py-3">
         <div className="flex items-center justify-between w-full">
           <NavLink to="/" className="flex flex-col">
-            <span className="text-2xl font-[Gabarito] font-bold italic text-[var(--color-ink-black)] tracking-[-0.03em] flex items-center gap-1">
+            <span className="text-xl md:text-2xl font-[Gabarito] font-bold italic text-[var(--color-ink-black)] tracking-[-0.03em] flex items-center gap-1">
               Clush
             </span>
           </NavLink>
           
-          <nav className="hidden md:flex items-center gap-10 font-semibold text-[var(--color-ink-muted)] font-[Figtree] uppercase tracking-[0.1em] text-[11px]">
+          <nav className="hidden lg:flex items-center gap-10 font-semibold text-[var(--color-ink-muted)] font-[Figtree] uppercase tracking-[0.1em] text-[11px]">
             <NavLink 
               to="/" 
               className={({ isActive }) => 
@@ -131,15 +133,44 @@ const Layout = ({ children }) => {
             >Contact</NavLink>
           </nav>
  
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             <NavLink 
               to="/join"
-              className="clush-btn-primary px-6 py-2.5 font-bold tracking-tight rounded-full transition-transform hover:scale-105 active:scale-95"
+              className="clush-btn-primary px-4 md:px-6 py-2 md:py-2.5 text-xs md:text-sm font-bold tracking-tight rounded-full transition-transform hover:scale-105 active:scale-95"
             >
               Waitlist
             </NavLink>
+            <button 
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden p-2 hover:bg-[var(--color-rose-pale)] rounded-full transition-colors order-first"
+            >
+              {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+              transition={{ duration: 0.2 }}
+              className="absolute top-full left-0 right-0 mt-2 p-4 lg:hidden"
+            >
+              <div className="bg-white/95 backdrop-blur-xl border border-[var(--color-bone)] rounded-[32px] p-6 shadow-2xl flex flex-col gap-6">
+                <nav className="flex flex-col gap-4 font-semibold text-[var(--color-ink-muted)] font-[Figtree] uppercase tracking-[0.1em] text-xs">
+                  <NavLink to="/" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => isActive ? "text-[var(--color-ink-black)] bg-[var(--color-rose-pale)] p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] rounded-2xl transition"}>Home</NavLink>
+                  <NavLink to="/features" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => isActive ? "text-[var(--color-ink-black)] bg-[var(--color-rose-pale)] p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] rounded-2xl transition"}>Features</NavLink>
+                  <NavLink to="/safety" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => isActive ? "text-[var(--color-ink-black)] bg-[var(--color-rose-pale)] p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] rounded-2xl transition"}>Safety</NavLink>
+                  <NavLink to="/about" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => isActive ? "text-[var(--color-ink-black)] bg-[var(--color-rose-pale)] p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] rounded-2xl transition"}>About Us</NavLink>
+                  <NavLink to="/contact" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => isActive ? "text-[var(--color-ink-black)] bg-[var(--color-rose-pale)] p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] rounded-2xl transition"}>Contact</NavLink>
+                </nav>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       <main className="pt-32 min-h-screen">

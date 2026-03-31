@@ -122,7 +122,7 @@ const Home = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.2 }}
-                className="text-6xl md:text-8xl lg:text-[100px] font-[Gabarito] font-bold italic leading-[0.95] tracking-[-0.04em] mb-10 text-[var(--color-ink-black)]"
+                className="text-5xl md:text-8xl lg:text-[100px] font-[Gabarito] font-bold italic leading-[0.95] tracking-[-0.04em] mb-10 text-[var(--color-ink-black)]"
               >
                 Connection,<br />
                 <span className="text-[var(--color-rose)] relative whitespace-nowrap">
@@ -137,7 +137,7 @@ const Home = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="font-[Figtree] text-2xl text-[var(--color-ink-muted)] mb-4 max-w-lg leading-relaxed font-light"
+                className="font-[Figtree] text-xl md:text-2xl text-[var(--color-ink-muted)] mb-4 max-w-lg leading-relaxed font-light"
               >
                 Clush is a private, curated community for intentional single people who value substance and style.
               </motion.p>
@@ -207,7 +207,7 @@ const Home = () => {
              
              <div className="flex-1 space-y-10">
                 <SectionHeading>Our Philosophy</SectionHeading>
-                <h2 className="text-5xl md:text-6xl font-[Gabarito] font-bold italic leading-tight">Substance is the new luxury.</h2>
+                <h2 className="text-4xl md:text-6xl font-[Gabarito] font-bold italic leading-tight">Substance is the new luxury.</h2>
                 <div className="space-y-6 font-[Figtree] text-xl text-[var(--color-ink-muted)] leading-relaxed font-light">
                    <p>We're building Clush for people who are tired of the 'dating app' format. We've removed the slot-machine mechanics and replaced them with human-centric design.</p>
                    <p>In our private beta, we've found that slower, more intentional matching leads to significantly higher quality first dates and lasting connections.</p>
@@ -225,7 +225,7 @@ const Home = () => {
         <section className="py-32 px-6 bg-[var(--color-tan)] border-y border-[var(--color-bone)]">
           <div className="max-w-7xl mx-auto text-center">
              <SectionHeading>Beta Community</SectionHeading>
-             <h2 className="text-5xl md:text-7xl font-[Gabarito] font-bold italic mb-20">Shaping the future, together.</h2>
+             <h2 className="text-4xl md:text-7xl font-[Gabarito] font-bold italic mb-20">Shaping the future, together.</h2>
              
              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <div className="p-10 bg-white rounded-[32px] border border-[var(--color-bone)] shadow-sm hover:shadow-xl transition-all hover:-translate-y-2 group">
@@ -262,7 +262,7 @@ const Home = () => {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-6xl md:text-8xl font-[Gabarito] font-bold italic mb-10 leading-none">Ready for something <span className="text-[var(--color-rose)]">different?</span></h2>
+              <h2 className="text-5xl md:text-8xl font-[Gabarito] font-bold italic mb-10 leading-none">Ready for something <span className="text-[var(--color-rose)]">different?</span></h2>
               <p className="text-xl text-[var(--color-ink-muted)] mb-12 font-[Figtree] max-w-lg mx-auto leading-relaxed">
                  Join our waiting list today. We're launching in selective cities throughout the year.
               </p>

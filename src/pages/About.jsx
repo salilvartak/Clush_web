@@ -36,14 +36,14 @@ const ValueSection = ({ icon: Icon, title, desc, delay, reversed = false }) => (
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.8, delay }}
-    className={`flex flex-col md:flex-row items-center gap-20 py-32 border-b border-[var(--color-bone)] relative z-10 ${reversed ? 'md:flex-row-reverse text-right md:text-left' : ''}`}
+    className={`flex flex-col md:flex-row items-center gap-10 md:gap-20 py-20 md:py-32 border-b border-[var(--color-bone)] relative z-10 ${reversed ? 'md:flex-row-reverse text-center md:text-left' : 'text-center md:text-left'}`}
   >
-    <div className="flex-1 space-y-10">
-       <div className={`w-16 h-16 rounded-2xl bg-[var(--color-rose-pale)] flex items-center justify-center -rotate-6 shadow-xl shadow-rose/5 ${reversed ? 'md:ml-auto' : ''}`}>
-          <Icon className="w-8 h-8 text-[var(--color-rose)]" />
+    <div className="flex-1 space-y-6 md:space-y-10">
+       <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-[var(--color-rose-pale)] flex items-center justify-center -rotate-6 shadow-xl shadow-rose/5 ${reversed ? 'md:ml-auto mx-auto' : 'mx-auto md:ml-0'}`}>
+          <Icon className="w-6 h-6 md:w-8 md:h-8 text-[var(--color-rose)]" />
        </div>
-       <h3 className="text-5xl md:text-6xl font-[Gabarito] font-bold italic tracking-tight">{title}</h3>
-       <p className="text-2xl font-[Figtree] text-[var(--color-ink-muted)] font-light leading-relaxed max-w-xl">{desc}</p>
+       <h3 className="text-4xl md:text-6xl font-[Gabarito] font-bold italic tracking-tight">{title}</h3>
+       <p className="text-lg md:text-2xl font-[Figtree] text-[var(--color-ink-muted)] font-light leading-relaxed max-w-xl mx-auto md:mx-0">{desc}</p>
     </div>
     <div className="flex-1 w-full bg-[var(--color-tan)] rounded-[60px] aspect-square flex items-center justify-center p-16 relative overflow-hidden group">
         <div className="absolute inset-x-0 bottom-0 top-1/2 bg-gradient-to-t from-white to-transparent opacity-40" />
@@ -60,7 +60,7 @@ const About = () => {
     <div className="px-6 pb-24 relative overflow-hidden bg-[var(--color-cream)]">
       {/* Background Decorative Element */}
       <div className="fixed inset-0 pointer-events-none opacity-20 z-0 select-none flex items-center justify-center">
-         <span className="text-[30vw] font-bold text-white uppercase italic tracking-[-0.05em] leading-none select-none">CLUSH</span>
+         <span className="text-[40vw] md:text-[30vw] font-bold text-white uppercase italic tracking-[-0.05em] leading-none select-none">CLUSH</span>
       </div>
 
       <section className="relative pt-32 pb-40 text-center max-w-4xl mx-auto z-10">
@@ -73,8 +73,8 @@ const About = () => {
               <Sparkles className="w-4 h-4 text-[var(--color-rose)]" />
               <span className="font-[Figtree] text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--color-ink-black)]">Our Origin Story</span>
             </div>
-            <h1 className="text-6xl md:text-[100px] font-[Gabarito] font-bold italic leading-[0.9] mb-12 tracking-tight">Crafting the <span className="text-[var(--color-rose)]">Human</span> connection.</h1>
-            <p className="text-2xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed max-w-2xl mx-auto italic font-light mb-6">
+            <h1 className="text-5xl md:text-[100px] font-[Gabarito] font-bold italic leading-[0.9] mb-12 tracking-tight">Crafting the <span className="text-[var(--color-rose)]">Human</span> connection.</h1>
+            <p className="text-lg md:text-2xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed max-w-2xl mx-auto italic font-light mb-6">
               Founded in Mayfair, 2026. A small team of romantics and engineers building the world's most intentional dating experience.
             </p>
             <div className="flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest font-bold text-[var(--color-rose)] opacity-60">
@@ -110,10 +110,10 @@ const About = () => {
       </div>
 
       {/* Team Section */}
-      <section className="mt-60 max-w-7xl mx-auto z-10 relative">
-        <div className="text-center mb-40">
-           <h2 className="text-5xl md:text-7xl font-[Gabarito] font-bold italic mb-10">The Minds Behind <span className="text-[var(--color-rose)]">Clush</span>.</h2>
-           <p className="text-xl text-[var(--color-ink-muted)] font-[Figtree] max-w-2xl mx-auto leading-relaxed">
+      <section className="mt-40 md:mt-60 max-w-7xl mx-auto z-10 relative">
+        <div className="text-center mb-20 md:mb-40">
+           <h2 className="text-4xl md:text-7xl font-[Gabarito] font-bold italic mb-10">The Minds Behind <span className="text-[var(--color-rose)]">Clush</span>.</h2>
+           <p className="text-lg md:text-xl text-[var(--color-ink-muted)] font-[Figtree] max-w-2xl mx-auto leading-relaxed">
              We're a collective of believers, builders, and dreamers who still believe in the magic of a first meeting.
            </p>
         </div>
