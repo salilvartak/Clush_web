@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Heart, Lightbulb, X, Send } from 'lucide-react';
+import { CheckCircle2, Lightbulb, X, Send } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const FeedbackModal = ({ isOpen, onClose }) => {
@@ -53,7 +53,7 @@ const FeedbackModal = ({ isOpen, onClose }) => {
             ) : (
               <div className="text-center py-8">
                 <div className="w-16 h-16 rounded-full bg-[var(--color-rose-pale)] flex items-center justify-center mx-auto mb-6">
-                  <Heart className="w-8 h-8 text-[var(--color-rose)] fill-[var(--color-rose)]" />
+                  <CheckCircle2 className="w-8 h-8 text-[var(--color-rose)]" />
                 </div>
                 <h3 className="font-[Gabarito] text-2xl font-bold italic mb-4">Thank You!</h3>
                 <p className="font-[Figtree] text-[var(--color-ink-muted)] mb-8">
