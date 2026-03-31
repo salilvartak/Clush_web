@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Gabarito:wght@400..900&family=Ledger&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #EBE7E1;
+  --color-tan: #FAF8F5;
+  --color-rose-pale: #F3E8E3;
+  --color-ink-black: #45413E;
+  --color-ink-muted: #756F68;
+  --color-bone: #E6DFD5;
+  --color-rose: #CD9D8F;
+  --color-rose-light: #D4A99F;
+  --color-gold: #D4AF37;
+  
+  --font-heading: 'Gabarito', sans-serif;
+  --font-body: 'Figtree', sans-serif;
+  --font-editorial: 'Ledger', serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink-black);
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .prose h1, .prose h2, .prose h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-ink-black);
+  }
+
+  .prose p {
+    margin-bottom: 1.5rem;
+  }
+
+  .prose section {
+    margin-bottom: 3rem;
+  }
+}
+
+@layer utilities {
+  .clush-card {
+    background-color: var(--color-tan);
+    border: 1px solid var(--color-bone);
+    border-radius: 20px;
+    box-shadow: 0px 8px 24px rgba(69, 65, 62, 0.08);
+  }
+  
+  .clush-hero-card {
+    background-color: var(--color-tan);
+    border: 1px solid var(--color-bone);
+    border-radius: 25px;
+    box-shadow: 0px 8px 24px rgba(69, 65, 62, 0.08);
+  }
+
+  .clush-btn-primary {
+    background-color: var(--color-rose);
+    color: #FFFFFF;
+    font-family: var(--font-body);
+    font-weight: 700;
+    border-radius: 14px;
+    box-shadow: 0px 8px 16px rgba(205, 157, 143, 0.4);
+    transition: background-color 0.2s ease;
+  }
+  .clush-btn-primary:hover {
+    background-color: var(--color-rose-light);
+  }
+
+  .clush-btn-secondary {
+    background-color: var(--color-tan);
+    color: var(--color-ink-black);
+    border: 1px solid var(--color-bone);
+    border-radius: 20px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    transition: background-color 0.2s ease;
+  }
+
+  .clush-glass {
+    background: rgba(235, 231, 225, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .clush-glass-header {
+    background: rgba(235, 231, 225, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid var(--color-bone);
+  }
+
+  .clush-pill-header {
+    background: rgba(250, 248, 245, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-bone);
+    border-radius: 9999px;
+    box-shadow: 0 10px 30px -10px rgba(69, 65, 62, 0.15);
+  }
+
+  .clush-divider {
+    border-top: 1px solid var(--color-bone);
+  }
+
+  .clush-accent-line {
+    width: 3px;
+    height: 16px;
+    background-color: var(--color-gold);
+    margin-right: 10px;
+    display: inline-block;
+  }
+
+  .clush-image-overlay {
+    background: linear-gradient(to bottom, transparent 50%, rgba(69, 65, 62, 0.6) 100%);
+  }
+}
