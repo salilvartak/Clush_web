@@ -222,6 +222,7 @@ const Layout = ({ children }) => {
               <NavLink to="/legal/privacy" className="text-sm hover:text-[var(--color-rose)] transition">Privacy Policy</NavLink>
               <NavLink to="/legal/terms" className="text-sm hover:text-[var(--color-rose)] transition">Terms of Service</NavLink>
               <NavLink to="/legal/guidelines" className="text-sm hover:text-[var(--color-rose)] transition">Community Guidelines</NavLink>
+              <NavLink to="/legal/safe-dating" className="text-sm hover:text-[var(--color-rose)] transition">Safe Dating Guide</NavLink>
             </div>
             <div className="flex flex-col gap-4">
               <h4 className="font-[Figtree] text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--color-ink-muted)]">Early Access</h4>

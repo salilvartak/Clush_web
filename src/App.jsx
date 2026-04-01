@@ -8,7 +8,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Waitlist from './pages/Waitlist';
 import LegalLayout from './pages/Legal/LegalLayout';
-import { PrivacyPolicy, TermsOfService, CommunityGuidelines } from './pages/Legal/Policies';
+import { PrivacyPolicy, TermsOfService, CommunityGuidelines, SafeDatingGuide } from './pages/Legal/Policies';
 
 import ScrollToTop from './components/ScrollToTop';
 
@@ -34,6 +34,7 @@ function App() {
             <Route path="privacy" element={<PrivacyPolicy />} />
             <Route path="terms" element={<TermsOfService />} />
             <Route path="guidelines" element={<CommunityGuidelines />} />
+            <Route path="safe-dating" element={<SafeDatingGuide />} />
           </Route>
 
           {/* Fallback */}

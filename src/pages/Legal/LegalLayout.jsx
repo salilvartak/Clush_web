@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { FileText, Shield, Scale, ScrollText } from 'lucide-react';
+import { FileText, Shield, Scale, ScrollText, HeartHandshake } from 'lucide-react';
 
 const LegalLayout = () => {
   return (
@@ -38,6 +38,14 @@ const LegalLayout = () => {
               }
             >
               <ScrollText className="w-5 h-5" /> Community Guidelines
+            </NavLink>
+            <NavLink 
+              to="/legal/safe-dating" 
+              className={({ isActive }) => 
+                `flex items-center gap-4 p-4 rounded-xl font-bold transition-all border ${isActive ? 'bg-white border-[var(--color-bone)] text-[var(--color-rose)] shadow-sm' : 'border-transparent text-[var(--color-ink-muted)] hover:bg-[var(--color-tan)] hover:translate-x-2'}`
+              }
+            >
+              <HeartHandshake className="w-5 h-5" /> Safe Dating Guide
             </NavLink>
             
             <div className="mt-12 p-8 bg-[var(--color-tan)] rounded-2xl border border-[var(--color-bone)] flex flex-col items-center text-center gap-4">
