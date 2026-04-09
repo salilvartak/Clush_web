@@ -126,6 +126,12 @@ const Layout = ({ children }) => {
               }
             >About Us</NavLink>
             <NavLink 
+              to="/clush-plus" 
+              className={({ isActive }) => 
+                isActive ? "text-[var(--color-ink-black)] relative after:absolute after:-bottom-2 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--color-gold)]" : "hover:text-[var(--color-ink-black)] transition text-[var(--color-gold)]"
+              }
+            >Clush Plus</NavLink>
+            <NavLink 
               to="/contact" 
               className={({ isActive }) => 
                 isActive ? "text-[var(--color-ink-black)] relative after:absolute after:-bottom-2 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--color-gold)]" : "hover:text-[var(--color-ink-black)] transition"
@@ -166,6 +172,7 @@ const Layout = ({ children }) => {
                   <NavLink to="/safety" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => isActive ? "text-[var(--color-ink-black)] bg-[var(--color-rose-pale)] p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] rounded-2xl transition"}>Safety</NavLink>
                   <NavLink to="/about" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => isActive ? "text-[var(--color-ink-black)] bg-[var(--color-rose-pale)] p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] rounded-2xl transition"}>About Us</NavLink>
                   <NavLink to="/contact" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => isActive ? "text-[var(--color-ink-black)] bg-[var(--color-rose-pale)] p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] rounded-2xl transition"}>Contact</NavLink>
+                  <NavLink to="/clush-plus" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => isActive ? "text-[var(--color-gold)] bg-[var(--color-gold)]/10 p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] text-[var(--color-gold)] font-bold rounded-2xl transition"}>Clush Plus</NavLink>
                 </nav>
               </div>
             </motion.div>
@@ -210,6 +217,7 @@ const Layout = ({ children }) => {
               <NavLink to="/" className="text-sm hover:text-[var(--color-rose)] transition">Home</NavLink>
               <NavLink to="/features" className="text-sm hover:text-[var(--color-rose)] transition">Features</NavLink>
               <NavLink to="/safety" className="text-sm hover:text-[var(--color-rose)] transition">Safety & Trust</NavLink>
+              <NavLink to="/clush-plus" className="text-sm font-bold text-[var(--color-gold)] hover:text-[var(--color-rose)] transition">Clush Plus</NavLink>
             </div>
             <div className="flex flex-col gap-4">
               <h4 className="font-[Figtree] text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--color-ink-muted)]">Connect</h4>

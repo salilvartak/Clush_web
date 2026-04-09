@@ -7,6 +7,7 @@ import Safety from './pages/Safety';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Waitlist from './pages/Waitlist';
+import ClushPlus from './pages/ClushPlus';
 import LegalLayout from './pages/Legal/LegalLayout';
 import { PrivacyPolicy, TermsOfService, CommunityGuidelines, SafeDatingGuide } from './pages/Legal/Policies';
 
@@ -26,6 +27,7 @@ function App() {
           <Route path="/safety" element={<Safety />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/clush-plus" element={<ClushPlus />} />
           <Route path="/join" element={<Waitlist />} />
 
           {/* Legal Pages */}
