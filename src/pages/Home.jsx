@@ -114,7 +114,7 @@ const Home = () => {
                    </div>
                 </div>
                 <span className="font-[Figtree] text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--color-ink-black)]">
-                  Private Concept Preview
+                  Now Available
                 </span>
               </motion.div>
               
@@ -141,10 +141,6 @@ const Home = () => {
               >
                 Clush is a private, curated community for intentional single people who value substance and style.
               </motion.p>
-              <div className="mb-12 flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-[var(--color-rose)] opacity-60">
-                 <div className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
-                 Initial Concept Phase • External Testing Not Started
-              </div>
               
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
@@ -153,7 +149,7 @@ const Home = () => {
                 className="flex flex-col sm:flex-row items-center gap-6"
               >
                 <NavLink to="/join" className="clush-btn-primary px-12 py-5 w-full sm:w-auto text-xl hover:scale-105 active:scale-95 transition-all duration-300 shadow-2xl">
-                  Request Access
+                  Download the App
                 </NavLink>
                 <NavLink to="/about" className="flex items-center gap-3 font-bold group">
                   <span className="border-b-2 border-transparent group-hover:border-[var(--color-gold)] transition-all">Who are we?</span>
@@ -187,7 +183,7 @@ const Home = () => {
 
         {/* Manifesto Section */}
         <section className="py-32 px-6 bg-white relative overflow-hidden">
-          <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-20">
+          <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-20">
              <div className="flex-1 relative">
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -209,38 +205,38 @@ const Home = () => {
                 <SectionHeading>Our Philosophy</SectionHeading>
                 <h2 className="text-4xl md:text-6xl font-[Gabarito] font-bold italic leading-tight">Substance is the new luxury.</h2>
                 <div className="space-y-6 font-[Figtree] text-xl text-[var(--color-ink-muted)] leading-relaxed font-light">
-                   <p>We're building Clush for people who are tired of the 'dating app' format. We've removed the slot-machine mechanics and replaced them with human-centric design.</p>
-                   <p>In our private beta, we've found that slower, more intentional matching leads to significantly higher quality first dates and lasting connections.</p>
+                   <p>Clush was built for people who are tired of the 'dating app' format. We've removed the slot-machine mechanics and replaced them with human-centric design.</p>
+                  {/* <p>Our members consistently report higher quality first dates and lasting connections — because slower, more intentional matching simply works.</p> */}
                 </div>
-                <div className="pt-6">
+                {/*<div className="pt-6">
                    <button className="flex items-center gap-4 px-8 py-4 rounded-2xl border-2 border-[var(--color-bone)] hover:border-[var(--color-rose)] transition-all font-bold">
                       Read The Manifesto
                    </button>
-                </div>
+                </div>*/}
              </div>
           </div>
         </section>
 
-        {/* Early Community Section */}
+        {/* Community Section */}
         <section className="py-32 px-6 bg-[var(--color-tan)] border-y border-[var(--color-bone)]">
           <div className="max-w-7xl mx-auto text-center">
-             <SectionHeading>Beta Community</SectionHeading>
-             <h2 className="text-4xl md:text-7xl font-[Gabarito] font-bold italic mb-20">Shaping the future, together.</h2>
-             
+             <SectionHeading>Our Community</SectionHeading>
+             <h2 className="text-4xl md:text-7xl font-[Gabarito] font-bold italic mb-20">Built on trust, grown with care.</h2>
+
              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
                 <div className="p-10 bg-white rounded-[32px] border border-[var(--color-bone)] shadow-sm hover:shadow-xl transition-all hover:-translate-y-2 group">
                    <div className="w-14 h-14 rounded-full bg-[var(--color-rose-pale)] flex items-center justify-center mb-8 group-hover:bg-[var(--color-rose)] transition-colors">
                       <Heart className="w-7 h-7 text-[var(--color-rose)] group-hover:text-white" />
                    </div>
-                   <h3 className="text-2xl font-bold mb-4 font-[Gabarito]">Private Invitations</h3>
-                   <p className="text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed">We control growth to maintain a balanced, respectful ecosystem where every profile is real.</p>
+                   <h3 className="text-2xl font-bold mb-4 font-[Gabarito]">Curated Membership</h3>
+                   <p className="text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed">We manage growth deliberately to keep the ecosystem balanced, authentic, and free of bad actors.</p>
                 </div>
                 <div className="p-10 bg-white rounded-[32px] border border-[var(--color-bone)] shadow-sm hover:shadow-xl transition-all hover:-translate-y-2 group">
                    <div className="w-14 h-14 rounded-full bg-[var(--color-gold)]/20 flex items-center justify-center mb-8 group-hover:bg-[var(--color-gold)] transition-colors">
                       <Sparkles className="w-7 h-7 text-[var(--color-gold)] group-hover:text-white" />
                    </div>
-                   <h3 className="text-2xl font-bold mb-4 font-[Gabarito]">Member Input</h3>
-                   <p className="text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed">Our early members directly influence the features we build. Your feedback is our roadmap.</p>
+                   <h3 className="text-2xl font-bold mb-4 font-[Gabarito]">Member-Driven</h3>
+                   <p className="text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed">Our members shape the direction of Clush. Your experience and feedback directly influence what we build next.</p>
                 </div>
                 <div className="p-10 bg-white rounded-[32px] border border-[var(--color-bone)] shadow-sm hover:shadow-xl transition-all hover:-translate-y-2 group">
                    <div className="w-14 h-14 rounded-full bg-[var(--color-ink-black)]/10 flex items-center justify-center mb-8 group-hover:bg-[var(--color-ink-black)] transition-colors">
@@ -264,10 +260,10 @@ const Home = () => {
             >
               <h2 className="text-5xl md:text-8xl font-[Gabarito] font-bold italic mb-10 leading-none">Ready for something <span className="text-[var(--color-rose)]">different?</span></h2>
               <p className="text-xl text-[var(--color-ink-muted)] mb-12 font-[Figtree] max-w-lg mx-auto leading-relaxed">
-                 Join our waiting list today. We're launching in selective cities throughout the year.
+                Download Clush today. Available on iOS and Android — your next great connection is waiting.
               </p>
               <NavLink to="/join" className="clush-btn-primary px-16 py-6 text-2xl font-bold rounded-[24px] shadow-2xl inline-block hover:scale-110 transition-transform">
-                  Reserve Your Spot
+                  Download Clush
               </NavLink>
             </motion.div>
           </div>

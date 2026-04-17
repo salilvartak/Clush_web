@@ -75,12 +75,8 @@ const About = () => {
             </div>
             <h1 className="text-5xl md:text-[100px] font-[Gabarito] font-bold italic leading-[0.9] mb-12 tracking-tight">Crafting the <span className="text-[var(--color-rose)]">Human</span> connection.</h1>
             <p className="text-lg md:text-2xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed max-w-2xl mx-auto italic font-light mb-6">
-              Founded in Mayfair, 2026. A small team of romantics and engineers building the world's most intentional dating experience.
+              Founded in Mayfair, 2026. A small team of romantics and engineers behind the world's most intentional dating experience.
             </p>
-            <div className="flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest font-bold text-[var(--color-rose)] opacity-60">
-               <div className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
-               Initial Project Phase • Concept Still In Refinement
-            </div>
         </motion.div>
       </section>
 
@@ -104,7 +100,7 @@ const About = () => {
         <ValueSection 
            icon={Users} 
            title="Curated Trust" 
-           desc="We're in the early stages, hand-selecting our community members to ensure a space filled with respectful, compatible human beings." 
+           desc="Every member is carefully vetted to ensure a space filled with respectful, compatible human beings — quality over quantity, always."
            delay={0.6}
         />
       </div>
@@ -144,7 +140,7 @@ const About = () => {
       </section>
 
       {/* Early Stage Invite */}
-      <section className="mt-80 max-w-5xl mx-auto text-center bg-white p-20 md:p-32 rounded-[60px] border border-[var(--color-bone)] shadow-2xl relative overflow-hidden group">
+      {/*<section className="mt-80 max-w-5xl mx-auto text-center bg-white p-20 md:p-32 rounded-[60px] border border-[var(--color-bone)] shadow-2xl relative overflow-hidden group">
          <div className="absolute -top-20 -right-20 w-64 h-64 bg-[var(--color-gold)]/10 rounded-full blur-[100px] group-hover:bg-[var(--color-gold)]/20 transition-all duration-1000" />
          <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[var(--color-rose-pale)] rounded-full blur-[100px] opacity-60" />
          
@@ -160,7 +156,7 @@ const About = () => {
                </button>
             </div>
          </div>
-      </section>
+      </section>*/}
     </div>
   );
 };

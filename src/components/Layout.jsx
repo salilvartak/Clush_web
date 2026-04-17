@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { CheckCircle2, Lightbulb, X, Send, Menu } from 'lucide-react';
+import { CheckCircle2, MessageSquare, X, Send, Menu } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const FeedbackModal = ({ isOpen, onClose }) => {
@@ -16,7 +16,7 @@ const FeedbackModal = ({ isOpen, onClose }) => {
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/20 backdrop-blur-sm">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -29,16 +29,16 @@ const FeedbackModal = ({ isOpen, onClose }) => {
             {!submitted ? (
               <>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 rounded-full bg-[var(--color-gold)]/20 flex items-center justify-center">
-                    <Lightbulb className="w-6 h-6 text-[var(--color-gold)]" />
+                  <div className="w-10 h-10 rounded-full bg-[var(--color-rose-pale)] flex items-center justify-center">
+                    <MessageSquare className="w-5 h-5 text-[var(--color-rose)]" />
                   </div>
-                  <h3 className="font-[Gabarito] text-2xl font-bold italic">Building Clush Together</h3>
+                  <h3 className="font-[Gabarito] text-2xl font-bold italic">Share Your Feedback</h3>
                 </div>
                 <p className="font-[Figtree] text-[var(--color-ink-muted)] mb-8">
-                  We're in the early stages of our journey. What features or ideas would you like to see in a premium dating experience?
+                  Have a suggestion or idea? We'd love to hear it — your input shapes where Clush goes next.
                 </p>
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <textarea 
+                  <textarea
                     value={suggestion}
                     onChange={(e) => setSuggestion(e.target.value)}
                     className="w-full bg-white border border-[var(--color-bone)] rounded-2xl p-4 min-h-[150px] outline-none focus:border-[var(--color-rose)] transition-all resize-none font-[Figtree]"
@@ -46,7 +46,7 @@ const FeedbackModal = ({ isOpen, onClose }) => {
                     required
                   />
                   <button type="submit" className="clush-btn-primary px-8 py-3 w-full font-bold flex items-center justify-center gap-2 group">
-                    Send Idea <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    Send Feedback <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </form>
               </>
@@ -57,7 +57,7 @@ const FeedbackModal = ({ isOpen, onClose }) => {
                 </div>
                 <h3 className="font-[Gabarito] text-2xl font-bold italic mb-4">Thank You!</h3>
                 <p className="font-[Figtree] text-[var(--color-ink-muted)] mb-8">
-                  Your voice helps us shape the future of Clush. We appreciate your contribution to our early community.
+                  We've received your feedback. Our team reviews every submission and we appreciate you helping make Clush better.
                 </p>
                 <button onClick={onClose} className="clush-btn-secondary px-8 py-3 font-bold">Close</button>
               </div>
@@ -69,84 +69,68 @@ const FeedbackModal = ({ isOpen, onClose }) => {
   );
 };
 
-const DevStatusBar = () => (
-  <div className="fixed top-0 left-0 right-0 bg-[var(--color-ink-black)] text-white py-2 px-6 text-[9px] uppercase tracking-[0.3em] font-bold text-center flex items-center justify-center gap-6 z-[60] border-b border-white/5">
-     <div className="flex items-center gap-2">
-        <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-rose)] animate-pulse" />
-        <span className="opacity-80">Development Build v0.1.2</span>
-     </div>
-     <div className="hidden md:flex items-center gap-6 opacity-40">
-        <span>•</span>
-        <span>Internal Private Alpha</span>
-        <span>•</span>
-        <span>Public Testing Pending</span>
-     </div>
-  </div>
-);
-
 const Layout = ({ children }) => {
   const [isFeedbackOpen, setIsFeedbackOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen text-[var(--color-ink-black)] overflow-x-hidden selection:bg-[var(--color-rose-pale)] selection:text-[var(--color-ink-black)]">
-      <DevStatusBar />
       {/* Header */}
-      <header className="fixed top-12 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl clush-pill-header px-4 md:px-8 py-3">
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl clush-pill-header px-4 md:px-8 py-3">
         <div className="flex items-center justify-between w-full">
           <NavLink to="/" className="flex flex-col">
             <span className="text-xl md:text-2xl font-[Gabarito] font-bold italic text-[var(--color-ink-black)] tracking-[-0.03em] flex items-center gap-1">
               Clush
             </span>
           </NavLink>
-          
+
           <nav className="hidden lg:flex items-center gap-10 font-semibold text-[var(--color-ink-muted)] font-[Figtree] uppercase tracking-[0.1em] text-[11px]">
-            <NavLink 
-              to="/" 
-              className={({ isActive }) => 
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
                 isActive ? "text-[var(--color-ink-black)] relative after:absolute after:-bottom-2 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--color-gold)]" : "hover:text-[var(--color-ink-black)] transition"
               }
-            >Home <span className="text-[var(--color-rose)] text-[8px] ml-1">v0.1</span></NavLink>
-            <NavLink 
-              to="/features" 
-              className={({ isActive }) => 
+            >Home</NavLink>
+            <NavLink
+              to="/features"
+              className={({ isActive }) =>
                 isActive ? "text-[var(--color-ink-black)] relative after:absolute after:-bottom-2 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--color-gold)]" : "hover:text-[var(--color-ink-black)] transition"
               }
             >Features</NavLink>
-            <NavLink 
-              to="/safety" 
-              className={({ isActive }) => 
+            <NavLink
+              to="/safety"
+              className={({ isActive }) =>
                 isActive ? "text-[var(--color-ink-black)] relative after:absolute after:-bottom-2 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--color-gold)]" : "hover:text-[var(--color-ink-black)] transition"
               }
             >Safety</NavLink>
-            <NavLink 
-              to="/about" 
-              className={({ isActive }) => 
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
                 isActive ? "text-[var(--color-ink-black)] relative after:absolute after:-bottom-2 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--color-gold)]" : "hover:text-[var(--color-ink-black)] transition"
               }
             >About Us</NavLink>
-            <NavLink 
-              to="/clush-plus" 
-              className={({ isActive }) => 
+            <NavLink
+              to="/clush-plus"
+              className={({ isActive }) =>
                 isActive ? "text-[var(--color-ink-black)] relative after:absolute after:-bottom-2 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--color-gold)]" : "hover:text-[var(--color-ink-black)] transition text-[var(--color-gold)]"
               }
             >Clush Plus</NavLink>
-            <NavLink 
-              to="/contact" 
-              className={({ isActive }) => 
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
                 isActive ? "text-[var(--color-ink-black)] relative after:absolute after:-bottom-2 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--color-gold)]" : "hover:text-[var(--color-ink-black)] transition"
               }
             >Contact</NavLink>
           </nav>
- 
+
           <div className="flex items-center gap-2 md:gap-4">
-            <NavLink 
+            <NavLink
               to="/join"
               className="clush-btn-primary px-4 md:px-6 py-2 md:py-2.5 text-xs md:text-sm font-bold tracking-tight rounded-full transition-transform hover:scale-105 active:scale-95"
             >
-              Waitlist
+              Download
             </NavLink>
-            <button 
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="lg:hidden p-2 hover:bg-[var(--color-rose-pale)] rounded-full transition-colors order-first"
             >
@@ -180,26 +164,23 @@ const Layout = ({ children }) => {
         </AnimatePresence>
       </header>
 
-      <main className="pt-32 min-h-screen">
+      <main className="pt-24 min-h-screen">
         {children}
       </main>
 
-      {/* Early Stage Ideas Toggle */}
-      <motion.button 
+      {/* Feedback Button */}
+      <motion.button
         onClick={() => setIsFeedbackOpen(true)}
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         whileHover={{ scale: 1.05, x: -5 }}
         whileTap={{ scale: 0.95 }}
-        className="fixed bottom-8 right-8 z-[60] bg-[var(--color-gold)] text-white p-4 rounded-full shadow-2xl shadow-gold/40 flex items-center gap-3 pr-6"
+        className="fixed bottom-8 right-8 z-[60] bg-[var(--color-ink-black)] text-white p-4 rounded-full shadow-2xl flex items-center gap-3 pr-6"
       >
-        <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-            <Lightbulb className="w-5 h-5 animate-pulse" />
+        <div className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center">
+          <MessageSquare className="w-5 h-5" />
         </div>
-        <div className="flex flex-col items-start leading-none">
-          <span className="font-bold text-[10px] tracking-tight uppercase opacity-60">Early Stage</span>
-          <span className="font-bold text-sm tracking-tight uppercase">Share Idea</span>
-        </div>
+        <span className="font-bold text-sm tracking-tight">Feedback</span>
       </motion.button>
 
       <FeedbackModal isOpen={isFeedbackOpen} onClose={() => setIsFeedbackOpen(false)} />
@@ -223,7 +204,7 @@ const Layout = ({ children }) => {
               <h4 className="font-[Figtree] text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--color-ink-muted)]">Connect</h4>
               <NavLink to="/about" className="text-sm hover:text-[var(--color-rose)] transition">About Us</NavLink>
               <NavLink to="/contact" className="text-sm hover:text-[var(--color-rose)] transition">Contact & Support</NavLink>
-              <NavLink to="/join" className="text-sm hover:text-[var(--color-rose)] transition">Join Waitlist</NavLink>
+              <NavLink to="/join" className="text-sm hover:text-[var(--color-rose)] transition">Download the App</NavLink>
             </div>
             <div className="flex flex-col gap-4">
               <h4 className="font-[Figtree] text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--color-ink-muted)]">Legal</h4>
@@ -233,15 +214,11 @@ const Layout = ({ children }) => {
               <NavLink to="/legal/safe-dating" className="text-sm hover:text-[var(--color-rose)] transition">Safe Dating Guide</NavLink>
             </div>
             <div className="flex flex-col gap-4">
-              <h4 className="font-[Figtree] text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--color-ink-muted)]">Early Access</h4>
-              <p className="text-sm text-[var(--color-ink-muted)]">We're in private alpha. Join our close-knit community.</p>
-              <div className="flex gap-2">
-                <input 
-                  type="email" 
-                  placeholder="Email" 
-                  className="bg-white border border-[var(--color-bone)] rounded-lg px-4 py-2 text-sm w-full outline-none focus:border-[var(--color-rose)]"
-                />
-              </div>
+              <h4 className="font-[Figtree] text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--color-ink-muted)]">Get the App</h4>
+              <p className="text-sm text-[var(--color-ink-muted)]">Available on iOS and Android. Download Clush and start something real.</p>
+              <NavLink to="/join" className="clush-btn-primary px-4 py-2 text-xs text-center rounded-xl font-bold">
+                Download Now
+              </NavLink>
             </div>
           </div>
 
