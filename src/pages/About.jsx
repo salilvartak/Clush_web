@@ -75,7 +75,7 @@ const About = () => {
             </div>
             <h1 className="text-5xl md:text-[100px] font-[Gabarito] font-bold italic leading-[0.9] mb-12 tracking-tight">Crafting the <span className="text-[var(--color-rose)]">Human</span> connection.</h1>
             <p className="text-lg md:text-2xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed max-w-2xl mx-auto italic font-light mb-6">
-              Founded in Mayfair, 2026. A small team of romantics and engineers behind the world's most intentional dating experience.
+              A small team of romantics and engineers building the world's most intentional dating experience — launching first in Pune, Maharashtra.
             </p>
         </motion.div>
       </section>

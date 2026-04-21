@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, EyeOff, Lock, UserCheck, Heart, AlertCircle, PhoneCall, FileBox, Hexagon, Fingerprint, Activity, Smartphone } from 'lucide-react';
+import { ShieldCheck, EyeOff, Lock, UserCheck, Heart, AlertCircle, PhoneCall, FileBox, Hexagon, Fingerprint, Activity, Smartphone, OctagonX } from 'lucide-react';
 
 const SafetyNode = ({ icon: Icon, title, desc, delay, x, y }) => (
   <motion.div 
@@ -53,17 +53,10 @@ const Safety = () => {
       {/* Background Decorative Grid */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.05] z-0 bg-[radial-gradient(circle,var(--color-ink-black)_1px,transparent_1px)] bg-[size:40px_40px]" />
 
-      <section className="relative pt-32 pb-40 px-6 overflow-hidden z-10">
+      <section className="relative pt-10 pb-40 px-6 overflow-hidden z-10">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
           <div className="flex-1 max-w-2xl">
-            <motion.div 
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="inline-flex items-center gap-3 px-5 py-2 clush-glass rounded-full border border-[var(--color-bone)] mb-10 shadow-sm"
-            >
-              <ShieldCheck className="w-4 h-4 text-[var(--color-rose)]" />
-              <span className="font-[Figtree] text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--color-ink-black)]">Protocol 1.0</span>
-            </motion.div>
+            
             
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
@@ -78,9 +71,9 @@ const Safety = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="font-[Figtree] text-xl md:text-2xl text-[var(--color-ink-muted)] mb-4 leading-relaxed font-light"
+              className="font-[Figtree] text-xl md:text-2xl text-[var(--color-ink-muted)]  mb-4 leading-relaxed font-light"
             >
-              We believe true connection requires a sanctuary. Our multi-layered security stack ensures that what happens on Clush, stays on Clush.
+              We believe true connection requires a sanctuary. Our multi-layered security stack is being engineered to ensure that what happens on Clush, stays on Clush. 
             </motion.p>
             <div className="mb-16 flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-[var(--color-rose)] opacity-60">
                <div className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
@@ -99,10 +92,10 @@ const Safety = () => {
              {/* Center visual link */}
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-[var(--color-gold)] rounded-full blur-[100px] opacity-20" />
              
-             <SafetyNode icon={UserCheck} title="Verified Only" desc="Manual review of every application to ensure our community is 100% real human." delay={0.2} x={-40} y={40} />
-             <SafetyNode icon={EyeOff} title="Invisible Mode" desc="Browse silently. You control when, where, and to whom you become visible." delay={0.4} x={260} y={120} />
-             <SafetyNode icon={Lock} title="Encrypted" desc="Messages and media are protected by industry-leading end-to-end encryption." delay={0.6} x={60} y={380} />
-             <SafetyNode icon={AlertCircle} title="Zero Harassment" desc="Proactive AI intervention and a strictly enforced zero-tolerance policy." delay={0.8} x={360} y={440} />
+             <SafetyNode icon={UserCheck} title="Verified Only" desc="Every profile will be manually reviewed to guarantee a 100% real community." delay={0.2} x={-40} y={40} />
+             <SafetyNode icon={EyeOff} title="Invisible Mode" desc="Browse silently. You will control exactly who sees you and when." delay={0.4} x={260} y={120} />
+             <SafetyNode icon={Lock} title="Encrypted" desc="Your chats and media will be secured with end-to-end encryption." delay={0.6} x={60} y={380} />
+             <SafetyNode icon={AlertCircle} title="Zero Harassment" desc="Protected by proactive AI moderation and a strict zero-tolerance policy." delay={0.8} x={360} y={440} />
           </div>
 
           {/* Mobile visible grid */}
@@ -134,14 +127,14 @@ const Safety = () => {
                  <div className="flex flex-col md:flex-row gap-12">
                     <div className="flex-1 flex flex-col gap-6">
                        <h3 className="text-3xl font-[Gabarito] font-bold italic">Human-to-Human</h3>
-                       <p className="text-xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed font-light">
-                          Unlike other platforms, we don't use bots or fake engagement. Every notification you receive comes from a real person who is intentionally reaching out.
+                       <p className="text-xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed font-light text-justify">
+                          Unlike other platforms, we will never use bots or fake engagement. Every notification you receive will come from a real person who is intentionally reaching out.
                        </p>
                     </div>
                     <div className="flex-1 flex flex-col gap-6">
                        <h3 className="text-3xl font-[Gabarito] font-bold italic">No Data Resale</h3>
-                       <p className="text-xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed font-light">
-                          Your data is never for sale. Our business model is based on premium membership, not selling our users' personal lives.
+                       <p className="text-xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed font-light text-justify">
+                          Your data will never be for sale. Our business model is built entirely on premium memberships, not on selling our users' personal lives. 
                        </p>
                     </div>
                  </div>
@@ -166,15 +159,15 @@ const Safety = () => {
       {/* Safety Support Callout */}
       <section className="py-24 px-6 bg-[var(--color-rose-pale)]/30 border-t border-[var(--color-bone)]">
          <div className="max-w-4xl mx-auto flex flex-col items-center text-center gap-10">
-            <PhoneCall className="w-12 h-12 md:w-16 md:h-16 text-[var(--color-rose)] animate-bounce" />
-            <h2 className="text-3xl md:text-5xl font-[Gabarito] font-bold italic">We've got your back.</h2>
+            <OctagonX className="w-12 h-12 md:w-16 md:h-16 text-[var(--color-rose)] animate-bounce" />
+            <h2 className="text-3xl md:text-5xl font-[Gabarito] font-bold italic">Instant Boundaries..</h2>
             <p className="text-xl md:text-2xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed font-light italic">
-              A dedicated safety concierge is available 24/7 to address any concerns. If you ever feel uncomfortable, we are just a pulse away.
+              You will dictate who stays in your space. With seamless block and report tools, you'll be able to instantly and silently remove anyone who falls short of our standards.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
-               <span className="px-6 py-2 border border-[var(--color-rose)] rounded-full text-[var(--color-rose)] font-bold text-xs uppercase tracking-widest bg-white">Reporting Response {'<'} 10m</span>
-               <span className="px-6 py-2 border border-[var(--color-rose)] rounded-full text-[var(--color-rose)] font-bold text-xs uppercase tracking-widest bg-white">Live Voice Support</span>
-               <span className="px-6 py-2 border border-[var(--color-rose)] rounded-full text-[var(--color-rose)] font-bold text-xs uppercase tracking-widest bg-white">Local Liaisons</span>
+               <span className="px-6 py-2 border border-[var(--color-rose)] rounded-full text-[var(--color-rose)] font-bold text-xs uppercase tracking-widest bg-white">ONE-TAP BLOCKING</span>
+               <span className="px-6 py-2 border border-[var(--color-rose)] rounded-full text-[var(--color-rose)] font-bold text-xs uppercase tracking-widest bg-white">ZERO TOLERANCE</span>
+               <span className="px-6 py-2 border border-[var(--color-rose)] rounded-full text-[var(--color-rose)] font-bold text-xs uppercase tracking-widest bg-white">GUARANTEED PRIVACY</span>
             </div>
          </div>
       </section>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Crown,
@@ -14,6 +15,7 @@ import {
 } from 'lucide-react';
 
 const ClushPlus = () => {
+  /* PRICING — commented out until launch
   const plans = [
     {
       duration: '1 Month',
@@ -48,37 +50,38 @@ const ClushPlus = () => {
       isPopular: false
     }
   ];
+  */
 
   const features = [
     {
       icon: <Zap className="w-6 h-6" />,
       title: "20 Right Swipes / Day",
-      description: "3x more swipes than free users — more chances to find your match every day."
+      description: "You'll get 3x more daily swipes—expanding your chances while keeping your intent high."
     },
     {
       icon: <Eye className="w-6 h-6" />,
       title: "See Who Likes You",
-      description: "Fully visible \"Likes You\" grid for instant matching — no more guessing."
+      description: "You'll unlock a fully visible grid for instant matching—no more guessing games."
     },
     {
       icon: <Star className="w-6 h-6" />,
-      title: "3 Super Likes / Week",
-      description: "Stand out from the crowd and let someone know you're seriously interested."
+      title: "3 Gems / Week",
+      description: "Catch their eye before you even match. You'll trigger an exclusive alert."
     },
     {
       icon: <RefreshCcw className="w-6 h-6" />,
       title: "Unlimited Rewinds",
-      description: "Accidentally left-swiped? Bring them back instantly with unlimited rewinds."
+      description: "Accidentally passed on someone? You'll be able to bring their profile back instantly."
     },
     {
       icon: <Filter className="w-6 h-6" />,
       title: "Advanced Filters",
-      description: "Filter by height, politics, star sign, education, kids, pets, exercise, drinking, smoking, and more."
+      description: "You'll be able to finely curate your feed by height, lifestyle, education, and more."
     },
     {
       icon: <MessageCircle className="w-6 h-6" />,
       title: "Read Receipts On",
-      description: "Know exactly when your messages have been read — no more wondering."
+      description: "You'll know exactly when your messages have been read—total chat transparency."
     }
   ];
 
@@ -86,7 +89,7 @@ const ClushPlus = () => {
     { label: "Right Swipes per day",    free: "6",              plus: "20" },
     { label: "Left Swipes",             free: "Unlimited",      plus: "Unlimited" },
     { label: "See who likes you",       free: "Blurred",        plus: "Fully visible" },
-    { label: "Super Likes per week",    free: "1",              plus: "3" },
+    { label: "Gems per week",           free: "1",              plus: "3" },
     { label: "Rewinds",                 free: "2 / week",       plus: "Unlimited" },
     { label: "Profile saves",           free: "2 / week",       plus: "Unlimited" },
     { label: "Ads",                     free: "Always on",      plus: "Optional" },
@@ -128,81 +131,28 @@ const ClushPlus = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-[var(--color-ink-muted)] font-[Figtree] max-w-2xl mx-auto"
+            className="text-xl text-[var(--color-ink-muted)] font-[Figtree] max-w-2xl mx-auto mb-10"
           >
-            Go beyond standard. Unlock premium tools designed to help you find more meaningful connections faster.
+            We are crafting these features to give you absolute control, priority visibility, and a refined path to your next connection.
           </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--color-ink-black)]/6 text-[var(--color-ink-muted)] font-bold text-xs uppercase tracking-widest border border-[var(--color-bone)]"
+          >
+            <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-gold)] animate-pulse" />
+            Pricing plans coming soon — join the waitlist to be notified
+          </motion.div>
         </div>
 
-        {/* Pricing Cards */}
+        {/* Pricing Cards — hidden until launch */}
+        {/* TODO: uncomment plans array and this section when ready to launch
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 px-4">
-          {plans.map((plan, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 + index * 0.08 }}
-              whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              className={`relative rounded-[32px] p-7 flex flex-col items-center text-center transition-all duration-300 ${
-                plan.isPopular
-                  ? 'bg-gradient-to-b from-[var(--color-gold)] to-[#B8921E] text-white shadow-2xl shadow-[var(--color-gold)]/25 scale-[1.04] z-10'
-                  : 'bg-white border border-[var(--color-bone)] shadow-lg hover:shadow-xl hover:border-[var(--color-gold)]/40'
-              }`}
-            >
-              {plan.tag && (
-                <div className={`absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest whitespace-nowrap ${
-                  plan.isPopular
-                    ? 'bg-white text-[var(--color-gold)]'
-                    : 'bg-[var(--color-gold)]/10 text-[var(--color-gold)] border border-[var(--color-gold)]/20'
-                }`}>
-                  {plan.tag}
-                </div>
-              )}
-
-              <h3 className={`font-[Figtree] font-bold uppercase tracking-widest text-xs mb-5 ${plan.isPopular ? 'text-white/75' : 'text-[var(--color-ink-muted)]'}`}>
-                {plan.duration}
-              </h3>
-
-              <div className="flex flex-col items-center mb-1">
-                <span className={`text-4xl font-[Gabarito] font-bold italic leading-none ${plan.isPopular ? 'text-white' : 'text-[var(--color-ink-black)]'}`}>
-                  {plan.price}
-                </span>
-                <span className={`text-[10px] uppercase mt-2 mb-7 opacity-45 ${plan.isPopular ? 'text-white' : 'text-[var(--color-ink-muted)]'}`}>
-                Incl. all taxes
-              </span>
-                <span className={`text-xs font-[Figtree] mt-2 ${plan.perMonth ? '' : 'invisible'} ${plan.isPopular ? 'text-white/65' : 'text-[var(--color-ink-muted)]'}`}>
-                  {plan.perMonth ?? 'placeholder'}
-                </span>
-                <span className={`font-bold text-xs mt-2.5 px-3 py-1 rounded-full ${plan.savings ? '' : 'invisible'} ${
-                  plan.isPopular ? 'bg-white/20 text-white' : 'bg-[var(--color-rose-pale)] text-[var(--color-rose)]'
-                }`}>
-                  {plan.savings ?? 'placeholder'}
-                </span>
-              </div>
-
-              
-
-              <ul className="space-y-3 mb-8 text-left w-full">
-                {['Premium Status', 'All Plus Features', 'Priority Support'].map((item) => (
-                  <li key={item} className={`flex items-center gap-2.5 text-sm font-[Figtree] ${plan.isPopular ? 'text-white/90' : 'text-[var(--color-ink-muted)]'}`}>
-                    <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${plan.isPopular ? 'bg-white/25' : 'bg-green-100'}`}>
-                      <Check className={`w-3 h-3 ${plan.isPopular ? 'text-white' : 'text-green-600'}`} />
-                    </div>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              <button className={`w-full py-3.5 rounded-2xl font-bold font-[Figtree] text-sm transition-all duration-200 ${
-                plan.isPopular
-                  ? 'bg-white text-[var(--color-gold)] hover:bg-[var(--color-ink-black)] hover:text-white'
-                  : 'bg-[var(--color-tan)] text-[var(--color-ink-black)] hover:bg-[var(--color-gold)] hover:text-white border border-[var(--color-bone)]'
-              }`}>
-                Get Started
-              </button>
-            </motion.div>
-          ))}
+          pricing cards go here
         </div>
+        */}
       </section>
 
       {/* ── Features ──────────────────────────────────────── */}
@@ -281,7 +231,7 @@ const ClushPlus = () => {
           >
             {/* Header row */}
             <div className="grid grid-cols-3 border-b-2 border-[var(--color-bone)]">
-              <div className="py-5 px-6 font-[Figtree] font-bold text-[var(--color-ink-muted)] text-xs uppercase tracking-widest">
+              <div className="py-5 px-6 font-[Figtree] font-bold text-[var(--color-ink-muted)] text-xs uppercase tracking-widest text-center">
                 Feature
               </div>
               <div className="py-5 px-4 text-center border-l border-[var(--color-bone)]">
@@ -302,7 +252,7 @@ const ClushPlus = () => {
                   i % 2 === 0 ? 'bg-white' : 'bg-[var(--color-tan)]/50'
                 }`}
               >
-                <div className="py-4 px-6 font-[Figtree] text-sm text-[var(--color-ink-black)] font-medium flex items-center">
+                <div className="py-4 px-6 font-[Figtree] text-sm text-[var(--color-ink-black)] font-medium flex items-center justify-center text-center">
                   {row.label}
                 </div>
                 <div className="py-4 px-4 border-l border-[var(--color-bone)] flex items-center justify-center">
@@ -348,9 +298,12 @@ const ClushPlus = () => {
                 Check our help center to learn more about our premium memberships.
               </p>
             </div>
-            <button className="whitespace-nowrap flex-shrink-0 bg-white text-[var(--color-ink-black)] px-8 py-4 rounded-2xl font-bold font-[Figtree] text-sm hover:bg-[var(--color-gold)] hover:text-white transition-all duration-200">
+            <Link 
+              to="/contact#faq"
+              className="whitespace-nowrap flex-shrink-0 bg-white text-[var(--color-ink-black)] px-8 py-4 rounded-2xl font-bold font-[Figtree] text-sm hover:bg-[var(--color-gold)] hover:text-white transition-all duration-200"
+            >
               Read FAQ
-            </button>
+            </Link>
           </div>
         </motion.div>
       </section>
