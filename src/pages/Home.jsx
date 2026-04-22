@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Star, Sparkles, Coffee, MessageCircle, ShieldCheck, MapPin, Target, ArrowRight, Quote } from 'lucide-react';
+import { Heart, Star, Sparkles, ArrowRight, Quote } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
 
 import ElenaImg from '../assets/ai-images/elena.png';
@@ -137,7 +137,7 @@ const Home = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1, delay: 0.5 }}
-                className="font-[Figtree] text-xl md:text-2xl text-[var(--color-ink-muted)] mb-4 max-w-lg leading-relaxed font-light text-justify"
+                className="font-[Figtree] text-xl md:text-2xl text-[var(--color-ink-muted)] mb-4 max-w-lg leading-relaxed font-light"
               >
                 Clush is an upcoming private, curated community for intentional singles who value substance and style.
               </motion.p>

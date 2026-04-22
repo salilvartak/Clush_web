@@ -213,13 +213,13 @@ const Layout = ({ children }) => {
             <div className="flex flex-col gap-4">
               <h4 className="font-[Figtree] text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--color-ink-muted)]">Early Access</h4>
               <p className="text-sm text-[var(--color-ink-muted)]">Launching in Pune, Maharashtra. Be the first to know when we go live.</p>
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="bg-white border border-[var(--color-bone)] rounded-lg px-4 py-2 text-sm w-full outline-none focus:border-[var(--color-rose)]"
-                />
-              </div>
+              <NavLink
+                to="/join"
+                onClick={scrollToTop}
+                className="clush-btn-primary px-4 py-2.5 text-sm font-bold text-center rounded-xl"
+              >
+                Join Waitlist
+              </NavLink>
             </div>
           </div>
 

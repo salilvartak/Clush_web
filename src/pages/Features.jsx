@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Star, Timer, ShieldCheck, Zap, Bot, MessageCircle, Bookmark } from 'lucide-react';
+import { Timer, ShieldCheck, Zap, Bot, MessageCircle, Bookmark } from 'lucide-react';
 
 const FeatureItem = ({ icon: Icon, title, desc, delay, reversed = false }) => (
   <motion.div 

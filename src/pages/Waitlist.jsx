@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Star, Heart, CheckCircle2, Send, Mail, MapPin } from 'lucide-react';
+import { Sparkles, Star, Heart, CheckCircle2, Send, Mail, MapPin, Loader2, AlertCircle } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 const Waitlist = () => {
   const [email, setEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState('idle'); // idle | sending | success | duplicate | error
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (email) setSubmitted(true);
+    setStatus('sending');
+
+    const { error } = await supabase
+      .from('waitlist')
+      .insert([{ email: email.trim().toLowerCase() }]);
+
+    if (!error) {
+      setStatus('success');
+    } else if (error.code === '23505') {
+      setStatus('duplicate');
+    } else {
+      setStatus('error');
+    }
   };
 
   return (
@@ -34,7 +47,27 @@ const Waitlist = () => {
 
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
         <div className="flex-1 w-full lg:max-w-lg">
-          {!submitted ? (
+          {status === 'success' ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="clush-card p-12 md:p-16 border border-[var(--color-bone)] bg-white shadow-2xl text-center"
+            >
+              <div className="w-24 h-24 rounded-full bg-[var(--color-rose-pale)] flex items-center justify-center mx-auto mb-8">
+                <CheckCircle2 className="w-12 h-12 text-[var(--color-rose)]" />
+              </div>
+              <h2 className="text-4xl font-[Gabarito] font-bold italic mb-6">You're on the list.</h2>
+              <p className="text-lg text-[var(--color-ink-muted)] mb-10 leading-relaxed font-[Figtree]">
+                Thank you for your interest. We'll reach out to <strong>{email}</strong> when a space becomes available in Pune.
+              </p>
+              <button
+                onClick={() => { setStatus('idle'); setEmail(''); }}
+                className="text-[var(--color-rose)] font-bold underline hover:opacity-70 transition-opacity font-[Figtree]"
+              >
+                Use a different email
+              </button>
+            </motion.div>
+          ) : (
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -53,37 +86,49 @@ const Waitlist = () => {
                       type="email"
                       required
                       value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      onChange={(e) => { setEmail(e.target.value); if (status !== 'idle') setStatus('idle'); }}
                       className="w-full bg-[var(--color-tan)] border border-[var(--color-bone)] rounded-2xl p-4 pl-12 outline-none focus:border-[var(--color-rose)] focus:bg-white transition-all text-lg"
                       placeholder="you@example.com"
                     />
                   </div>
                 </div>
+
+                {status === 'duplicate' && (
+                  <div className="flex items-center gap-3 text-amber-600 bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4 text-sm">
+                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    This email is already on the waitlist.
+                  </div>
+                )}
+
+                {status === 'error' && (
+                  <div className="flex items-center gap-3 text-red-500 bg-red-50 border border-red-200 rounded-2xl px-5 py-4 text-sm">
+                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    Something went wrong. Please try again.
+                  </div>
+                )}
+
                 <div className="space-y-6">
                   <div className="flex items-center gap-3">
                     <input type="checkbox" className="w-5 h-5 rounded accent-[var(--color-rose)]" id="agree" required />
                     <label htmlFor="agree" className="text-sm text-[var(--color-ink-muted)] cursor-pointer">I agree to the privacy policy and terms of service.</label>
                   </div>
-                  <button type="submit" className="clush-btn-primary px-12 py-5 w-full text-xl font-bold flex items-center justify-center gap-3 hover:scale-[1.02] transform transition-all group">
-                    Request Invite <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  <button
+                    type="submit"
+                    disabled={status === 'sending'}
+                    className="clush-btn-primary px-12 py-5 w-full text-xl font-bold flex items-center justify-center gap-3 hover:scale-[1.02] transform transition-all group disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  >
+                    {status === 'sending' ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" /> Reserving…
+                      </>
+                    ) : (
+                      <>
+                        Request Invite 
+                      </>
+                    )}
                   </button>
                 </div>
               </form>
-            </motion.div>
-          ) : (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="clush-card p-12 md:p-16 border border-[var(--color-bone)] bg-white shadow-2xl text-center"
-            >
-              <div className="w-24 h-24 rounded-full bg-[var(--color-rose-pale)] flex items-center justify-center mx-auto mb-8">
-                <CheckCircle2 className="w-12 h-12 text-[var(--color-rose)]" />
-              </div>
-              <h2 className="text-4xl font-[Gabarito] font-bold italic mb-6">You're on the list.</h2>
-              <p className="text-lg text-[var(--color-ink-muted)] mb-10 leading-relaxed font-[Figtree]">
-                Thank you for your interest. We'll reach out to <strong>{email}</strong> when a space becomes available in Pune.
-              </p>
-              <button onClick={() => setSubmitted(false)} className="text-[var(--color-rose)] font-bold underline hover:text-[var(--color-rose-light)]">Edit Email</button>
             </motion.div>
           )}
         </div>

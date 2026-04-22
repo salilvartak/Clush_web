@@ -75,9 +75,9 @@ const Safety = () => {
             >
               We believe true connection requires a sanctuary. Our multi-layered security stack is being engineered to ensure that what happens on Clush, stays on Clush. 
             </motion.p>
-            <div className="mb-16 flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-[var(--color-rose)] opacity-60">
+            <div className="mb-16 flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-[var(--color-ink-muted)] opacity-60">
                <div className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
-               Security Concept Build • No External Pen-Testing Started
+               Pre-Launch · Security Architecture in Active Development
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 pt-12 border-t border-[var(--color-bone)] place-items-center">
@@ -143,12 +143,12 @@ const Safety = () => {
                     <div className="flex items-center gap-6">
                        <ShieldCheck className="w-16 h-16 text-[var(--color-rose)]" fill="currentColor" fillOpacity={0.1} />
                        <div>
-                          <p className="font-bold text-lg font-[Gabarito] italic">Certified Secure</p>
-                          <p className="text-sm text-[var(--color-ink-muted)] font-[Figtree]">Audited by leading cybersecurity firms quarterly.</p>
+                          <p className="font-bold text-lg font-[Gabarito] italic">Built for Security</p>
+                          <p className="text-sm text-[var(--color-ink-muted)] font-[Figtree]">Designed with industry-standard security practices from day one.</p>
                        </div>
                     </div>
                     <div className="flex gap-4">
-                       <button className="clush-btn-primary px-10 py-4 font-bold rounded-2xl">Read Security Whitepaper</button>
+                       <a href="/contact" className="clush-btn-secondary px-10 py-4 font-bold rounded-2xl inline-block">Have Questions?</a>
                     </div>
                  </div>
               </div>
@@ -160,7 +160,7 @@ const Safety = () => {
       <section className="py-24 px-6 bg-[var(--color-rose-pale)]/30 border-t border-[var(--color-bone)]">
          <div className="max-w-4xl mx-auto flex flex-col items-center text-center gap-10">
             <OctagonX className="w-12 h-12 md:w-16 md:h-16 text-[var(--color-rose)] animate-bounce" />
-            <h2 className="text-3xl md:text-5xl font-[Gabarito] font-bold italic">Instant Boundaries..</h2>
+            <h2 className="text-3xl md:text-5xl font-[Gabarito] font-bold italic">Instant Boundaries.</h2>
             <p className="text-xl md:text-2xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed font-light italic">
               You will dictate who stays in your space. With seamless block and report tools, you'll be able to instantly and silently remove anyone who falls short of our standards.
             </p>

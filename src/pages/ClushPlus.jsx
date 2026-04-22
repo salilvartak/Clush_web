@@ -124,7 +124,7 @@ const ClushPlus = () => {
             className="text-5xl md:text-7xl font-[Gabarito] font-bold italic mb-6 tracking-tight leading-[1.05]"
           >
             Elevate Your{' '}
-            <span className="clush-text-gradient">Experience</span>
+            <span className="clush-text-gradient pr-4">Experience</span>
           </motion.h1>
 
           <motion.p

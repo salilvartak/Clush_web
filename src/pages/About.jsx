@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, Heart, Sparkles, MapPin, Coffee, Users, ExternalLink } from 'lucide-react';
+import { Target, Heart, Sparkles, Users } from 'lucide-react';
 
 import ElenaImg from '../assets/ai-images/elena.png';
 import MarcusImg from '../assets/ai-images/marcus.png';
@@ -59,7 +59,7 @@ const About = () => {
   return (
     <div className="px-6 pb-24 relative overflow-hidden bg-[var(--color-cream)]">
       {/* Background Decorative Element */}
-      <div className="fixed inset-0 pointer-events-none opacity-20 z-0 select-none flex items-center justify-center">
+      <div className="absolute inset-0 pointer-events-none opacity-20 z-0 select-none flex items-center justify-center">
          <span className="text-[40vw] md:text-[30vw] font-bold text-white uppercase italic tracking-[-0.05em] leading-none select-none">CLUSH</span>
       </div>
 
