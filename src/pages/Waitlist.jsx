@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Sparkles, Star, Heart, CheckCircle2, Send, Mail, MapPin, Loader2, AlertCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
@@ -110,7 +111,9 @@ const Waitlist = () => {
                 <div className="space-y-6">
                   <div className="flex items-center gap-3">
                     <input type="checkbox" className="w-5 h-5 rounded accent-[var(--color-rose)]" id="agree" required />
-                    <label htmlFor="agree" className="text-sm text-[var(--color-ink-muted)] cursor-pointer">I agree to the privacy policy and terms of service.</label>
+                    <label htmlFor="agree" className="text-sm text-[var(--color-ink-muted)] cursor-pointer">
+                      I agree to the <Link to="/legal/privacy" className="text-[var(--color-rose)] hover:underline">privacy policy</Link> and <Link to="/legal/terms" className="text-[var(--color-rose)] hover:underline">terms of service</Link>.
+                    </label>
                   </div>
                   <button
                     type="submit"
