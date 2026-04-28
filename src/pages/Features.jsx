@@ -58,7 +58,7 @@ const FEATURES = [
     screenshotAlt: 'Clush discovery interface showing Gem priority icebreaker feature',
     icon: Zap,
     accentColor: '#D4AF37',
-    phone: { xPct: 66, yPct: 34, rotate: 3, scale: 1, textSide: 'left' },
+    phone: { xPct: 66, yPct: 54, rotate: 3, scale: 1, textSide: 'left' },
   },
   {
     id: 4,
@@ -84,7 +84,7 @@ const FEATURES = [
     screenshotAlt: 'Clush rich chat interface with voice message and threading',
     icon: MessageCircle,
     accentColor: '#A8CDBA',
-    phone: { xPct: 70, yPct: 64, rotate: -3, scale: 1, textSide: 'left' },
+    phone: { xPct: 70, yPct: 54, rotate: -3, scale: 1, textSide: 'left' },
   },
   {
     id: 6,
@@ -97,7 +97,7 @@ const FEATURES = [
     screenshotAlt: 'Clush vault interface showing saved profiles collection',
     icon: Bookmark,
     accentColor: '#CD9D8F',
-    phone: { xPct: 52, yPct: 50, rotate: 0, scale: 1.08, textSide: 'left' },
+    phone: { xPct: 62, yPct: 55, rotate: 0, scale: 1.08, textSide: 'left' },
   },
 ];
 
@@ -539,7 +539,7 @@ function FeaturesDesktop() {
 
           <h1 className="text-6xl xl:text-8xl font-[Gabarito] font-bold italic leading-[0.94] mb-8 text-[var(--color-ink-black)]">
             Crafted for<br />
-            <span className="clush-text-gradient">Quality</span><br />
+            <span className="clush-text-gradient p-6">Quality</span><br />
             Conversations.
           </h1>
 
