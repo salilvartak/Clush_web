@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(node -e \"require\\('gsap'\\); console.log\\('gsap ok:', require\\('gsap/package.json'\\).version\\)\")",
+      "Bash(npx vite *)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\Salil\\.claude\\projects\\c--Users-Salil-Desktop-Web-Clush-web\\memory"
     ]
   }
 }

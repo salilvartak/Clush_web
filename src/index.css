@@ -127,4 +127,57 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  .clush-btn-gradient {
+    background: linear-gradient(135deg, var(--color-ink-black) 0%, #2A2725 100%);
+    color: #FAF8F5;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 10px 20px -10px rgba(69, 65, 62, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .clush-btn-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-rose) 0%, var(--color-rose-light) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.4s ease;
+  }
+
+  .clush-btn-gradient::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(30deg);
+    transition: all 0.6s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .clush-btn-gradient:hover::after {
+    left: 120%;
+  }
+
+  .clush-btn-gradient:hover {
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 20px 30px -10px rgba(205, 157, 143, 0.3);
+    border-color: rgba(205, 157, 143, 0.2);
+  }
+
+  .clush-btn-gradient:hover::before {
+    opacity: 1;
+  }
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, EyeOff, Lock, UserCheck, Heart, AlertCircle, PhoneCall, FileBox, Hexagon, Fingerprint, Activity, Smartphone, OctagonX } from 'lucide-react';
+import { ShieldCheck, EyeOff, Lock, UserCheck, Heart, AlertCircle, PhoneCall, FileBox, Hexagon, Fingerprint, Activity, Smartphone, OctagonX, ArrowRight } from 'lucide-react';
 
 const SafetyNode = ({ icon: Icon, title, desc, delay, x, y }) => (
   <motion.div 
@@ -148,7 +148,15 @@ const Safety = () => {
                        </div>
                     </div>
                     <div className="flex gap-4">
-                       <a href="/contact" className="clush-btn-secondary px-10 py-4 font-bold rounded-2xl inline-block">Have Questions?</a>
+                       <motion.a 
+                          href="/contact" 
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="clush-btn-gradient px-10 py-4 font-bold rounded-2xl flex items-center gap-3 group"
+                       >
+                          <span>Have Questions?</span>
+                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                       </motion.a>
                     </div>
                  </div>
               </div>
