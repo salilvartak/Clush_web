@@ -15,6 +15,72 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// ─── ANIMATED ICON COMPONENT ──────────────────────────────────────────────────
+const AnimatedIcon = ({ type, color, size = 32 }) => {
+  const iconVariants = {
+    initial: { pathLength: 0, opacity: 0 },
+    animate: { pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: [0.43, 0.13, 0.23, 0.96] } }
+  };
+
+  const renderPath = (d) => (
+    <motion.path
+      d={d}
+      variants={iconVariants}
+    />
+  );
+
+  return (
+    <motion.svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={color}
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      initial="initial"
+      animate="animate"
+    >
+      {type === 'face' && (
+        <>
+          {renderPath("M8 10h.01M16 10h.01M9 16c.55.67 1.5 1 3 1s2.45-.33 3-1")}
+          {renderPath("M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2")}
+        </>
+      )}
+      {type === 'image' && (
+        <>
+          {renderPath("M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM8.5 10a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM21 15l-5-5L5 21")}
+          {renderPath("M3 21l18-18")}
+        </>
+      )}
+      {type === 'shield' && (
+        <>
+          {renderPath("M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z")}
+          {renderPath("M9 12l2 2 4-4")}
+        </>
+      )}
+      {type === 'shield-face' && (
+        <>
+          {renderPath("M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z")}
+          {renderPath("M8 11h.01M16 11h.01M9 15c.55.67 1.5 1 3 1s2.45-.33 3-1")}
+        </>
+      )}
+      {type === 'timer' && renderPath("M12 2v4M12 12l3 3M19.07 4.93l-1.41 1.41M4.93 19.07l-1.41 1.41M2 12h4M18 12h4M4.93 4.93l1.41 1.41M19.07 19.07l1.41 1.41M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z")}
+      {type === 'zap' && renderPath("M13 2L3 14h9l-1 8 10-12h-9l1-8z")}
+      {type === 'lock' && renderPath("M12 11v4M7 10V7a5 5 0 0 1 10 0v3M5 10h14a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2z")}
+      {type === 'ban' && renderPath("M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10zM4.93 4.93l14.14 14.14")}
+      {type === 'eye-off' && renderPath("M9.88 9.88L9 9a3 3 0 1 0 4.24 4.24l-1 1M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68M6.61 6.61A13.52 13.52 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61M1 1l22 22")}
+      {type === 'message' && renderPath("M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z")}
+      {type === 'trending-up' && renderPath("M23 6l-9.5 9.5-5-5L1 18M17 6h6v6")}
+      {type === 'mic' && renderPath("M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM19 10v1a7 7 0 0 1-14 0v-1M12 18v4M8 22h8")}
+      {type === 'reply' && renderPath("M9 10l-5 5 5 5M4 15h11a5 5 0 0 0 5-5 5 5 0 0 0-5-5")}
+      {type === 'history' && renderPath("M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8M3 3v5h5M12 7v5l4 2")}
+    </motion.svg>
+  );
+};
+
+
 // ─── FEATURE DATA ─────────────────────────────────────────────────────────────
 // Edit headlines, descriptions, and screenshots here.
 // phone.xPct / yPct: where the phone center lands (0–100% of viewport).
@@ -23,11 +89,19 @@ gsap.registerPlugin(ScrollTrigger);
 const FEATURES = [
   {
     id: 1,
-    eyebrow: 'PRIVACY',
+    eyebrow: 'PRIVACY ARCHITECTURE',
     headline: 'Vanishing\nMedia',
     description:
       'Send images that automatically self-destruct after being viewed. Spontaneous, private sharing — without the fear of photos lingering in chat history.',
-    highlights: ['Single or double-view expiry', 'No re-opens, no replays', 'Protects your intimate moments'],
+    verifiedBox: {
+      title: 'Zero Persistence',
+      text: 'Images self-destruct after viewing. No traces left behind in the cloud or device.',
+    },
+    footerHighlights: [
+      { title: 'Self-Destruct', sub: 'Timed media expiry', icon: 'timer' },
+      { title: 'One-Time View', sub: 'No replays allowed', icon: 'zap' },
+      { title: 'End-to-End', sub: 'Encrypted ephemeral data', icon: 'lock' },
+    ],
     screenshot: '/features/feature-1.png',
     screenshotAlt: 'Clush vanishing media interface with timed photo and expiry indicator',
     icon: Timer,
@@ -36,11 +110,19 @@ const FEATURES = [
   },
   {
     id: 2,
-    eyebrow: 'SECURITY',
+    eyebrow: 'PROTECTION PROTOCOL',
     headline: 'Anti-Screenshot\nShield',
     description:
       'Our chat interface is built with active screenshot protection, preventing users from capturing logs or vanishing media — a true safe space.',
-    highlights: ['Screenshot detection & blocking', 'Vanishing media protection', 'Chat history stays private'],
+    verifiedBox: {
+      title: 'Total Privacy',
+      text: 'Active blocking prevents any screenshot attempts. Your moments stay yours.',
+    },
+    footerHighlights: [
+      { title: 'Detection', sub: 'Instant alert on attempts', icon: 'shield' },
+      { title: 'Blocking', sub: 'Blacked out captures', icon: 'ban' },
+      { title: 'Safety First', sub: 'No leaks, no exposure', icon: 'eye-off' },
+    ],
     screenshot: '/features/feature-2.png',
     screenshotAlt: 'Clush chat interface with anti-screenshot protection overlay',
     icon: ShieldCheck,
@@ -49,11 +131,19 @@ const FEATURES = [
   },
   {
     id: 3,
-    eyebrow: 'DISCOVERY',
+    eyebrow: 'DISCOVERY ENGINE',
     headline: 'Gem: Priority\nIcebreaker',
     description:
       "A Gem isn't just a like — it's a message before you even match. Gemmed profiles rise to the top of their list, letting you start the conversation on your terms.",
-    highlights: ['Message before matching', 'Rise to the top of their feed', 'Stand out from the crowd'],
+    verifiedBox: {
+      title: 'High Intent',
+      text: 'Gems signal genuine interest, ensuring you stand out in a crowded feed.',
+    },
+    footerHighlights: [
+      { title: 'Priority Entry', sub: 'Rise to the top of the feed', icon: 'zap' },
+      { title: 'Pre-Match Message', sub: 'Talk before you connect', icon: 'message' },
+      { title: 'Better Odds', sub: '3x higher response rate', icon: 'trending-up' },
+    ],
     screenshot: '/features/feature-3.png',
     screenshotAlt: 'Clush discovery interface showing Gem priority icebreaker feature',
     icon: Zap,
@@ -62,11 +152,19 @@ const FEATURES = [
   },
   {
     id: 4,
-    eyebrow: 'TRUST',
-    headline: 'AI-Guardian\nSecurity',
+    eyebrow: 'FACE VERIFICATION LOGIC',
+    headline: 'Every user\nwill be screened\nat the door.',
     description:
-      'Every user is screened at the door. Our AI instantly detects fake profiles and blocks explicit content during signup — keeping your feed pristine.',
-    highlights: ['AI-powered fake profile detection', 'Explicit content filtering', 'Social handle blocking'],
+      'During signup, our system instantly verifies your face to block fake profiles and any images containing explicit content or social handles, ensuring your discovery feed is pristine and authentic from day one.',
+    verifiedBox: {
+      title: 'Verified & Safe',
+      text: 'Real people only. No fakes, no inappropriate content.',
+    },
+    footerHighlights: [
+      { title: 'Face Verification', sub: 'Verifies you at signup', icon: 'face' },
+      { title: 'Image Screening', sub: 'Blocks explicit content', icon: 'image' },
+      { title: 'Authentic Experience', sub: 'Pristine feeds. Real connections.', icon: 'shield' },
+    ],
     screenshot: '/features/feature-4.png',
     screenshotAlt: 'Clush AI security scan showing profile verification interface',
     icon: Bot,
@@ -75,11 +173,19 @@ const FEATURES = [
   },
   {
     id: 5,
-    eyebrow: 'CONVERSATION',
+    eyebrow: 'CONVERSATION FLOW',
     headline: 'Rich Chat\nExperience',
     description:
       'Voice messages with preview mode, swipe-to-reply threading, real-time typing indicators, and read receipts — everything for deeper conversations.',
-    highlights: ['Voice messages with preview', 'Swipe-to-reply threading', 'Typing indicators & read receipts'],
+    verifiedBox: {
+      title: 'Deeper Bonding',
+      text: 'Our chat tools are designed for expression beyond simple text messages.',
+    },
+    footerHighlights: [
+      { title: 'Voice Messages', sub: 'Hear the emotion', icon: 'mic' },
+      { title: 'Threaded Reply', sub: 'Never lose the context', icon: 'reply' },
+      { title: 'Real-time', sub: 'Typing and read status', icon: 'zap' },
+    ],
     screenshot: '/features/feature-5.png',
     screenshotAlt: 'Clush rich chat interface with voice message and threading',
     icon: MessageCircle,
@@ -88,11 +194,19 @@ const FEATURES = [
   },
   {
     id: 6,
-    eyebrow: 'FLEXIBILITY',
+    eyebrow: 'FLEXIBILITY TOOLS',
     headline: 'Save for\nLater Vault',
     description:
       "Not ready to decide? Save profiles from your Discovery feed to a private vault and revisit whenever you're ready. No permanent left-swipes.",
-    highlights: ['Save profiles privately', 'Revisit on your timeline', 'No permanent left-swipes'],
+    verifiedBox: {
+      title: 'Zero Pressure',
+      text: 'Take your time to decide. Your potential matches wait in your private vault.',
+    },
+    footerHighlights: [
+      { title: 'Private Vault', sub: 'Store profiles securely', icon: 'lock' },
+      { title: 'Unlimited Time', sub: 'No expiry on saved profiles', icon: 'timer' },
+      { title: 'Revisit Anytime', sub: 'Pick up where you left off', icon: 'history' },
+    ],
     screenshot: '/features/feature-6.png',
     screenshotAlt: 'Clush vault interface showing saved profiles collection',
     icon: Bookmark,
@@ -100,6 +214,7 @@ const FEATURES = [
     phone: { xPct: 62, yPct: 55, rotate: 0, scale: 1.08, textSide: 'left' },
   },
 ];
+
 
 // ─── ARC OFFSETS ──────────────────────────────────────────────────────────────
 // Bezier apex offset (px) from the midpoint between consecutive phone positions.
@@ -350,9 +465,15 @@ const FeatureTextBlock = memo(function FeatureTextBlock({ feature, isActive }) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            style={{ fontFamily:'Gabarito, sans-serif', fontSize:'clamp(2.2rem, 3.6vw, 3.8rem)', fontWeight:800, letterSpacing:'-0.04em', color:'#45413E', lineHeight:1.06, marginBottom:20, fontStyle:'italic', whiteSpace:'pre-line' }}
+            style={{ fontFamily:'Gabarito, sans-serif', fontSize:'clamp(2.2rem, 3.6vw, 3.8rem)', fontWeight:800, letterSpacing:'-0.04em', color:'#45413E', lineHeight:1.06, marginBottom:20, fontStyle:'italic', whiteSpace:'pre-line', position: 'relative' }}
           >
             {feature.headline}
+            <motion.div 
+              initial={{ width: 0 }}
+              animate={{ width: 40 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              style={{ height: 3, background: '#D4AF37', marginTop: 12, borderRadius: 2 }}
+            />
           </motion.h2>
 
           {/* Description */}
@@ -360,33 +481,75 @@ const FeatureTextBlock = memo(function FeatureTextBlock({ feature, isActive }) {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.28, duration: 0.52 }}
-            style={{ fontFamily:'Figtree, sans-serif', fontSize:'clamp(0.9rem, 1.15vw, 1.1rem)', color:'#756F68', lineHeight:1.72, maxWidth:400, marginBottom:28 }}
+            style={{ fontFamily:'Figtree, sans-serif', fontSize:'clamp(0.9rem, 1.15vw, 1.1rem)', color:'#756F68', lineHeight:1.72, maxWidth:480, marginBottom:28 }}
           >
             {feature.description}
           </motion.p>
 
-          {/* Highlights with staggered entry */}
-          <div style={{ display:'flex', flexDirection:'column', gap:11 }}>
-            {feature.highlights.map((hl, i) => (
-              <motion.div
-                key={hl}
-                initial={{ opacity: 0, x: isRight ? 10 : -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.42 + i * 0.1, duration: 0.42 }}
-                style={{ display:'flex', alignItems:'center', gap:10 }}
-              >
-                <div style={{ width:20, height:20, borderRadius:6, background:`${feature.accentColor}20`, border:`1.5px solid ${feature.accentColor}50`, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
-                  <Check size={10} color={feature.accentColor} strokeWidth={2.5} />
-                </div>
-                <span style={{ fontFamily:'Figtree, sans-serif', fontSize:'0.86rem', color:'#756F68', fontWeight:500 }}>{hl}</span>
-              </motion.div>
-            ))}
-          </div>
+          {/* Verified Box */}
+          {feature.verifiedBox && (
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              style={{ 
+                background: `${feature.accentColor}15`, 
+                borderRadius: 24, 
+                padding: '20px 24px', 
+                marginBottom: 40,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 16,
+                border: `1px solid ${feature.accentColor}25`,
+                maxWidth: 480
+              }}
+            >
+              <div style={{ width: 48, height: 48, borderRadius: 12, background: `${feature.accentColor}20`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                <AnimatedIcon type="shield-face" color={feature.accentColor} size={28} />
+              </div>
+              <div>
+                <h4 style={{ fontFamily: 'Gabarito, sans-serif', fontSize: 16, fontWeight: 700, color: feature.accentColor, marginBottom: 4 }}>
+                  {feature.verifiedBox.title}
+                </h4>
+                <p style={{ fontFamily: 'Figtree, sans-serif', fontSize: 13, color: '#756F68', lineHeight: 1.4 }}>
+                  {feature.verifiedBox.text}
+                </p>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Footer Highlights (Columns) */}
+          {feature.footerHighlights && (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24, maxWidth: 600 }}>
+              {feature.footerHighlights.map((hl, i) => (
+                <motion.div
+                  key={hl.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.55 + i * 0.1, duration: 0.5 }}
+                  style={{ display: 'flex', flexDirection: 'column', gap: 12 }}
+                >
+                  <div style={{ width: 44, height: 44, borderRadius: 12, background: `${feature.accentColor}10`, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${feature.accentColor}20` }}>
+                    <AnimatedIcon type={hl.icon} color={feature.accentColor} size={24} />
+                  </div>
+                  <div>
+                    <h5 style={{ fontFamily: 'Gabarito, sans-serif', fontSize: 13, fontWeight: 700, color: '#45413E', marginBottom: 4 }}>
+                      {hl.title}
+                    </h5>
+                    <p style={{ fontFamily: 'Figtree, sans-serif', fontSize: 11, color: '#756F68', lineHeight: 1.4 }}>
+                      {hl.sub}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </motion.div>
       )}
     </AnimatePresence>
   );
 });
+
 
 // ─── FeaturesDesktop ──────────────────────────────────────────────────────────
 function FeaturesDesktop() {
@@ -722,20 +885,49 @@ function FeaturesMobile() {
                 </span>
                 <h2 className="text-3xl font-[Gabarito] font-bold italic leading-tight mb-4" style={{ whiteSpace:'pre-line' }}>
                   {feature.headline}
+                  <div style={{ width: 32, height: 2.5, background: '#D4AF37', marginTop: 10, borderRadius: 2 }} />
                 </h2>
-                <p className="text-sm text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed mb-5">
+                <p className="text-sm text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed mb-8">
                   {feature.description}
                 </p>
-                <div className="flex flex-col gap-3 items-start text-left">
-                  {feature.highlights.map((hl) => (
-                    <div key={hl} className="flex items-center gap-3">
-                      <div style={{ width:18, height:18, borderRadius:5, background:`${feature.accentColor}20`, border:`1.5px solid ${feature.accentColor}50`, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
-                        <Check size={10} color={feature.accentColor} strokeWidth={2.5} />
-                      </div>
-                      <span className="text-xs text-[var(--color-ink-muted)] font-[Figtree] font-medium">{hl}</span>
+
+                {/* Verified Box Mobile */}
+                {feature.verifiedBox && (
+                  <div style={{ background: `${feature.accentColor}12`, borderRadius: 20, padding: '16px 20px', marginBottom: 32, display: 'flex', alignItems: 'center', gap: 14, border: `1px solid ${feature.accentColor}20`, textAlign: 'left' }}>
+                    <div style={{ width: 40, height: 40, borderRadius: 10, background: `${feature.accentColor}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <AnimatedIcon type="shield-face" color={feature.accentColor} size={24} />
                     </div>
-                  ))}
-                </div>
+                    <div>
+                      <h4 style={{ fontFamily: 'Gabarito, sans-serif', fontSize: 14, fontWeight: 700, color: feature.accentColor, marginBottom: 2 }}>
+                        {feature.verifiedBox.title}
+                      </h4>
+                      <p style={{ fontFamily: 'Figtree, sans-serif', fontSize: 12, color: '#756F68', lineHeight: 1.3 }}>
+                        {feature.verifiedBox.text}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Footer Highlights Mobile */}
+                {feature.footerHighlights && (
+                  <div className="grid grid-cols-1 gap-6 text-left">
+                    {feature.footerHighlights.map((hl) => (
+                      <div key={hl.title} className="flex items-center gap-4">
+                        <div style={{ width: 36, height: 36, borderRadius: 10, background: `${feature.accentColor}08`, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${feature.accentColor}15`, flexShrink: 0 }}>
+                          <AnimatedIcon type={hl.icon} color={feature.accentColor} size={20} />
+                        </div>
+                        <div>
+                          <h5 style={{ fontFamily: 'Gabarito, sans-serif', fontSize: 13, fontWeight: 700, color: '#45413E', marginBottom: 1 }}>
+                            {hl.title}
+                          </h5>
+                          <p style={{ fontFamily: 'Figtree, sans-serif', fontSize: 11, color: '#756F68', lineHeight: 1.3 }}>
+                            {hl.sub}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </motion.div>
           );
