@@ -13,6 +13,13 @@ import {
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import imgViewOnce      from '../assets/Features/View once.jpeg';
+import imgAntiScreenshot from '../assets/Features/Anti Screenshot.jpeg';
+import imgGem           from '../assets/Features/Gem.jpeg';
+import imgFaceVerify    from '../assets/Features/Face verification.jpeg';
+import imgRichChat      from '../assets/Features/Rich Chat.jpeg';
+import imgSave          from '../assets/Features/Save.jpeg';
+
 gsap.registerPlugin(ScrollTrigger);
 
 // ─── ANIMATED ICON COMPONENT ──────────────────────────────────────────────────
@@ -102,7 +109,7 @@ const FEATURES = [
       { title: 'One-Time View', sub: 'No replays allowed', icon: 'zap' },
       { title: 'End-to-End', sub: 'Encrypted ephemeral data', icon: 'lock' },
     ],
-    screenshot: '/features/feature-1.png',
+    screenshot: imgViewOnce,
     screenshotAlt: 'Clush vanishing media interface with timed photo and expiry indicator',
     icon: Timer,
     accentColor: '#CD9D8F',
@@ -123,7 +130,7 @@ const FEATURES = [
       { title: 'Blocking', sub: 'Blacked out captures', icon: 'ban' },
       { title: 'Safety First', sub: 'No leaks, no exposure', icon: 'eye-off' },
     ],
-    screenshot: '/features/feature-2.png',
+    screenshot: imgAntiScreenshot,
     screenshotAlt: 'Clush chat interface with anti-screenshot protection overlay',
     icon: ShieldCheck,
     accentColor: '#B5A89A',
@@ -144,7 +151,7 @@ const FEATURES = [
       { title: 'Pre-Match Message', sub: 'Talk before you connect', icon: 'message' },
       { title: 'Better Odds', sub: '3x higher response rate', icon: 'trending-up' },
     ],
-    screenshot: '/features/feature-3.png',
+    screenshot: imgGem,
     screenshotAlt: 'Clush discovery interface showing Gem priority icebreaker feature',
     icon: Zap,
     accentColor: '#D4AF37',
@@ -165,7 +172,7 @@ const FEATURES = [
       { title: 'Image Screening', sub: 'Blocks explicit content', icon: 'image' },
       { title: 'Authentic Experience', sub: 'Pristine feeds. Real connections.', icon: 'shield' },
     ],
-    screenshot: '/features/feature-4.png',
+    screenshot: imgFaceVerify,
     screenshotAlt: 'Clush AI security scan showing profile verification interface',
     icon: Bot,
     accentColor: '#9EAFCD',
@@ -186,7 +193,7 @@ const FEATURES = [
       { title: 'Threaded Reply', sub: 'Never lose the context', icon: 'reply' },
       { title: 'Real-time', sub: 'Typing and read status', icon: 'zap' },
     ],
-    screenshot: '/features/feature-5.png',
+    screenshot: imgRichChat,
     screenshotAlt: 'Clush rich chat interface with voice message and threading',
     icon: MessageCircle,
     accentColor: '#A8CDBA',
@@ -207,7 +214,7 @@ const FEATURES = [
       { title: 'Unlimited Time', sub: 'No expiry on saved profiles', icon: 'timer' },
       { title: 'Revisit Anytime', sub: 'Pick up where you left off', icon: 'history' },
     ],
-    screenshot: '/features/feature-6.png',
+    screenshot: imgSave,
     screenshotAlt: 'Clush vault interface showing saved profiles collection',
     icon: Bookmark,
     accentColor: '#CD9D8F',
@@ -337,31 +344,17 @@ const PhoneWrapper = memo(
               transition: 'background 0.5s ease',
             }}
           >
-            {/* Dynamic island */}
-            <div style={{ position:'absolute', top:11, left:'50%', transform:'translateX(-50%)', width:88, height:26, background:'#000', borderRadius:13, zIndex:10 }} />
 
             {/* Feature screenshot */}
             <img
               src={displayFeature.screenshot}
-              alt={displayFeature.screenshotAlt}
+              alt=""
               style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}
               onError={(e) => { e.currentTarget.style.display = 'none'; }}
             />
 
             {/* Placeholder UI — visible when screenshot is missing */}
-            <div style={{ position:'absolute', inset:0, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:14, padding:'52px 20px 20px' }}>
-              <div style={{ width:52, height:52, borderRadius:16, background:`${displayFeature.accentColor}28`, display:'flex', alignItems:'center', justifyContent:'center' }}>
-                <Icon size={24} color={displayFeature.accentColor} strokeWidth={1.5} />
-              </div>
-              <span style={{ fontFamily:'Gabarito, sans-serif', fontSize:13, fontWeight:700, color:'#45413E', textAlign:'center', lineHeight:1.35 }}>
-                {displayFeature.headline.replace('\n', ' ')}
-              </span>
-              <div style={{ width:'82%', display:'flex', flexDirection:'column', gap:8 }}>
-                {[100, 76, 88].map((w, i) => (
-                  <div key={i} style={{ height:7, borderRadius:3.5, background:`${displayFeature.accentColor}30`, width:`${w}%` }} />
-                ))}
-              </div>
-            </div>
+            
 
             {/* Home bar */}
             <div style={{ position:'absolute', bottom:7, left:'50%', transform:'translateX(-50%)', width:96, height:4, background:'rgba(69,65,62,0.28)', borderRadius:2, zIndex:10 }} />
@@ -861,10 +854,9 @@ function FeaturesMobile() {
               {/* Mini phone mockup */}
               <div style={{ width:180, height:360, background:'linear-gradient(145deg, #2e2e2e, #191919)', borderRadius:34, padding:7, boxShadow:'0 0 0 1px rgba(255,255,255,0.1), 0 28px 56px rgba(0,0,0,0.22)', flexShrink:0 }}>
                 <div style={{ width:'100%', height:'100%', borderRadius:28, overflow:'hidden', background:`linear-gradient(145deg, ${feature.accentColor}20, ${feature.accentColor}38)`, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:12, position:'relative', padding:'44px 16px 16px' }}>
-                  <div style={{ position:'absolute', top:9, left:'50%', transform:'translateX(-50%)', width:66, height:19, background:'#000', borderRadius:9.5 }} />
                   <img
                     src={feature.screenshot}
-                    alt={feature.screenshotAlt}
+                    alt=""
                     style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}
                     onError={(e) => { e.currentTarget.style.display = 'none'; }}
                   />
