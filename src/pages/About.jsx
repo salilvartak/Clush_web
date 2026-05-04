@@ -116,7 +116,7 @@ const About = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
            <TeamCard 
-             name="Sebastian" 
+             name="SALILVVVVVV" 
              role="Founder & Vision" 
              bio="Former gallery curator with a passion for human-centric architecture and intentional lifestyle design."
              img={MarcusImg}
