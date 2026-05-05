@@ -114,7 +114,7 @@ const ClushPlus = () => {
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--color-gold)]/10 text-[var(--color-gold)] font-bold text-xs uppercase tracking-widest mb-8 border border-[var(--color-gold)]/25 shadow-sm"
           >
             <Crown className="w-4 h-4" />
-            Clush Plus Membership
+            <span className="text-[var(--color-emerald)]">Clush</span><span className="text-[var(--color-gold)]">+</span> Membership
           </motion.div>
 
           <motion.h1
@@ -156,7 +156,7 @@ const ClushPlus = () => {
       </section>
 
       {/* ── Features ──────────────────────────────────────── */}
-      <section className="bg-[var(--color-tan)] py-24 px-6">
+      <section className="bg-[#F9F8F6] py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <motion.div
@@ -196,7 +196,7 @@ const ClushPlus = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
-                className="group bg-white rounded-[28px] p-8 border border-[var(--color-bone)] hover:shadow-2xl hover:border-[var(--color-rose)]/25 transition-all duration-300"
+                className="group bg-[var(--color-tan)] rounded-[28px] p-8 border border-[var(--color-bone)] hover:shadow-2xl hover:border-[var(--color-rose)]/25 transition-all duration-300"
               >
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[var(--color-rose-pale)] to-[var(--color-cream)] flex items-center justify-center text-[var(--color-rose)] mb-6 shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:from-[var(--color-rose)] group-hover:to-[var(--color-rose-light)] group-hover:text-white">
                   {feature.icon}
@@ -227,7 +227,7 @@ const ClushPlus = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white rounded-[32px] border border-[var(--color-bone)] overflow-hidden shadow-xl"
+            className="bg-[var(--color-tan)] rounded-[32px] border border-[var(--color-bone)] overflow-hidden shadow-xl"
           >
             {/* Header row */}
             <div className="grid grid-cols-3 border-b-2 border-[var(--color-bone)]">
@@ -240,7 +240,7 @@ const ClushPlus = () => {
               <div className="py-5 px-4 text-center border-l border-[var(--color-gold)]/20 bg-gradient-to-b from-[var(--color-gold)]/8 to-transparent">
                 <div className="inline-flex items-center gap-1.5">
                   <Crown className="w-3.5 h-3.5 text-[var(--color-gold)]" />
-                  <span className="font-[Figtree] font-bold text-sm text-[var(--color-gold)]">Clush+</span>
+                  <span className="font-[Figtree] font-bold text-sm"><span className="text-[var(--color-emerald)]">Clush</span><span className="text-[var(--color-gold)]">+</span></span>
                 </div>
               </div>
             </div>
@@ -249,7 +249,7 @@ const ClushPlus = () => {
               <div
                 key={i}
                 className={`grid grid-cols-3 border-b border-[var(--color-bone)] last:border-b-0 ${
-                  i % 2 === 0 ? 'bg-white' : 'bg-[var(--color-tan)]/50'
+                  i % 2 === 0 ? 'bg-[var(--color-tan)]' : 'bg-[var(--color-cream)]/30'
                 }`}
               >
                 <div className="py-4 px-6 font-[Figtree] text-sm text-[var(--color-ink-black)] font-medium flex items-center justify-center text-center">
@@ -291,7 +291,7 @@ const ClushPlus = () => {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-[var(--color-rose)]/10 rounded-full blur-3xl -ml-24 -mb-24" />
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
-              <h3 className="text-3xl font-[Gabarito] font-bold italic mb-3 tracking-tight">
+              <h3 className="text-white text-3xl font-[Gabarito] font-bold italic mb-3 tracking-tight">
                 Still have questions?
               </h3>
               <p className="font-[Figtree] opacity-70 text-sm">

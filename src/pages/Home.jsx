@@ -122,10 +122,10 @@ const Home = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.2 }}
-                className="text-5xl md:text-8xl lg:text-[100px] font-[Gabarito] font-bold italic leading-[0.95] tracking-[-0.04em] mb-10 text-[var(--color-ink-black)]"
+                className="text-5xl md:text-8xl lg:text-[100px] font-[Gabarito] font-bold italic leading-[0.95] tracking-[-0.04em] mb-10"
               >
                 Connection,<br />
-                <span className="text-[var(--color-rose)] relative whitespace-nowrap">
+                <span className="text-[var(--color-emerald)] relative whitespace-nowrap">
                   Elevated
                   <svg className="absolute w-full h-4 -bottom-2 left-0 text-[var(--color-rose-light)] opacity-40" viewBox="0 0 100 10" preserveAspectRatio="none">
                     <path d="M0 5 L 100 5" stroke="currentColor" strokeWidth="8" fill="transparent" strokeLinecap="round" />
@@ -178,7 +178,7 @@ const Home = () => {
         </section>
 
         {/* Manifesto Section */}
-        <section className="py-32 px-6 bg-white relative overflow-hidden">
+        <section className="py-32 px-6 bg-[var(--color-tan)] relative overflow-hidden">
           <div className="max-w-5xl mx-auto flex flex-col md:flex-row gap-20">
              <div className="flex-1 relative">
                 <motion.div 
@@ -214,27 +214,27 @@ const Home = () => {
         </section>
 
         {/* Community Section */}
-        <section className="py-32 px-6 bg-[var(--color-tan)] border-y border-[var(--color-bone)]">
+        <section className="py-32 px-6 bg-[var(--color-cream)] border-y-2 border-[var(--color-bone)]">
           <div className="max-w-7xl mx-auto text-center">
              <SectionHeading>Our Community</SectionHeading>
              <h2 className="text-4xl md:text-7xl font-[Gabarito] font-bold italic mb-20">Built on trust, grown with care.</h2>
 
              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div className="p-10 bg-white rounded-[32px] border border-[var(--color-bone)] shadow-sm hover:shadow-xl transition-all hover:-translate-y-2 group">
+                <div className="p-10 bg-[var(--color-tan)] rounded-[32px] border border-[var(--color-bone)] shadow-sm hover:shadow-xl transition-all hover:-translate-y-2 group">
                    <div className="w-14 h-14 rounded-full bg-[var(--color-rose-pale)] flex items-center justify-center mb-8 group-hover:bg-[var(--color-rose)] transition-colors">
                       <Heart className="w-7 h-7 text-[var(--color-rose)] group-hover:text-white" />
                    </div>
                    <h3 className="text-2xl font-bold mb-4 font-[Gabarito]">Curated Membership</h3>
                    <p className="text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed">We are deliberately managing our early growth to keep the ecosystem balanced, authentic, and free of bad actors from day one.</p>
                 </div>
-                <div className="p-10 bg-white rounded-[32px] border border-[var(--color-bone)] shadow-sm hover:shadow-xl transition-all hover:-translate-y-2 group">
+                <div className="p-10 bg-[var(--color-tan)] rounded-[32px] border border-[var(--color-bone)] shadow-sm hover:shadow-xl transition-all hover:-translate-y-2 group">
                    <div className="w-14 h-14 rounded-full bg-[var(--color-gold)]/20 flex items-center justify-center mb-8 group-hover:bg-[var(--color-gold)] transition-colors">
                       <Sparkles className="w-7 h-7 text-[var(--color-gold)] group-hover:text-white" />
                    </div>
                    <h3 className="text-2xl font-bold mb-4 font-[Gabarito]">Member-Driven</h3>
                    <p className="text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed">Our founding members will shape the direction of Clush. Your early experience and feedback will directly influence what we build next.</p>
                 </div>
-                <div className="p-10 bg-white rounded-[32px] border border-[var(--color-bone)] shadow-sm hover:shadow-xl transition-all hover:-translate-y-2 group">
+                <div className="p-10 bg-[var(--color-tan)] rounded-[32px] border border-[var(--color-bone)] shadow-sm hover:shadow-xl transition-all hover:-translate-y-2 group">
                    <div className="w-14 h-14 rounded-full bg-[var(--color-ink-black)]/10 flex items-center justify-center mb-8 group-hover:bg-[var(--color-ink-black)] transition-colors">
                       <Star className="w-7 h-7 text-[var(--color-ink-black)] group-hover:text-white" />
                    </div>
@@ -246,7 +246,7 @@ const Home = () => {
         </section>
 
         {/* Closing CTA */}
-        <section className="py-40 px-6 relative overflow-hidden text-center bg-white">
+        <section className="py-40 px-6 relative overflow-hidden text-center bg-[var(--color-tan)]">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] bg-[var(--color-rose-pale)] rounded-full blur-[150px] opacity-30" />
           <div className="max-w-3xl mx-auto relative z-10">
             <motion.div
@@ -254,7 +254,7 @@ const Home = () => {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-5xl md:text-8xl font-[Gabarito] font-bold italic mb-10 leading-none">Ready for something <span className="text-[var(--color-rose)]">different?</span></h2>
+              <h2 className="text-5xl md:text-8xl font-[Gabarito] font-bold italic mb-10 leading-none">Ready for something <span className="text-[var(--color-emerald)]">different?</span></h2>
               <p className="text-xl text-[var(--color-ink-muted)] mb-12 font-[Figtree] max-w-lg mx-auto leading-relaxed">
                 Dating in Pune is about to change. The era of mindless swiping is over—claim your spot on the waitlist.
               </p>

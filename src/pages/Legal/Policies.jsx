@@ -5,7 +5,7 @@ const PolicyContainer = ({ title, lastUpdated, children }) => (
   <motion.div 
     initial={{ opacity: 0, x: 30 }}
     animate={{ opacity: 1, x: 0 }}
-    className="clush-card p-12 md:p-20 bg-white border border-[var(--color-bone)] shadow-xl relative overflow-hidden"
+    className="clush-card p-12 md:p-20 bg-[var(--color-tan)] border border-[var(--color-bone)] shadow-xl relative overflow-hidden"
   >
     <div className="absolute top-0 left-0 w-full h-1 bg-[var(--color-rose)]" />
     <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-8 border-b border-[var(--color-bone)] pb-8">

@@ -13,7 +13,7 @@ const TeamCard = ({ name, role, bio, img, delay }) => (
     viewport={{ once: true }}
     transition={{ duration: 0.8, delay }}
     whileHover={{ y: -10, transition: { duration: 0.3 } }}
-    className="clush-card p-10 bg-white shadow-2xl flex flex-col items-center group relative overflow-hidden"
+    className="clush-card p-10 bg-[var(--color-tan)] shadow-2xl flex flex-col items-center group relative overflow-hidden"
   >
     <div className="absolute top-0 left-0 w-full h-1 bg-[var(--color-gold)] opacity-0 group-hover:opacity-100 transition-opacity" />
     <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl mb-10 group-hover:scale-110 transition-transform duration-500 bg-slate-100">
@@ -60,7 +60,7 @@ const About = () => {
     <div className="px-6 pb-24 relative overflow-hidden bg-[var(--color-cream)]">
       {/* Background Decorative Element */}
       <div className="absolute inset-0 pointer-events-none opacity-20 z-0 select-none flex items-center justify-center">
-         <span className="text-[40vw] md:text-[30vw] font-bold text-white uppercase italic tracking-[-0.05em] leading-none select-none">CLUSH</span>
+         <span className="text-[40vw] md:text-[30vw] font-bold uppercase italic tracking-[-0.05em] leading-none select-none" style={{ color: '#F9F8F6' }}>CLUSH</span>
       </div>
 
       <section className="relative pt-32 pb-40 text-center max-w-4xl mx-auto z-10">
@@ -73,7 +73,7 @@ const About = () => {
               <Sparkles className="w-4 h-4 text-[var(--color-rose)]" />
               <span className="font-[Figtree] text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--color-ink-black)]">Our Origin Story</span>
             </div>
-            <h1 className="text-5xl md:text-[100px] font-[Gabarito] font-bold italic leading-[0.9] mb-12 tracking-tight">Crafting the <span className="text-[var(--color-rose)]">Human</span> connection.</h1>
+            <h1 className="text-5xl md:text-[100px] font-[Gabarito] font-bold italic leading-[0.9] mb-12 tracking-tight">Crafting the <span className="text-[var(--color-emerald)]">Human</span> connection.</h1>
             <p className="text-lg md:text-2xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed max-w-2xl mx-auto italic font-light mb-6">
               A small team of romantics and engineers building the world's most intentional dating experience — launching first in Pune, Maharashtra.
             </p>
@@ -108,7 +108,7 @@ const About = () => {
       {/* Team Section */}
       <section className="mt-40 md:mt-60 max-w-7xl mx-auto z-10 relative">
         <div className="text-center mb-20 md:mb-40">
-           <h2 className="text-4xl md:text-7xl font-[Gabarito] font-bold italic mb-10">The Minds Behind <span className="text-[var(--color-rose)]">Clush</span>.</h2>
+           <h2 className="text-4xl md:text-7xl font-[Gabarito] font-bold italic mb-10">The Minds Behind <span className="text-[var(--color-emerald)]">Clush</span>.</h2>
            <p className="text-lg md:text-xl text-[var(--color-ink-muted)] font-[Figtree] max-w-2xl mx-auto leading-relaxed">
              We're a collective of believers, builders, and dreamers who still believe in the magic of a first meeting.
            </p>

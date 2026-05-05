@@ -9,7 +9,7 @@ const SafetyNode = ({ icon: Icon, title, desc, delay, x, y }) => (
     viewport={{ once: true }}
     transition={{ duration: 0.8, delay, ease: "easeOut" }}
     whileHover={{ y: y - 10, scale: 1.02, transition: { duration: 0.3 } }}
-    className="absolute w-72 h-72 clush-card p-10 flex flex-col items-center justify-center text-center gap-6 bg-white/40 backdrop-blur-lg border border-white/60 shadow-2xl group"
+    className="absolute w-72 h-72 rounded-[20px] p-10 flex flex-col items-center justify-center text-center gap-6 bg-[#F9F8F6] border border-[var(--color-bone)] shadow-2xl group overflow-hidden"
   >
     <div className="w-16 h-16 rounded-2xl bg-[var(--color-rose)] flex items-center justify-center rotate-12 group-hover:rotate-0 transition-transform duration-500 shadow-xl shadow-rose/20">
       <Icon className="w-8 h-8 text-white" />
@@ -64,7 +64,7 @@ const Safety = () => {
               transition={{ delay: 0.2 }}
               className="text-5xl md:text-8xl font-[Gabarito] font-bold italic leading-[0.9] mb-12"
             >
-              Secure<br />By <span className="text-[var(--color-rose)]">Essence</span>.
+              Secure<br />By <span className="text-[var(--color-emerald)]">Essence</span>.
             </motion.h1>
             
             <motion.p 
@@ -80,7 +80,7 @@ const Safety = () => {
                Pre-Launch · Security Architecture in Active Development
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 pt-12 border-t border-[var(--color-bone)] place-items-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-12 pt-12 border-t-2 border-[var(--color-bone)] place-items-center">
                <SecurityMetric icon={Lock} value="256" label="Bit Encryption" delay={0.6} />
                <SecurityMetric icon={Fingerprint} value="100%" label="Verified Members" delay={0.7} />
                <SecurityMetric icon={Activity} value="24/7" label="Active Monitoring" delay={0.8} />
@@ -100,12 +100,12 @@ const Safety = () => {
 
           {/* Mobile visible grid */}
           <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-              <div className="clush-card p-10 bg-white shadow-xl">
+              <div className="rounded-[20px] p-10 bg-white/40 backdrop-blur-lg border border-white/60 shadow-2xl">
                  <UserCheck className="w-10 h-10 text-[var(--color-rose)] mb-6" />
                  <h3 className="text-2xl font-bold mb-4 font-[Gabarito] italic">Verified Only</h3>
                  <p className="text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed italic">Manual human review of every single profile application.</p>
               </div>
-              <div className="clush-card p-10 bg-white shadow-xl">
+              <div className="rounded-[20px] p-10 bg-white/40 backdrop-blur-lg border border-white/60 shadow-2xl">
                  <EyeOff className="w-10 h-10 text-[var(--color-rose)] mb-6" />
                  <h3 className="text-2xl font-bold mb-4 font-[Gabarito] italic">Invisible Mode</h3>
                  <p className="text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed italic">You are in total command of your visibility and privacy settings.</p>
@@ -115,15 +115,15 @@ const Safety = () => {
       </section>
 
       {/* Trust Manifesto */}
-      <section className="py-40 px-6 bg-white border-t border-[var(--color-bone)] relative overflow-hidden">
+      <section className="py-40 px-6 bg-white border-t-2 border-[var(--color-bone)] relative overflow-hidden">
         <div className="max-w-4xl mx-auto text-center relative z-10">
            <SectionHeading>The Transparency Report</SectionHeading>
-           <h2 className="text-4xl md:text-7xl font-[Gabarito] font-bold italic mb-16 px-4">Our promise is written in <span className="text-[var(--color-rose)]">code.</span></h2>
-           
-           <div className="clush-card p-12 md:p-24 bg-[var(--color-tan)] border border-[var(--color-bone)] text-left relative overflow-hidden">
+           <h2 className="text-4xl md:text-7xl font-[Gabarito] font-bold italic mb-16 px-4">Our promise is written in <span className="text-[var(--color-emerald)]">code.</span></h2>
+
+           <div className="clush-card p-12 md:p-24 bg-[var(--color-tan)] border-2 border-[var(--color-bone)] text-left relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-rose-pale)] blur-[120px] opacity-40 -z-10" />
-              
-              <div className="space-y-16">
+
+              <div className="space-y-16 relative z-10">
                  <div className="flex flex-col md:flex-row gap-12">
                     <div className="flex-1 flex flex-col gap-6">
                        <h3 className="text-3xl font-[Gabarito] font-bold italic">Human-to-Human</h3>
@@ -134,12 +134,12 @@ const Safety = () => {
                     <div className="flex-1 flex flex-col gap-6">
                        <h3 className="text-3xl font-[Gabarito] font-bold italic">No Data Resale</h3>
                        <p className="text-xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed font-light text-justify">
-                          Your data will never be for sale. Our business model is built entirely on premium memberships, not on selling our users' personal lives. 
+                          Your data will never be for sale. Our business model is built entirely on premium memberships, not on selling our users' personal lives.
                        </p>
                     </div>
                  </div>
 
-                 <div className="pt-16 border-t border-[var(--color-bone)] flex flex-col md:flex-row items-center justify-between gap-10">
+                 <div className="pt-16 border-t-2 border-[var(--color-bone)] flex flex-col md:flex-row items-center justify-between gap-10">
                     <div className="flex items-center gap-6">
                        <ShieldCheck className="w-16 h-16 text-[var(--color-rose)]" fill="currentColor" fillOpacity={0.1} />
                        <div>
@@ -148,11 +148,11 @@ const Safety = () => {
                        </div>
                     </div>
                     <div className="flex gap-4">
-                       <motion.a 
-                          href="/contact" 
+                       <motion.a
+                          href="/contact"
                           whileHover={{ scale: 1.02 }}
                           whileTap={{ scale: 0.98 }}
-                          className="clush-btn-gradient px-10 py-4 font-bold rounded-2xl flex items-center gap-3 group"
+                          className="clush-btn-gradient px-10 py-4 font-bold rounded-2xl flex items-center gap-3 group shadow-md hover:shadow-lg"
                        >
                           <span>Have Questions?</span>
                           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -165,7 +165,7 @@ const Safety = () => {
       </section>
 
       {/* Safety Support Callout */}
-      <section className="py-24 px-6 bg-[var(--color-rose-pale)]/30 border-t border-[var(--color-bone)]">
+      <section className="py-24 px-6 bg-[var(--color-cream)] border-t-2 border-[var(--color-bone)]">
          <div className="max-w-4xl mx-auto flex flex-col items-center text-center gap-10">
             <OctagonX className="w-12 h-12 md:w-16 md:h-16 text-[var(--color-rose)] animate-bounce" />
             <h2 className="text-3xl md:text-5xl font-[Gabarito] font-bold italic">Instant Boundaries.</h2>
