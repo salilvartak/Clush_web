@@ -790,7 +790,7 @@ function FeaturesDesktop() {
               { word: 'Only',   sub: 'VERIFIED USERS',             color: 'var(--color-emerald)' },
               { word: 'Real',   sub: 'CONNECTIONS, NO CATFISHING', color: 'var(--color-gold)' },
               { word: 'Always', sub: 'PROTECTED BY AI',            color: 'var(--color-emerald)' },
-              { word: 'Fair',   sub: 'ACCESSIBLE PRICING',         color: 'var(--color-ink-black)' },
+              { word: 'Fair',   sub: 'ACCESSIBLE PRICING',         color: 'var(--color-heading)' },
             ].map(({ word, sub, color }, i) => (
               <motion.div
                 key={word}
@@ -937,7 +937,7 @@ function FeaturesMobile() {
             { word:'Only',   sub:'VERIFIED USERS',     color:'var(--color-emerald)' },
             { word:'Real',   sub:'NO CATFISHING',       color:'var(--color-gold)' },
             { word:'Always', sub:'PROTECTED BY AI',     color:'var(--color-emerald)' },
-            { word:'Fair',   sub:'ACCESSIBLE PRICING',  color:'var(--color-ink-black)' },
+            { word:'Fair',   sub:'ACCESSIBLE PRICING',  color:'var(--color-heading)' },
           ].map(({ word, sub, color }) => (
             <div key={word} className="flex flex-col items-center gap-2">
               <div style={{ color, fontFamily:'Gabarito, sans-serif', fontSize:'2rem', fontWeight:800, fontStyle:'italic' }}>{word}</div>

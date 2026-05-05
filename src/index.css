@@ -3,7 +3,7 @@
 
 @theme {
   /* ── Boutique Club Palette ─────────────────────────────────────────── */
-  --color-cream: #FEFBE7;       /* Theme_Background  – Warm Champagne     */
+  --color-cream: #FFFAF0;       /* Theme_Background  – Warm Floral White  */
   --color-tan: #F9F8F6;          /* Surface_Card      – Warm Off-White     */
   --color-heading: #2A2725;      /* Heading text      – Deep Warm Dark     */
   --color-ink-black: #45413E;    /* Text_Info         – Warm Dark          */
@@ -86,15 +86,15 @@
     transition: background-color 0.2s ease;
   }
 
-  /* rgba values tuned to match --color-cream: #FEFBE7 = rgb(254,251,231) */
+  /* rgba values tuned to match --color-cream: #FFFAF0 = rgb(255,250,240) */
   .clush-glass {
-    background: rgba(254, 251, 231, 0.88);
+    background: rgba(255, 250, 240, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
 
   .clush-glass-header {
-    background: rgba(254, 251, 231, 0.88);
+    background: rgba(255, 250, 240, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 0.5px solid var(--color-bone);
@@ -102,7 +102,7 @@
 
   /* Translucent pill nav — very slightly more transparent than before */
   .clush-pill-header {
-    background: rgba(254, 251, 231, 0.60);
+    background: rgba(255, 250, 240, 0.60);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--color-bone);
