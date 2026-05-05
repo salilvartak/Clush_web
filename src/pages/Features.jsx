@@ -700,7 +700,7 @@ function FeaturesDesktop() {
           </h1>
 
           <p className="text-lg text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed max-w-md mx-auto mb-12">
-            We've reimagined dating from the ground up — intentionality,
+            We've reimagined dating from the ground up intentionality,
             authenticity, and visual elegance.
           </p>
 
@@ -818,132 +818,237 @@ function FeaturesDesktop() {
 
 // ─── FeaturesMobile ───────────────────────────────────────────────────────────
 // Shown on viewports < 1024px and when prefers-reduced-motion is set.
-// Simple vertical stack — no pinning, no traveling phone, no GSAP.
+// Each feature occupies its own full-screen section. IntersectionObserver
+// triggers reveal animations as sections scroll into view.
 function FeaturesMobile() {
+  const [activeIndex, setActiveIndex]   = useState(0);
+  const [visibleSet,  setVisibleSet]    = useState(() => new Set());
+  const sectionRefs = useRef([]);
+
+  useEffect(() => {
+    const ios = sectionRefs.current.map((el, i) => {
+      if (!el) return null;
+      const io = new IntersectionObserver(
+        ([e]) => {
+          if (e.isIntersecting) {
+            setActiveIndex(i);
+            setVisibleSet(prev => { const s = new Set(prev); s.add(i); return s; });
+          }
+        },
+        { threshold: 0.35 },
+      );
+      io.observe(el);
+      return io;
+    });
+    return () => ios.forEach(o => o?.disconnect());
+  }, []);
+
   return (
-    <div className="px-5 pb-24">
-      {/* Hero */}
-      <section className="pt-6 pb-14 text-center">
-        <motion.div initial={{ opacity:0, y:24 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.7 }}>
-          <div className="inline-flex items-center gap-2 px-4 py-2 clush-glass rounded-full border border-[var(--color-bone)] mb-6">
+    <div className="-mt-24" style={{ background: '#EBE7E1', position: 'relative' }}>
+
+      {/* ── Hero ────────────────────────────────────────────── */}
+      <section style={{ minHeight: '100svh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '88px 28px 52px', position: 'relative', overflow: 'hidden', textAlign: 'center' }}>
+        <div style={{ position: 'absolute', top: -80, right: -80, width: 320, height: 320, borderRadius: '50%', background: 'rgba(205,157,143,0.20)', filter: 'blur(70px)', zIndex: 0, pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', bottom: -50, left: -50, width: 240, height: 240, borderRadius: '50%', background: 'rgba(212,175,55,0.11)', filter: 'blur(60px)', zIndex: 0, pointerEvents: 'none' }} />
+
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+          style={{ position: 'relative', zIndex: 1, maxWidth: 360 }}
+        >
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '7px 16px', background: 'rgba(235,231,225,0.88)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderRadius: 999, border: '1px solid #E6DFD5', marginBottom: 32 }}>
             <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-rose)] animate-pulse" />
-            <span className="font-[Figtree] text-[11px] font-bold uppercase tracking-[0.12em]">Planned Features · Coming Soon</span>
+            <span style={{ fontFamily: 'Figtree, sans-serif', fontSize: 10.5, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase', color: '#45413E' }}>
+              Planned Features · Coming Soon
+            </span>
           </div>
-          <h1 className="text-4xl font-[Gabarito] font-bold italic leading-tight mb-4">
-            Crafted for Quality Conversations.
+
+          <h1 style={{ fontFamily: 'Gabarito, sans-serif', fontSize: 'clamp(3rem, 13vw, 4rem)', fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.04em', color: '#45413E', lineHeight: 1.02, marginBottom: 20 }}>
+            Crafted for<br />
+            <span className="clush-text-gradient">Quality</span><br />
+            Conversations.
           </h1>
-          <p className="text-base text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed">
-            We've reimagined dating from the ground up.
+
+          <p style={{ fontFamily: 'Figtree, sans-serif', fontSize: 15, color: '#756F68', lineHeight: 1.68, marginBottom: 44 }}>
+            We've reimagined dating from the ground up — intentionality, authenticity, and visual elegance.
           </p>
+
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 1.9, ease: 'easeInOut' }}
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, color: '#B5ADA5' }}
+          >
+            <span style={{ fontFamily: 'Figtree, sans-serif', fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase' }}>scroll to explore</span>
+            <ChevronDown size={13} />
+          </motion.div>
         </motion.div>
       </section>
 
-      {/* Feature cards */}
-      <div className="max-w-lg mx-auto space-y-16">
-        {FEATURES.map((feature) => {
-          const Icon = feature.icon;
-          return (
+      {/* ── Fixed side nav dots ─────────────────────────────── */}
+      <nav
+        aria-label="Feature navigation"
+        style={{ position: 'fixed', right: 14, top: '50%', transform: 'translateY(-50%)', zIndex: 100, display: 'flex', flexDirection: 'column', gap: 9, alignItems: 'center' }}
+      >
+        {FEATURES.map((f, i) => (
+          <button
+            key={f.id}
+            onClick={() => sectionRefs.current[i]?.scrollIntoView({ behavior: 'smooth' })}
+            aria-label={`Go to feature: ${f.headline.replace('\n', ' ')}`}
+            style={{ width: i === activeIndex ? 5 : 4, height: i === activeIndex ? 18 : 4, borderRadius: 999, background: i === activeIndex ? f.accentColor : '#D4C9BF', border: 'none', cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)', padding: 0 }}
+          />
+        ))}
+      </nav>
+
+      {/* ── Feature sections ────────────────────────────────── */}
+      {FEATURES.map((feature, i) => {
+        const isVisible = visibleSet.has(i);
+        return (
+          <section
+            key={feature.id}
+            ref={el => { sectionRefs.current[i] = el; }}
+            style={{ minHeight: '100svh', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', background: `linear-gradient(170deg, ${feature.accentColor}1C 0%, #EBE7E1 55%)` }}
+          >
+            {/* Oversized faded background number */}
+            <div aria-hidden="true" style={{ position: 'absolute', top: -16, right: -16, fontFamily: 'Gabarito, sans-serif', fontSize: '58vw', fontWeight: 900, fontStyle: 'italic', color: `${feature.accentColor}11`, lineHeight: 0.86, userSelect: 'none', pointerEvents: 'none', zIndex: 0 }}>
+              {String(i + 1).padStart(2, '0')}
+            </div>
+
+            {/* Eyebrow */}
             <motion.div
-              key={feature.id}
-              initial={{ opacity:0, y:36 }}
-              whileInView={{ opacity:1, y:0 }}
-              viewport={{ once:true, margin:'-50px' }}
-              transition={{ duration:0.65, ease:[0.22, 1, 0.36, 1] }}
-              className="flex flex-col items-center gap-7 text-center"
+              initial={{ opacity: 0, x: -18 }}
+              animate={isVisible ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5 }}
+              style={{ position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: 8, padding: '36px 24px 0' }}
             >
-              {/* Mini phone mockup */}
-              <div style={{ width:180, height:360, background:'linear-gradient(145deg, #2e2e2e, #191919)', borderRadius:34, padding:7, boxShadow:'0 0 0 1px rgba(255,255,255,0.1), 0 28px 56px rgba(0,0,0,0.22)', flexShrink:0 }}>
-                <div style={{ width:'100%', height:'100%', borderRadius:28, overflow:'hidden', background:`linear-gradient(145deg, ${feature.accentColor}20, ${feature.accentColor}38)`, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', gap:12, position:'relative', padding:'44px 16px 16px' }}>
+              <span style={{ width: 18, height: 2, background: feature.accentColor, borderRadius: 1, display: 'inline-block', flexShrink: 0 }} />
+              <span style={{ fontFamily: 'Figtree, sans-serif', fontSize: 10, fontWeight: 700, letterSpacing: '0.18em', color: feature.accentColor, textTransform: 'uppercase' }}>
+                {feature.eyebrow}
+              </span>
+            </motion.div>
+
+            {/* Phone mockup */}
+            <motion.div
+              initial={{ opacity: 0, y: 36, scale: 0.92 }}
+              animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+              style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'center', padding: '18px 24px 0' }}
+            >
+              {/* Ambient glow behind phone */}
+              <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 260, height: 260, borderRadius: '50%', background: `radial-gradient(ellipse at center, ${feature.accentColor}42 0%, transparent 65%)`, filter: 'blur(30px)', zIndex: 0, pointerEvents: 'none' }} />
+
+              {/* Chassis */}
+              <div style={{ width: 200, height: 408, background: 'linear-gradient(155deg, #2e2e2e 0%, #191919 100%)', borderRadius: 42, padding: 8, boxShadow: `0 0 0 1.5px rgba(255,255,255,0.13), 0 0 0 3px rgba(0,0,0,0.55), 0 50px 80px rgba(0,0,0,0.35), 0 20px 40px ${feature.accentColor}32`, position: 'relative', zIndex: 1 }}>
+                <div style={{ position: 'absolute', left: -2.5, top: 84,  width: 2.5, height: 26, background: '#3c3c3c', borderRadius: '2px 0 0 2px' }} />
+                <div style={{ position: 'absolute', left: -2.5, top: 120, width: 2.5, height: 26, background: '#3c3c3c', borderRadius: '2px 0 0 2px' }} />
+                <div style={{ position: 'absolute', right: -2.5, top: 100, width: 2.5, height: 48, background: '#3c3c3c', borderRadius: '0 2px 2px 0' }} />
+                <div style={{ width: '100%', height: '100%', borderRadius: 34, overflow: 'hidden', position: 'relative' }}>
                   <img
                     src={feature.screenshot}
-                    alt=""
-                    style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}
+                    alt={feature.screenshotAlt}
+                    style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
                     onError={(e) => { e.currentTarget.style.display = 'none'; }}
                   />
-                  <div style={{ width:40, height:40, borderRadius:12, background:`${feature.accentColor}25`, display:'flex', alignItems:'center', justifyContent:'center' }}>
-                    <Icon size={18} color={feature.accentColor} strokeWidth={1.5} />
-                  </div>
-                  <span style={{ fontFamily:'Gabarito, sans-serif', fontSize:11, fontWeight:700, color:'#45413E', textAlign:'center', lineHeight:1.3 }}>
-                    {feature.headline.replace('\n', ' ')}
-                  </span>
+                  <div style={{ position: 'absolute', bottom: 6, left: '50%', transform: 'translateX(-50%)', width: 80, height: 4, background: 'rgba(255,255,255,0.2)', borderRadius: 2, zIndex: 10 }} />
                 </div>
               </div>
+            </motion.div>
 
-              {/* Text */}
-              <div>
-                <span style={{ display:'inline-flex', alignItems:'center', gap:6, fontFamily:'Figtree, sans-serif', fontSize:10, fontWeight:700, letterSpacing:'0.16em', color:feature.accentColor, textTransform:'uppercase', marginBottom:12 }}>
-                  <span style={{ width:16, height:1.5, background:feature.accentColor, display:'inline-block' }} />
-                  {feature.eyebrow}
-                </span>
-                <h2 className="text-3xl font-[Gabarito] font-bold italic leading-tight mb-4" style={{ whiteSpace:'pre-line' }}>
+            {/* Frosted-glass text card */}
+            <motion.div
+              initial={{ opacity: 0, y: 26 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+              style={{ position: 'relative', zIndex: 2, margin: '18px 16px 36px', background: 'rgba(250,248,245,0.82)', backdropFilter: 'blur(28px)', WebkitBackdropFilter: 'blur(28px)', borderRadius: 24, overflow: 'hidden', border: `1px solid ${feature.accentColor}2A`, boxShadow: `0 12px 44px rgba(0,0,0,0.10), inset 0 1px 0 rgba(255,255,255,0.65)` }}
+            >
+              {/* Accent top bar */}
+              <div style={{ height: 3, background: `linear-gradient(90deg, ${feature.accentColor} 0%, ${feature.accentColor}28 100%)` }} />
+
+              <div style={{ padding: '18px 18px 20px' }}>
+                <h2 style={{ fontFamily: 'Gabarito, sans-serif', fontSize: 'clamp(1.5rem, 6.5vw, 1.85rem)', fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.03em', color: '#45413E', lineHeight: 1.1, marginBottom: 6, whiteSpace: 'pre-line' }}>
                   {feature.headline}
-                  <div style={{ width: 32, height: 2.5, background: '#D4AF37', marginTop: 10, borderRadius: 2 }} />
                 </h2>
-                <p className="text-sm text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed mb-8">
+                <div style={{ width: 24, height: 2.5, background: '#D4AF37', borderRadius: 2, marginBottom: 12 }} />
+
+                <p style={{ fontFamily: 'Figtree, sans-serif', fontSize: 13, color: '#756F68', lineHeight: 1.65, marginBottom: 14 }}>
                   {feature.description}
                 </p>
 
-                {/* Verified Box Mobile */}
+                {/* Verified box */}
                 {feature.verifiedBox && (
-                  <div style={{ background: `${feature.accentColor}12`, borderRadius: 20, padding: '16px 20px', marginBottom: 32, display: 'flex', alignItems: 'center', gap: 14, border: `1px solid ${feature.accentColor}20`, textAlign: 'left' }}>
-                    <div style={{ width: 40, height: 40, borderRadius: 10, background: `${feature.accentColor}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <AnimatedIcon type="shield-face" color={feature.accentColor} size={24} />
+                  <div style={{ background: `${feature.accentColor}0E`, borderRadius: 13, padding: '10px 13px', marginBottom: 14, display: 'flex', alignItems: 'center', gap: 11, border: `1px solid ${feature.accentColor}1C` }}>
+                    <div style={{ width: 32, height: 32, borderRadius: 8, background: `${feature.accentColor}1E`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <AnimatedIcon type="shield-face" color={feature.accentColor} size={17} />
                     </div>
                     <div>
-                      <h4 style={{ fontFamily: 'Gabarito, sans-serif', fontSize: 14, fontWeight: 700, color: feature.accentColor, marginBottom: 2 }}>
+                      <h4 style={{ fontFamily: 'Gabarito, sans-serif', fontSize: 12, fontWeight: 700, color: feature.accentColor, marginBottom: 1 }}>
                         {feature.verifiedBox.title}
                       </h4>
-                      <p style={{ fontFamily: 'Figtree, sans-serif', fontSize: 12, color: '#756F68', lineHeight: 1.3 }}>
+                      <p style={{ fontFamily: 'Figtree, sans-serif', fontSize: 11, color: '#756F68', lineHeight: 1.4 }}>
                         {feature.verifiedBox.text}
                       </p>
                     </div>
                   </div>
                 )}
 
-                {/* Footer Highlights Mobile */}
+                {/* Footer highlights — 3-column */}
                 {feature.footerHighlights && (
-                  <div className="grid grid-cols-1 gap-6 text-left">
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
                     {feature.footerHighlights.map((hl) => (
-                      <div key={hl.title} className="flex items-center gap-4">
-                        <div style={{ width: 36, height: 36, borderRadius: 10, background: `${feature.accentColor}08`, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${feature.accentColor}15`, flexShrink: 0 }}>
-                          <AnimatedIcon type={hl.icon} color={feature.accentColor} size={20} />
+                      <div key={hl.title} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 6 }}>
+                        <div style={{ width: 34, height: 34, borderRadius: 9, background: `${feature.accentColor}0C`, display: 'flex', alignItems: 'center', justifyContent: 'center', border: `1px solid ${feature.accentColor}14` }}>
+                          <AnimatedIcon type={hl.icon} color={feature.accentColor} size={16} />
                         </div>
-                        <div>
-                          <h5 style={{ fontFamily: 'Gabarito, sans-serif', fontSize: 13, fontWeight: 700, color: '#45413E', marginBottom: 1 }}>
-                            {hl.title}
-                          </h5>
-                          <p style={{ fontFamily: 'Figtree, sans-serif', fontSize: 11, color: '#756F68', lineHeight: 1.3 }}>
-                            {hl.sub}
-                          </p>
-                        </div>
+                        <h5 style={{ fontFamily: 'Gabarito, sans-serif', fontSize: 10.5, fontWeight: 700, color: '#45413E', lineHeight: 1.3 }}>
+                          {hl.title}
+                        </h5>
+                        <p style={{ fontFamily: 'Figtree, sans-serif', fontSize: 9.5, color: '#756F68', lineHeight: 1.3 }}>
+                          {hl.sub}
+                        </p>
                       </div>
                     ))}
                   </div>
                 )}
               </div>
             </motion.div>
-          );
-        })}
-      </div>
+          </section>
+        );
+      })}
 
-      {/* CTA */}
-      <section className="mt-20 bg-[var(--color-tan)] rounded-[32px] p-8 border border-[var(--color-bone)] text-center relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-48 h-48 bg-[var(--color-rose-pale)] blur-[80px] opacity-40" />
-        <h2 className="text-3xl font-[Gabarito] font-bold italic mb-10 relative z-10 leading-tight">
-          Modern elegance,<br />ancient chemistry.
-        </h2>
-        <div className="grid grid-cols-2 gap-6 relative z-10">
-          {[
-            { word:'Only',   sub:'VERIFIED USERS',     color:'var(--color-rose)' },
-            { word:'Real',   sub:'NO CATFISHING',       color:'var(--color-gold)' },
-            { word:'Always', sub:'PROTECTED BY AI',     color:'var(--color-rose)' },
-            { word:'Fair',   sub:'ACCESSIBLE PRICING',  color:'var(--color-ink-black)' },
-          ].map(({ word, sub, color }) => (
-            <div key={word} className="flex flex-col items-center gap-2">
-              <div style={{ color, fontFamily:'Gabarito, sans-serif', fontSize:'2rem', fontWeight:800, fontStyle:'italic' }}>{word}</div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--color-ink-muted)]">{sub}</p>
-            </div>
-          ))}
+      {/* ── CTA ─────────────────────────────────────────────── */}
+      <section style={{ padding: '40px 16px 88px' }}>
+        <div style={{ background: 'rgba(250,248,245,0.92)', borderRadius: 28, padding: '36px 24px', border: '1px solid #E6DFD5', textAlign: 'center', position: 'relative', overflow: 'hidden', boxShadow: '0 8px 32px rgba(0,0,0,0.06)' }}>
+          <div style={{ position: 'absolute', top: -50, right: -50, width: 220, height: 220, borderRadius: '50%', background: 'rgba(205,157,143,0.20)', filter: 'blur(60px)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', bottom: -40, left: -40, width: 180, height: 180, borderRadius: '50%', background: 'rgba(212,175,55,0.09)', filter: 'blur(55px)', pointerEvents: 'none' }} />
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            style={{ fontFamily: 'Gabarito, sans-serif', fontSize: 'clamp(1.7rem, 7.5vw, 2.4rem)', fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.03em', color: '#45413E', lineHeight: 1.1, marginBottom: 32, position: 'relative', zIndex: 1 }}
+          >
+            Modern elegance,<br />ancient chemistry.
+          </motion.h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24, position: 'relative', zIndex: 1 }}>
+            {[
+              { word: 'Only',   sub: 'VERIFIED USERS',    color: '#CD9D8F' },
+              { word: 'Real',   sub: 'NO CATFISHING',      color: '#D4AF37' },
+              { word: 'Always', sub: 'PROTECTED BY AI',    color: '#CD9D8F' },
+              { word: 'Fair',   sub: 'ACCESSIBLE PRICING', color: '#45413E' },
+            ].map(({ word, sub, color }, ci) => (
+              <motion.div
+                key={word}
+                initial={{ opacity: 0, y: 14 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: ci * 0.08, duration: 0.52 }}
+                style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}
+              >
+                <div style={{ color, fontFamily: 'Gabarito, sans-serif', fontSize: '2rem', fontWeight: 800, fontStyle: 'italic' }}>{word}</div>
+                <p style={{ fontFamily: 'Figtree, sans-serif', fontSize: 9.5, fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#756F68' }}>{sub}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
