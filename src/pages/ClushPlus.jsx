@@ -300,7 +300,7 @@ const ClushPlus = () => {
             </div>
             <Link 
               to="/contact#faq"
-              className="whitespace-nowrap flex-shrink-0 bg-white text-[var(--color-ink-black)] px-8 py-4 rounded-2xl font-bold font-[Figtree] text-sm hover:bg-[var(--color-gold)] hover:text-white transition-all duration-200"
+              className="whitespace-nowrap flex-shrink-0 bg-white text-[var(--color-ink-black)] px-8 py-4 rounded-2xl font-bold font-[Figtree] text-sm hover:bg-[var(--color-emerald)] hover:text-white transition-all duration-200"
             >
               Read FAQ
             </Link>

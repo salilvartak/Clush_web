@@ -3,11 +3,12 @@
 
 @theme {
   /* ── Boutique Club Palette ─────────────────────────────────────────── */
-  --color-cream: #FFFAF0;       /* Theme_Background  – Warm Floral White  */
+  --color-cream: #FCF5F1;       /* Theme_Background  – Warm Blush White   */
   --color-tan: #F9F8F6;          /* Surface_Card      – Warm Off-White     */
   --color-heading: #2A2725;      /* Heading text      – Deep Warm Dark     */
   --color-ink-black: #45413E;    /* Text_Info         – Warm Dark          */
   --color-emerald: #1A362D;      /* Text_Highlight    – Deep Emerald       */
+  --color-emerald-dark: #122620; /* Button hover      – Darker Emerald     */
   --color-gold: #D4AF37;         /* Accent_Action     – Champagne Gold     */
   --color-bone: #EAEAEE;         /* Border_Subtle     – Light Ash          */
 
@@ -65,7 +66,7 @@
   }
 
   .clush-btn-primary {
-    background-color: var(--color-gold);
+    background-color: var(--color-emerald);
     color: #FFFFFF;
     font-family: var(--font-body);
     font-weight: 700;
@@ -73,7 +74,7 @@
     transition: background-color 0.2s ease;
   }
   .clush-btn-primary:hover {
-    background-color: var(--color-rose-light);
+    background-color: var(--color-emerald-dark);
   }
 
   .clush-btn-secondary {
@@ -86,15 +87,15 @@
     transition: background-color 0.2s ease;
   }
 
-  /* rgba values tuned to match --color-cream: #FFFAF0 = rgb(255,250,240) */
+  /* rgba values tuned to match --color-cream: #FCF5F1 = rgb(252,245,241) */
   .clush-glass {
-    background: rgba(255, 250, 240, 0.88);
+    background: rgba(252, 245, 241, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
 
   .clush-glass-header {
-    background: rgba(255, 250, 240, 0.88);
+    background: rgba(252, 245, 241, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 0.5px solid var(--color-bone);
@@ -102,7 +103,7 @@
 
   /* Translucent pill nav — very slightly more transparent than before */
   .clush-pill-header {
-    background: rgba(255, 250, 240, 0.60);
+    background: rgba(252, 245, 241, 0.60);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--color-bone);
@@ -135,7 +136,7 @@
   }
 
   .clush-btn-gradient {
-    background-color: var(--color-gold);
+    background-color: var(--color-emerald);
     color: #FFFFFF;
     position: relative;
     z-index: 1;
@@ -147,7 +148,7 @@
   }
 
   .clush-btn-gradient:hover {
-    background-color: var(--color-rose-light);
+    background-color: var(--color-emerald-dark);
     color: #FFFFFF;
     transform: translateY(-1px);
   }

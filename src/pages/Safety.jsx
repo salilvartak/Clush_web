@@ -120,7 +120,7 @@ const Safety = () => {
            <SectionHeading>The Transparency Report</SectionHeading>
            <h2 className="text-4xl md:text-7xl font-[Gabarito] font-bold italic mb-16 px-4">Our promise is written in <span className="text-[var(--color-emerald)]">code.</span></h2>
 
-           <div className="clush-card p-12 md:p-24 bg-[var(--color-tan)] border-2 border-[var(--color-bone)] text-left relative overflow-hidden">
+           <div className="clush-card p-12 md:p-24 bg-[#fcfaf8] border-2 border-[var(--color-bone)] text-left relative overflow-hidden">
               <div className="absolute top-0 right-0 w-64 h-64 bg-[var(--color-rose-pale)] blur-[120px] opacity-40 -z-10" />
 
               <div className="space-y-16 relative z-10">
