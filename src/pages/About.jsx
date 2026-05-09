@@ -60,7 +60,7 @@ const About = () => {
     <div className="px-6 pb-24 relative overflow-hidden bg-[var(--color-cream)]">
       {/* Background Decorative Element */}
       <div className="absolute inset-0 pointer-events-none opacity-20 z-0 select-none flex items-center justify-center">
-         <span className="text-[40vw] md:text-[30vw] font-bold uppercase italic tracking-[-0.05em] leading-none select-none" style={{ color: '#F9F8F6' }}>CLUSH</span>
+         <span className="text-[40vw] md:text-[30vw] font-bold uppercase italic tracking-[-0.05em] leading-none select-none" style={{ color: '#FFFFFF' }}>CLUSH</span>
       </div>
 
       <section className="relative pt-32 pb-40 text-center max-w-4xl mx-auto z-10">

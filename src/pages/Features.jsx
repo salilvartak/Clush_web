@@ -402,13 +402,13 @@ const ProgressIndicator = memo(function ProgressIndicator({ activeIndex, onDotCl
             width: i === activeIndex ? 6 : 5,
             height: i === activeIndex ? 22 : 5,
             borderRadius: 999,
-            background: i === activeIndex ? '#D4AF37' : '#EAEAEE',
+            background: i === activeIndex ? '#D4A3A5' : '#EAEAEE',
             border: 'none',
             cursor: 'pointer',
             transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
             padding: 0,
           }}
-          onFocus={(e) => { e.currentTarget.style.outline = '2px solid #CD9D8F'; e.currentTarget.style.outlineOffset = '3px'; }}
+          onFocus={(e) => { e.currentTarget.style.outline = '2px solid #D4A3A5'; e.currentTarget.style.outlineOffset = '3px'; }}
           onBlur={(e) => { e.currentTarget.style.outline = 'none'; }}
         />
       ))}
@@ -465,7 +465,7 @@ const FeatureTextBlock = memo(function FeatureTextBlock({ feature, isActive }) {
               initial={{ width: 0 }}
               animate={{ width: 40 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              style={{ height: 3, background: '#D4AF37', marginTop: 12, borderRadius: 2 }}
+              style={{ height: 3, background: '#D4A3A5', marginTop: 12, borderRadius: 2 }}
             />
           </motion.h2>
 
@@ -877,7 +877,7 @@ function FeaturesMobile() {
                 </span>
                 <h2 className="text-3xl font-[Gabarito] font-bold italic leading-tight mb-4" style={{ whiteSpace:'pre-line' }}>
                   {feature.headline}
-                  <div style={{ width: 32, height: 2.5, background: '#D4AF37', marginTop: 10, borderRadius: 2 }} />
+                  <div style={{ width: 32, height: 2.5, background: '#D4A3A5', marginTop: 10, borderRadius: 2 }} />
                 </h2>
                 <p className="text-sm text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed mb-8">
                   {feature.description}

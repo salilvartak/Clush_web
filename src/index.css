@@ -3,20 +3,20 @@
 
 @theme {
   /* ── Boutique Club Palette ─────────────────────────────────────────── */
-  --color-cream: #FCF5F1;       /* Theme_Background  – Warm Blush White   */
-  --color-tan: #F9F8F6;          /* Surface_Card      – Warm Off-White     */
-  --color-heading: #2A2725;      /* Heading text      – Deep Warm Dark     */
-  --color-ink-black: #45413E;    /* Text_Info         – Warm Dark          */
-  --color-emerald: #1A362D;      /* Text_Highlight    – Deep Emerald       */
-  --color-emerald-dark: #122620; /* Button hover      – Darker Emerald     */
-  --color-gold: #D4AF37;         /* Accent_Action     – Champagne Gold     */
-  --color-bone: #EAEAEE;         /* Border_Subtle     – Light Ash          */
+  --color-cream: #F5EFE6;       /* Theme_Background  – Cashmere Warm Cream */
+  --color-tan: #FFFFFF;          /* Surface_Card      – Pure White          */
+  --color-heading: #2A2725;      /* Heading text      – Deep Warm Dark      */
+  --color-ink-black: #45413E;    /* Text_Info         – Warm Dark           */
+  --color-emerald: #540F24;      /* Text_Highlight    – Wine                */
+  --color-emerald-dark: #3D0A1A; /* Button hover      – Deep Wine           */
+  --color-gold: #D4A3A5;         /* Accent             – Soft Blush         */
+  --color-bone: #EAEAEE;         /* Border_Subtle     – Light Ash           */
 
-  /* ── Legacy aliases (keep variable names; remap to new palette) ────── */
-  --color-rose: #D4AF37;         /* was rose, now maps to Champagne Gold   */
-  --color-rose-light: #C9A42E;   /* was rose-light, now darker gold hover  */
-  --color-rose-pale: #FBF5E0;    /* was rose-pale, now light gold tint     */
-  --color-ink-muted: #756F68;    /* warm muted text                        */
+  /* ── Legacy aliases (remap to new palette) ─────────────────────────── */
+  --color-rose: #D4A3A5;         /* → Soft Blush                            */
+  --color-rose-light: #BE9294;   /* → Darker Blush (hover)                  */
+  --color-rose-pale: #F5E4E5;    /* → Light Blush Tint (icon bgs)           */
+  --color-ink-muted: #756F68;    /* warm muted text                         */
 
   --font-heading: 'Gabarito', sans-serif;
   --font-body: 'Figtree', sans-serif;
@@ -65,6 +65,7 @@
     border-radius: 25px;
   }
 
+  /* Wine primary button with white text */
   .clush-btn-primary {
     background-color: var(--color-emerald);
     color: #FFFFFF;
@@ -87,23 +88,23 @@
     transition: background-color 0.2s ease;
   }
 
-  /* rgba values tuned to match --color-cream: #FCF5F1 = rgb(252,245,241) */
+  /* rgba values tuned to match --color-cream: #F5EFE6 = rgb(245,239,230) */
   .clush-glass {
-    background: rgba(252, 245, 241, 0.88);
+    background: rgba(245, 239, 230, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
 
   .clush-glass-header {
-    background: rgba(252, 245, 241, 0.88);
+    background: rgba(245, 239, 230, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 0.5px solid var(--color-bone);
   }
 
-  /* Translucent pill nav — very slightly more transparent than before */
+  /* Translucent pill nav */
   .clush-pill-header {
-    background: rgba(252, 245, 241, 0.60);
+    background: rgba(245, 239, 230, 0.60);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--color-bone);
@@ -116,6 +117,7 @@
     border-top: 2px solid var(--color-bone);
   }
 
+  /* Blush accent line */
   .clush-accent-line {
     width: 3px;
     height: 16px;
@@ -128,6 +130,7 @@
     background: linear-gradient(to bottom, transparent 50%, rgba(69, 65, 62, 0.6) 100%);
   }
 
+  /* Blush → Wine gradient for editorial text */
   .clush-text-gradient {
     background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-emerald) 100%);
     -webkit-background-clip: text;
@@ -135,6 +138,7 @@
     background-clip: text;
   }
 
+  /* Wine gradient button with white text */
   .clush-btn-gradient {
     background-color: var(--color-emerald);
     color: #FFFFFF;

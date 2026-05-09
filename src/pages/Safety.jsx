@@ -9,7 +9,7 @@ const SafetyNode = ({ icon: Icon, title, desc, delay, x, y }) => (
     viewport={{ once: true }}
     transition={{ duration: 0.8, delay, ease: "easeOut" }}
     whileHover={{ y: y - 10, scale: 1.02, transition: { duration: 0.3 } }}
-    className="absolute w-72 h-72 rounded-[20px] p-10 flex flex-col items-center justify-center text-center gap-6 bg-[#F9F8F6] border border-[var(--color-bone)] shadow-2xl group overflow-hidden"
+    className="absolute w-72 h-72 rounded-[20px] p-10 flex flex-col items-center justify-center text-center gap-6 bg-white border border-[var(--color-bone)] shadow-2xl group overflow-hidden"
   >
     <div className="w-16 h-16 rounded-2xl bg-[var(--color-rose)] flex items-center justify-center rotate-12 group-hover:rotate-0 transition-transform duration-500 shadow-xl shadow-rose/20">
       <Icon className="w-8 h-8 text-white" />
@@ -115,7 +115,7 @@ const Safety = () => {
       </section>
 
       {/* Trust Manifesto */}
-      <section className="py-40 px-6 bg-white border-t-2 border-[var(--color-bone)] relative overflow-hidden">
+      <section className="py-40 px-6 bg-[var(--color-cream)] border-t-2 border-[var(--color-bone)] relative overflow-hidden">
         <div className="max-w-4xl mx-auto text-center relative z-10">
            <SectionHeading>The Transparency Report</SectionHeading>
            <h2 className="text-4xl md:text-7xl font-[Gabarito] font-bold italic mb-16 px-4">Our promise is written in <span className="text-[var(--color-emerald)]">code.</span></h2>
