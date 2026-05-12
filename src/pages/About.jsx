@@ -1,10 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Target, Heart, Sparkles, Users } from 'lucide-react';
+import { Target, Heart, Sparkles } from 'lucide-react';
 
-import ElenaImg from '../assets/ai-images/elena.png';
-import MarcusImg from '../assets/ai-images/marcus.png';
-import DavidImg from '../assets/ai-images/david.png';
+import SrujanImg from '../assets/ai-images/srujan.jpg';
+import SalilImg from '../assets/ai-images/salil.jpg';
+import VisionImg from '../assets/vision.png';
+import MissionImg from '../assets/mission.png';
 
 const TeamCard = ({ name, role, bio, img, delay }) => (
   <motion.div 
@@ -16,8 +17,8 @@ const TeamCard = ({ name, role, bio, img, delay }) => (
     className="clush-card p-10 bg-[var(--color-tan)] shadow-2xl flex flex-col items-center group relative overflow-hidden"
   >
     <div className="absolute top-0 left-0 w-full h-1 bg-[var(--color-gold)] opacity-0 group-hover:opacity-100 transition-opacity" />
-    <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl mb-10 group-hover:scale-110 transition-transform duration-500 bg-slate-100">
-       <img src={img} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+    <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl mb-8 group-hover:scale-110 transition-transform duration-500 bg-slate-100">
+       <img src={img} className="w-full h-full object-cover transition-all duration-500" />
     </div>
     <div className="text-center space-y-4">
        <h3 className="text-3xl font-[Gabarito] font-bold italic">{name}</h3>
@@ -30,8 +31,8 @@ const TeamCard = ({ name, role, bio, img, delay }) => (
   </motion.div>
 );
 
-const ValueSection = ({ icon: Icon, title, desc, delay, reversed = false }) => (
-  <motion.div 
+const ValueSection = ({ icon: Icon, title, desc, delay, reversed = false, img = null }) => (
+  <motion.div
     initial={{ opacity: 0, x: reversed ? 50 : -50 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
@@ -43,15 +44,25 @@ const ValueSection = ({ icon: Icon, title, desc, delay, reversed = false }) => (
           <Icon className="w-6 h-6 md:w-8 md:h-8 text-[var(--color-rose)]" />
        </div>
        <h3 className="text-4xl md:text-6xl font-[Gabarito] font-bold italic tracking-tight">{title}</h3>
-       <p className="text-lg md:text-2xl font-[Figtree] text-[var(--color-ink-muted)] font-light leading-relaxed max-w-xl mx-auto md:mx-0">{desc}</p>
+       <p className="text-lg md:text-2xl font-[Figtree] text-[var(--color-ink-muted)] font-light leading-relaxed max-w-xl mx-auto md:mx-0 text-justify">{desc}</p>
     </div>
-    <div className="flex-1 w-full bg-[var(--color-tan)] rounded-[60px] aspect-square flex items-center justify-center p-16 relative overflow-hidden group">
+    {img ? (
+      <div className="w-full md:w-[38%] rounded-[40px] overflow-hidden shadow-2xl group flex-shrink-0" style={{ aspectRatio: '4/5' }}>
+        <img
+          src={img}
+          alt={title}
+          className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+        />
+      </div>
+    ) : (
+      <div className="flex-1 w-full bg-[var(--color-tan)] rounded-[60px] aspect-square flex items-center justify-center p-16 relative overflow-hidden group">
         <div className="absolute inset-x-0 bottom-0 top-1/2 bg-gradient-to-t from-white to-transparent opacity-40" />
         <div className="w-full h-full border-2 border-white rounded-[40px] shadow-2xl bg-white/40 flex items-center justify-center group-hover:scale-105 transition-transform duration-700">
            <Icon className="w-32 h-32 text-[var(--color-rose-pale)] group-hover:text-[var(--color-rose)] transition-colors duration-500 stroke-1" />
         </div>
         <div className="absolute top-20 right-20 w-4 h-4 rounded-full bg-[var(--color-gold)] animate-pulse" />
-    </div>
+      </div>
+    )}
   </motion.div>
 );
 
@@ -84,24 +95,20 @@ const About = () => {
       <div className="max-w-7xl mx-auto">
         <h2 className="text-center font-[Figtree] text-[11px] uppercase tracking-[0.3em] font-bold text-[var(--color-ink-muted)] mb-10">Our Core Pillars</h2>
         
-        <ValueSection 
-           icon={Heart} 
-           title="Intentionality" 
-           desc="We believe in the power of 'slower' dating. Clush is designed to prioritize depth over volume, encouraging members to engage authentically." 
+        <ValueSection
+           icon={Heart}
+           title="Our Vision"
+           desc="To redefine the standard of modern romance by fostering an environment where deep, deliberate connections thrive. We envision a culture where the search for a partner is treated with the utmost respect, prioritizing quality over volume to build relationships that truly last."
            delay={0.2}
+           img={VisionImg}
         />
-        <ValueSection 
-           icon={Target} 
-           title="Aesthetic Precision" 
-           desc="Beauty is not just surface level. Our platform's elegance reflects our respect for your time, your style, and your journey." 
+        <ValueSection
+           icon={Target}
+           title="Our Mission"
+           desc="To provide an exclusive, thoughtfully designed platform that unites individuals through careful curation, shared standards, and absolute privacy. We actively protect our members' time by maintaining a highly vetted community, ensuring that every introduction feels purposeful, dignified, and aligned with what they actually want."
            delay={0.4}
            reversed
-        />
-        <ValueSection 
-           icon={Users} 
-           title="Curated Trust" 
-           desc="Every member is carefully vetted to ensure a space filled with respectful, compatible human beings — quality over quantity, always."
-           delay={0.6}
+           img={MissionImg}
         />
       </div>
 
@@ -114,27 +121,20 @@ const About = () => {
            </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
-           <TeamCard 
-             name="SALILVVVVVV" 
-             role="Founder & Vision" 
-             bio="Former gallery curator with a passion for human-centric architecture and intentional lifestyle design."
-             img={MarcusImg}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-3xl mx-auto">
+           <TeamCard
+             name="Srujan M"
+             role="Founder & CEO"
+             bio="Passionate about the architecture of trust, Srujan builds the stable, intuitive environment that makes Clush a true sanctuary for its members."
+             img={SrujanImg}
              delay={0.2}
            />
-           <TeamCard 
-             name="Aria" 
-             role="Product Experience" 
-             bio="Psychologist turned designer, Aria focuses on creating environments where vulnerability feels safe and rewarded."
-             img={ElenaImg}
+           <TeamCard
+             name="Salil V"
+             role="Founder & CTO"
+             bio="Bridging robust code with human-centric design, Salil engineers the invisible, cross-platform layers where authentic connections can safely thrive."
+             img={SalilImg}
              delay={0.4}
-           />
-           <TeamCard 
-             name="Julian" 
-             role="Engineering Director" 
-             bio="Building the invisible layers of trust and privacy that allow Clush to remain a sanctuary for its members."
-             img={DavidImg}
-             delay={0.6}
            />
         </div>
       </section>
