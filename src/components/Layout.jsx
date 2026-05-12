@@ -81,7 +81,7 @@ const Layout = ({ children }) => {
       <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl clush-pill-header px-4 md:px-8 py-3">
         <div className="flex items-center justify-between w-full">
           <NavLink to="/" onClick={scrollToTop} className="flex flex-col">
-            <span className="text-xl md:text-2xl font-[Gabarito] font-bold italic text-[var(--color-ink-black)] tracking-[-0.03em] flex items-center gap-1">
+            <span className="text-xl md:text-2xl font-[Gabarito] font-bold italic text-[var(--color-emerald)] tracking-[-0.03em] flex items-center gap-1">
               Clush
             </span>
           </NavLink>
@@ -119,9 +119,9 @@ const Layout = ({ children }) => {
               to="/clush-plus"
               onClick={scrollToTop}
               className={({ isActive }) =>
-                isActive ? "text-[var(--color-ink-black)] relative after:absolute after:-bottom-2 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--color-gold)]" : "hover:text-[var(--color-ink-black)] transition text-[var(--color-gold)]"
+                isActive ? "relative after:absolute after:-bottom-2 after:left-0 after:right-0 after:h-0.5 after:bg-[var(--color-gold)]" : "hover:opacity-80 transition"
               }
-            >Clush Plus</NavLink>
+            ><span className="text-[var(--color-emerald)]">Clush</span><span className="text-[var(--color-gold)]">+</span></NavLink>
             <NavLink
               to="/contact"
               onClick={scrollToTop}
@@ -158,14 +158,14 @@ const Layout = ({ children }) => {
               transition={{ duration: 0.2 }}
               className="absolute top-full left-0 right-0 mt-2 p-4 lg:hidden"
             >
-              <div className="bg-white/95 backdrop-blur-xl border border-[var(--color-bone)] rounded-[32px] p-6 shadow-2xl flex flex-col gap-6">
+              <div className="bg-[var(--color-tan)]/95 backdrop-blur-xl border border-[var(--color-bone)] rounded-[32px] p-6 shadow-2xl flex flex-col gap-6">
                 <nav className="flex flex-col gap-4 font-semibold text-[var(--color-ink-muted)] font-[Figtree] uppercase tracking-[0.1em] text-xs">
                   <NavLink to="/" onClick={() => { setIsMenuOpen(false); scrollToTop(); }} className={({ isActive }) => isActive ? "text-[var(--color-ink-black)] bg-[var(--color-rose-pale)] p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] rounded-2xl transition"}>Home</NavLink>
                   <NavLink to="/features" onClick={() => { setIsMenuOpen(false); scrollToTop(); }} className={({ isActive }) => isActive ? "text-[var(--color-ink-black)] bg-[var(--color-rose-pale)] p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] rounded-2xl transition"}>Features</NavLink>
                   <NavLink to="/safety" onClick={() => { setIsMenuOpen(false); scrollToTop(); }} className={({ isActive }) => isActive ? "text-[var(--color-ink-black)] bg-[var(--color-rose-pale)] p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] rounded-2xl transition"}>Safety</NavLink>
                   <NavLink to="/about" onClick={() => { setIsMenuOpen(false); scrollToTop(); }} className={({ isActive }) => isActive ? "text-[var(--color-ink-black)] bg-[var(--color-rose-pale)] p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] rounded-2xl transition"}>About Us</NavLink>
                   <NavLink to="/contact" onClick={() => { setIsMenuOpen(false); scrollToTop(); }} className={({ isActive }) => isActive ? "text-[var(--color-ink-black)] bg-[var(--color-rose-pale)] p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] rounded-2xl transition"}>Contact</NavLink>
-                  <NavLink to="/clush-plus" onClick={() => { setIsMenuOpen(false); scrollToTop(); }} className={({ isActive }) => isActive ? "text-[var(--color-gold)] bg-[var(--color-gold)]/10 p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] text-[var(--color-gold)] font-bold rounded-2xl transition"}>Clush Plus</NavLink>
+                  <NavLink to="/clush-plus" onClick={() => { setIsMenuOpen(false); scrollToTop(); }} className={({ isActive }) => isActive ? "bg-[var(--color-gold)]/10 p-3 rounded-2xl" : "p-3 hover:bg-[var(--color-tan)] font-bold rounded-2xl transition"}><span className="text-[var(--color-emerald)]">Clush</span><span className="text-[var(--color-gold)]">+</span></NavLink>
                 </nav>
               </div>
             </motion.div>
@@ -183,7 +183,7 @@ const Layout = ({ children }) => {
       <FeedbackModal isOpen={isFeedbackOpen} onClose={() => setIsFeedbackOpen(false)} />
 
       {/* Footer */}
-      <footer className="border-t border-[var(--color-bone)] bg-[var(--color-tan)] py-16 px-6">
+      <footer className="border-t-2 border-[var(--color-bone)] bg-[var(--color-tan)] py-16 px-6">
         <div className="max-w-7xl mx-auto flex flex-col items-center gap-12">
           <div className="flex flex-col items-center gap-2">
             <span className="font-[Gabarito] font-bold italic text-2xl">Clush</span>
@@ -195,7 +195,7 @@ const Layout = ({ children }) => {
               <NavLink to="/" onClick={scrollToTop} className="text-sm hover:text-[var(--color-rose)] transition">Home</NavLink>
               <NavLink to="/features" onClick={scrollToTop} className="text-sm hover:text-[var(--color-rose)] transition">Features</NavLink>
               <NavLink to="/safety" onClick={scrollToTop} className="text-sm hover:text-[var(--color-rose)] transition">Safety & Trust</NavLink>
-              <NavLink to="/clush-plus" onClick={scrollToTop} className="text-sm font-bold text-[var(--color-gold)] hover:text-[var(--color-rose)] transition">Clush Plus</NavLink>
+              <NavLink to="/clush-plus" onClick={scrollToTop} className="text-sm font-bold hover:opacity-80 transition"><span className="text-[var(--color-emerald)]">Clush</span><span className="text-[var(--color-gold)]">+</span></NavLink>
             </div>
             <div className="flex flex-col gap-4">
               <h4 className="font-[Figtree] text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--color-ink-muted)]">Connect</h4>
@@ -216,14 +216,15 @@ const Layout = ({ children }) => {
               <NavLink
                 to="/join"
                 onClick={scrollToTop}
-                className="clush-btn-primary px-4 py-2.5 text-sm font-bold text-center rounded-xl"
+                className="clush-btn-primary px-4 py-2.5 text-sm font-bold text-center rounded-xl shadow-md"
+                style={{ color: '#FFFFFF' }}
               >
                 Join Waitlist
               </NavLink>
             </div>
           </div>
 
-          <div className="pt-8 border-t border-[var(--color-bone)] w-full flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="pt-8 border-t-2 border-[var(--color-bone)] w-full flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="font-[Figtree] text-sm text-[var(--color-ink-muted)]">
               &copy; {new Date().getFullYear()} Clush. Crafted by romantics.
             </div>

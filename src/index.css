@@ -2,16 +2,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #EBE7E1;
-  --color-tan: #FAF8F5;
-  --color-rose-pale: #F3E8E3;
-  --color-ink-black: #45413E;
-  --color-ink-muted: #756F68;
-  --color-bone: #E6DFD5;
-  --color-rose: #CD9D8F;
-  --color-rose-light: #D4A99F;
-  --color-gold: #D4AF37;
-  
+  /* ── Boutique Club Palette ─────────────────────────────────────────── */
+  --color-cream: #F5EFE6;       /* Theme_Background  – Cashmere Warm Cream */
+  --color-tan: #FFFFFF;          /* Surface_Card      – Pure White          */
+  --color-heading: #2A2725;      /* Heading text      – Deep Warm Dark      */
+  --color-ink-black: #45413E;    /* Text_Info         – Warm Dark           */
+  --color-emerald: #540F24;      /* Text_Highlight    – Wine                */
+  --color-emerald-dark: #3D0A1A; /* Button hover      – Deep Wine           */
+  --color-gold: #D4A3A5;         /* Accent             – Soft Blush         */
+  --color-bone: #EAEAEE;         /* Border_Subtle     – Light Ash           */
+
+  /* ── Legacy aliases (remap to new palette) ─────────────────────────── */
+  --color-rose: #D4A3A5;         /* → Soft Blush                            */
+  --color-rose-light: #BE9294;   /* → Darker Blush (hover)                  */
+  --color-rose-pale: #F5E4E5;    /* → Light Blush Tint (icon bgs)           */
+  --color-ink-muted: #756F68;    /* warm muted text                         */
+
   --font-heading: 'Gabarito', sans-serif;
   --font-body: 'Figtree', sans-serif;
   --font-editorial: 'Ledger', serif;
@@ -28,12 +34,13 @@
     font-family: var(--font-heading);
     font-weight: 700;
     letter-spacing: -0.03em;
+    color: var(--color-heading);
   }
 
   .prose h1, .prose h2, .prose h3 {
     margin-top: 2rem;
     margin-bottom: 1rem;
-    color: var(--color-ink-black);
+    color: var(--color-heading);
   }
 
   .prose p {
@@ -50,27 +57,25 @@
     background-color: var(--color-tan);
     border: 1px solid var(--color-bone);
     border-radius: 20px;
-    box-shadow: 0px 8px 24px rgba(69, 65, 62, 0.08);
   }
-  
+
   .clush-hero-card {
     background-color: var(--color-tan);
     border: 1px solid var(--color-bone);
     border-radius: 25px;
-    box-shadow: 0px 8px 24px rgba(69, 65, 62, 0.08);
   }
 
+  /* Wine primary button with white text */
   .clush-btn-primary {
-    background-color: var(--color-rose);
+    background-color: var(--color-emerald);
     color: #FFFFFF;
     font-family: var(--font-body);
     font-weight: 700;
     border-radius: 14px;
-    box-shadow: 0px 8px 16px rgba(205, 157, 143, 0.4);
     transition: background-color 0.2s ease;
   }
   .clush-btn-primary:hover {
-    background-color: var(--color-rose-light);
+    background-color: var(--color-emerald-dark);
   }
 
   .clush-btn-secondary {
@@ -83,32 +88,36 @@
     transition: background-color 0.2s ease;
   }
 
+  /* rgba values tuned to match --color-cream: #F5EFE6 = rgb(245,239,230) */
   .clush-glass {
-    background: rgba(235, 231, 225, 0.88);
+    background: rgba(245, 239, 230, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
   }
 
   .clush-glass-header {
-    background: rgba(235, 231, 225, 0.88);
+    background: rgba(245, 239, 230, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-bottom: 0.5px solid var(--color-bone);
   }
 
+  /* Translucent pill nav */
   .clush-pill-header {
-    background: rgba(250, 248, 245, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(245, 239, 230, 0.60);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border: 1px solid var(--color-bone);
     border-radius: 9999px;
-    box-shadow: 0 10px 30px -10px rgba(69, 65, 62, 0.15);
+    box-shadow: 0 4px 24px rgba(69, 65, 62, 0.10), 0 1px 4px rgba(69, 65, 62, 0.06);
   }
 
+  /* 2px section divider */
   .clush-divider {
-    border-top: 1px solid var(--color-bone);
+    border-top: 2px solid var(--color-bone);
   }
 
+  /* Blush accent line */
   .clush-accent-line {
     width: 3px;
     height: 16px;
@@ -121,63 +130,30 @@
     background: linear-gradient(to bottom, transparent 50%, rgba(69, 65, 62, 0.6) 100%);
   }
 
+  /* Blush → Wine gradient for editorial text */
   .clush-text-gradient {
-    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-rose) 100%);
+    background: linear-gradient(135deg, var(--color-gold) 0%, var(--color-emerald) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
+  /* Wine gradient button with white text */
   .clush-btn-gradient {
-    background: linear-gradient(135deg, var(--color-ink-black) 0%, #2A2725 100%);
-    color: #FAF8F5;
+    background-color: var(--color-emerald);
+    color: #FFFFFF;
     position: relative;
     z-index: 1;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    box-shadow: 0 10px 20px -10px rgba(69, 65, 62, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
   }
 
-  .clush-btn-gradient::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, var(--color-rose) 0%, var(--color-rose-light) 100%);
-    opacity: 0;
-    z-index: -1;
-    transition: opacity 0.4s ease;
-  }
-
-  .clush-btn-gradient::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -60%;
-    width: 20%;
-    height: 200%;
-    background: rgba(255, 255, 255, 0.1);
-    transform: rotate(30deg);
-    transition: all 0.6s ease;
-    pointer-events: none;
-    z-index: 2;
-  }
-
-  .clush-btn-gradient:hover::after {
-    left: 120%;
-  }
-
   .clush-btn-gradient:hover {
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 20px 30px -10px rgba(205, 157, 143, 0.3);
-    border-color: rgba(205, 157, 143, 0.2);
-  }
-
-  .clush-btn-gradient:hover::before {
-    opacity: 1;
+    background-color: var(--color-emerald-dark);
+    color: #FFFFFF;
+    transform: translateY(-1px);
   }
 }

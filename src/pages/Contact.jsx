@@ -72,20 +72,20 @@ const Contact = () => {
 
   const faqs = [
     {
-      question: "What is Clush Plus?",
-      answer: "Clush Plus is our premium membership that gives you enhanced control over your dating experience. It includes 20 Right Swipes per day, the ability to See Who Likes You, 3 Gems per week, and much more."
+      question: "What is Clush+?",
+      answer: "Clush+ is our premium membership that gives you enhanced control over your dating experience. It includes 20 Right Swipes per day, the ability to See Who Likes You, 3 Gems per week, and much more."
     },
     {
       question: "How do I get more Gems?",
-      answer: "Gems are exclusive items used to grab someone's attention instantly. As a Clush Plus member, you get 3 Gems per week. You can also purchase additional Gems directly in the app."
+      answer: "Gems are exclusive items used to grab someone's attention instantly. As a Clush+ member, you get 3 Gems per week. You can also purchase additional Gems directly in the app."
     },
     {
       question: "Can I see who liked me for free?",
-      answer: "Free users will see blurred profiles in their 'Likes' grid. To unblur and see exactly who has liked you for instant matching, you'll need a Clush Plus membership."
+      answer: "Free users will see blurred profiles in their 'Likes' grid. To unblur and see exactly who has liked you for instant matching, you'll need a Clush+ membership."
     },
     {
       question: "How do I cancel my subscription?",
-      answer: "You can manage or cancel your Clush Plus subscription at any time through your phone's App Store or Google Play Store settings under the 'Subscriptions' section."
+      answer: "You can manage or cancel your Clush+ subscription at any time through your phone's App Store or Google Play Store settings under the 'Subscriptions' section."
     },
     {
       question: "Is my data safe on Clush?",
@@ -225,7 +225,7 @@ const Contact = () => {
             Find quick answers to your most common questions about Clush, memberships, and safety.
           </p>
         </div>
-        <div className="bg-white rounded-[40px] border border-[var(--color-bone)] px-8 md:px-12 py-4 shadow-sm">
+        <div className="bg-[var(--color-tan)] rounded-[40px] border border-[var(--color-bone)] px-8 md:px-12 py-4 shadow-sm">
           {faqs.map((faq, index) => (
             <FAQItem
               key={index}

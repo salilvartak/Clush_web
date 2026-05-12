@@ -52,7 +52,7 @@ const Waitlist = () => {
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="clush-card p-12 md:p-16 border border-[var(--color-bone)] bg-white shadow-2xl text-center"
+              className="clush-card p-12 md:p-16 border border-[var(--color-bone)] bg-[var(--color-tan)] shadow-2xl text-center"
             >
               <div className="w-24 h-24 rounded-full bg-[var(--color-rose-pale)] flex items-center justify-center mx-auto mb-8">
                 <CheckCircle2 className="w-12 h-12 text-[var(--color-rose)]" />
@@ -72,7 +72,7 @@ const Waitlist = () => {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              className="clush-card p-8 md:p-16 border border-[var(--color-bone)] bg-white shadow-2xl relative"
+              className="clush-card p-8 md:p-16 border border-[var(--color-bone)] bg-[var(--color-tan)] shadow-2xl relative"
             >
               <div className="absolute top-0 right-0 p-8">
                 <Sparkles className="w-12 h-12 text-[var(--color-gold)]/20" />

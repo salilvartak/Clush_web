@@ -218,7 +218,7 @@ const FEATURES = [
     screenshotAlt: 'Clush vault interface showing saved profiles collection',
     icon: Bookmark,
     accentColor: '#CD9D8F',
-    phone: { xPct: 62, yPct: 55, rotate: 0, scale: 1.08, textSide: 'left' },
+    phone: { xPct: 62, yPct: 48, rotate: 0, scale: 1.08, textSide: 'left' },
   },
 ];
 
@@ -319,8 +319,8 @@ const PhoneWrapper = memo(
             boxShadow: `
               0 0 0 1.5px rgba(255,255,255,0.12),
               0 0 0 3px rgba(0,0,0,0.6),
-              0 50px 100px rgba(0,0,0,0.42),
-              0 24px 48px rgba(0,0,0,0.22),
+              0 64px 140px rgba(0,0,0,0.48),
+              0 36px 72px rgba(0,0,0,0.28),
               inset 0 1px 0 rgba(255,255,255,0.08)
             `,
             position: 'relative',
@@ -368,7 +368,7 @@ const PhoneWrapper = memo(
 // ─── BackgroundLayer ──────────────────────────────────────────────────────────
 const BackgroundLayer = memo(function BackgroundLayer({ activeIndex }) {
   return (
-    <div aria-hidden="true" style={{ position:'absolute', inset:0, background:'#EBE7E1', zIndex:0 }}>
+    <div aria-hidden="true" style={{ position:'absolute', inset:0, background:'var(--color-cream)', zIndex:0 }}>
       {FEATURES.map((f, i) => (
         <div
           key={f.id}
@@ -402,13 +402,13 @@ const ProgressIndicator = memo(function ProgressIndicator({ activeIndex, onDotCl
             width: i === activeIndex ? 6 : 5,
             height: i === activeIndex ? 22 : 5,
             borderRadius: 999,
-            background: i === activeIndex ? '#CD9D8F' : '#E6DFD5',
+            background: i === activeIndex ? '#D4A3A5' : '#EAEAEE',
             border: 'none',
             cursor: 'pointer',
             transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
             padding: 0,
           }}
-          onFocus={(e) => { e.currentTarget.style.outline = '2px solid #CD9D8F'; e.currentTarget.style.outlineOffset = '3px'; }}
+          onFocus={(e) => { e.currentTarget.style.outline = '2px solid #D4A3A5'; e.currentTarget.style.outlineOffset = '3px'; }}
           onBlur={(e) => { e.currentTarget.style.outline = 'none'; }}
         />
       ))}
@@ -465,7 +465,7 @@ const FeatureTextBlock = memo(function FeatureTextBlock({ feature, isActive }) {
               initial={{ width: 0 }}
               animate={{ width: 40 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              style={{ height: 3, background: '#D4AF37', marginTop: 12, borderRadius: 2 }}
+              style={{ height: 3, background: '#D4A3A5', marginTop: 12, borderRadius: 2 }}
             />
           </motion.h2>
 
@@ -726,7 +726,7 @@ function FeaturesDesktop() {
         ref={sectionRef}
         style={{ height: `${FEATURES.length * 100}vh`, position: 'relative' }}
       >
-        <div ref={stickyRef} style={{ position:'relative', height:'100vh', overflow:'hidden' }}>
+        <div ref={stickyRef} style={{ position:'relative', height:'100vh', overflow:'visible' }}>
 
           {/* Ambient background — crossfades between feature accent colors */}
           <BackgroundLayer activeIndex={activeIndex} />
@@ -770,7 +770,7 @@ function FeaturesDesktop() {
       </section>
 
       {/* ── CTA section ─────────────────────────────────────────────────────── */}
-      <section className="flex items-center justify-center min-h-screen py-24 px-8">
+      <section className="flex items-center justify-center min-h-screen pt-48 pb-24 px-8">
         <div className="max-w-5xl w-full bg-[var(--color-tan)] rounded-[40px] p-12 lg:p-20 border border-[var(--color-bone)] text-center relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-[var(--color-rose-pale)] blur-[100px] opacity-40 -z-10" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-[var(--color-gold)] blur-[120px] opacity-5 -z-10" />
@@ -787,10 +787,10 @@ function FeaturesDesktop() {
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {[
-              { word: 'Only',   sub: 'VERIFIED USERS',             color: 'var(--color-rose)' },
+              { word: 'Only',   sub: 'VERIFIED USERS',             color: 'var(--color-emerald)' },
               { word: 'Real',   sub: 'CONNECTIONS, NO CATFISHING', color: 'var(--color-gold)' },
-              { word: 'Always', sub: 'PROTECTED BY AI',            color: 'var(--color-rose)' },
-              { word: 'Fair',   sub: 'ACCESSIBLE PRICING',         color: 'var(--color-ink-black)' },
+              { word: 'Always', sub: 'PROTECTED BY AI',            color: 'var(--color-emerald)' },
+              { word: 'Fair',   sub: 'ACCESSIBLE PRICING',         color: 'var(--color-heading)' },
             ].map(({ word, sub, color }, i) => (
               <motion.div
                 key={word}
@@ -967,6 +967,7 @@ function FeaturesMobile() {
               <div style={{ padding: '18px 18px 20px' }}>
                 <h2 style={{ fontFamily: 'Gabarito, sans-serif', fontSize: 'clamp(1.5rem, 6.5vw, 1.85rem)', fontWeight: 800, fontStyle: 'italic', letterSpacing: '-0.03em', color: '#45413E', lineHeight: 1.1, marginBottom: 6, whiteSpace: 'pre-line' }}>
                   {feature.headline}
+                  <div style={{ width: 32, height: 2.5, background: '#D4A3A5', marginTop: 10, borderRadius: 2 }} />
                 </h2>
                 <div style={{ width: 24, height: 2.5, background: '#D4AF37', borderRadius: 2, marginBottom: 12 }} />
 
