@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, EyeOff, Lock, UserCheck, Heart, AlertCircle, PhoneCall, FileBox, Hexagon, Fingerprint, Activity, Smartphone, OctagonX, ArrowRight } from 'lucide-react';
+import { ShieldCheck, EyeOff, Lock, UserCheck, Heart, AlertCircle, PhoneCall, FileBox, Hexagon, Fingerprint, OctagonX, PauseCircle, ArrowRight } from 'lucide-react';
 
 const SafetyNode = ({ icon: Icon, title, desc, delay, x, y }) => (
   <motion.div 
@@ -75,16 +75,11 @@ const Safety = () => {
             >
               We believe true connection requires a sanctuary. Our multi-layered security stack is being engineered to ensure that what happens on Clush, stays on Clush. 
             </motion.p>
-            <div className="mb-16 flex items-center gap-2 text-[10px] uppercase tracking-widest font-bold text-[var(--color-ink-muted)] opacity-60">
-               <div className="w-1.5 h-1.5 rounded-full bg-current animate-pulse" />
-               Pre-Launch · Security Architecture in Active Development
-            </div>
-
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12 pt-12 border-t-2 border-[var(--color-bone)] place-items-center">
                <SecurityMetric icon={Lock} value="256" label="Bit Encryption" delay={0.6} />
                <SecurityMetric icon={Fingerprint} value="100%" label="Verified Members" delay={0.7} />
-               <SecurityMetric icon={Activity} value="24/7" label="Active Monitoring" delay={0.8} />
-               <SecurityMetric icon={Smartphone} value="App" label="Isolated Sandbox" delay={0.9} />
+               <SecurityMetric icon={OctagonX} value="Zero" label="Tolerance Policy" delay={0.8} />
+               <SecurityMetric icon={EyeOff} value="Strictly" label="Private" delay={0.9} />
             </div>
           </div>
 
@@ -92,10 +87,10 @@ const Safety = () => {
              {/* Center visual link */}
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-[var(--color-gold)] rounded-full blur-[100px] opacity-20" />
              
-             <SafetyNode icon={UserCheck} title="Verified Only" desc="Every profile will be manually reviewed to guarantee a 100% real community." delay={0.2} x={-40} y={40} />
-             <SafetyNode icon={EyeOff} title="Invisible Mode" desc="Browse silently. You will control exactly who sees you and when." delay={0.4} x={260} y={120} />
-             <SafetyNode icon={Lock} title="Encrypted" desc="Your chats and media will be secured with end-to-end encryption." delay={0.6} x={60} y={380} />
-             <SafetyNode icon={AlertCircle} title="Zero Harassment" desc="Protected by proactive AI moderation and a strict zero-tolerance policy." delay={0.8} x={360} y={440} />
+             <SafetyNode icon={UserCheck} title="Verified Only" desc="Every profile will be reviewed to guarantee a 100% real community." delay={0.2} x={-40} y={40} />
+             <SafetyNode icon={EyeOff} title="Private Discovery" desc="Stay hidden. Only visible to those you interact with." delay={0.4} x={260} y={120} />
+             <SafetyNode icon={PauseCircle} title="Total Pause" desc="Hide your profile and freeze all interactions whenever you need a break." delay={0.6} x={60} y={380} />
+             <SafetyNode icon={AlertCircle} title="Zero Tolerance" desc="Any reported harassment guarantees immediate consequences." delay={0.8} x={360} y={440} />
           </div>
 
           {/* Mobile visible grid */}
@@ -132,9 +127,9 @@ const Safety = () => {
                        </p>
                     </div>
                     <div className="flex-1 flex flex-col gap-6">
-                       <h3 className="text-3xl font-[Gabarito] font-bold italic">No Data Resale</h3>
+                       <h3 className="text-3xl font-[Gabarito] font-bold italic">Zero Data Resale</h3>
                        <p className="text-xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed font-light text-justify">
-                          Your data will never be for sale. Our business model is built entirely on premium memberships, not on selling our users' personal lives.
+                          Your private life stays private. We lock down your data so you can focus purely on finding your person.
                        </p>
                     </div>
                  </div>
