@@ -4,12 +4,33 @@ import { motion } from 'framer-motion';
 import { Sparkles, Star, Heart, CheckCircle2, Send, Mail, MapPin, Loader2, AlertCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+
+const isValidEmail = (email) => {
+  const trimmed = email.trim();
+  if (!EMAIL_REGEX.test(trimmed)) return false;
+  const [local, domain] = trimmed.split('@');
+  if (local.length < 1 || local.length > 64) return false;
+  if (domain.length < 3 || domain.length > 255) return false;
+  const domainParts = domain.split('.');
+  if (domainParts.some(part => part.length === 0)) return false;
+  const tld = domainParts[domainParts.length - 1];
+  if (tld.length < 2) return false;
+  return true;
+};
+
 const Waitlist = () => {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState('idle'); // idle | sending | success | duplicate | error
+  const [status, setStatus] = useState('idle'); // idle | sending | success | duplicate | error | invalid
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isValidEmail(email)) {
+      setStatus('invalid');
+      return;
+    }
+
     setStatus('sending');
 
     const { error } = await supabase
@@ -93,6 +114,13 @@ const Waitlist = () => {
                     />
                   </div>
                 </div>
+
+                {status === 'invalid' && (
+                  <div className="flex items-center gap-3 text-red-500 bg-red-50 border border-red-200 rounded-2xl px-5 py-4 text-sm">
+                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    Please enter a valid email address.
+                  </div>
+                )}
 
                 {status === 'duplicate' && (
                   <div className="flex items-center gap-3 text-amber-600 bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4 text-sm">
