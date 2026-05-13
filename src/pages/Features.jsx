@@ -345,13 +345,19 @@ const PhoneWrapper = memo(
             }}
           >
 
-            {/* Feature screenshot */}
-            <img
-              src={displayFeature.screenshot}
-              alt=""
-              style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}
-              onError={(e) => { e.currentTarget.style.display = 'none'; }}
-            />
+            {/* Feature screenshot — crossfades at arc apex */}
+            <AnimatePresence mode="sync">
+              <motion.img
+                key={displayFeature.id}
+                src={displayFeature.screenshot}
+                alt=""
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { duration: 0.45, ease: 'easeInOut' } }}
+                exit={{ opacity: 0, transition: { duration: 0.3, ease: 'easeIn' } }}
+                style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover' }}
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              />
+            </AnimatePresence>
 
             {/* Placeholder UI — visible when screenshot is missing */}
             
