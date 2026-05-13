@@ -25,8 +25,10 @@ const ContactItem = ({ icon: Icon, title, desc, delay }) => (
 
 const FAQItem = ({ question, answer, isOpen, onClick }) => (
   <div className="border-b border-[var(--color-bone)] last:border-0">
-    <button
+    <motion.button
       onClick={onClick}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
       className="w-full py-6 flex items-center justify-between text-left focus:outline-none group"
     >
       <span className="font-[Gabarito] text-xl font-bold italic group-hover:text-[var(--color-rose)] transition-colors pr-8">
@@ -39,7 +41,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }) => (
       >
         <ChevronDown className={`w-6 h-6 ${isOpen ? 'text-[var(--color-rose)]' : 'text-[var(--color-ink-muted)]'}`} />
       </motion.div>
-    </button>
+    </motion.button>
     <motion.div
       initial={false}
       animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
@@ -150,12 +152,14 @@ const Contact = () => {
             <p className="font-[Figtree] text-[var(--color-ink-muted)] max-w-sm leading-relaxed">
               Thank you for reaching out. We'll get back to you as soon as possible.
             </p>
-            <button
+            <motion.button
               onClick={() => setStatus('idle')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className="text-[var(--color-rose)] font-bold underline hover:opacity-70 transition-opacity font-[Figtree]"
             >
               Send another message
-            </button>
+            </motion.button>
           </motion.div>
         ) : (
           <form ref={formRef} onSubmit={handleFormSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8 font-[Figtree] text-[var(--color-ink-black)]">
@@ -198,10 +202,12 @@ const Contact = () => {
             )}
 
             <div className="md:col-span-2 pt-6 flex justify-center">
-              <button
+              <motion.button
                 type="submit"
                 disabled={status === 'sending'}
-                className="clush-btn-primary px-12 py-4 w-full md:w-auto text-lg font-bold flex items-center justify-center gap-3 hover:translate-y-[-2px] transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                whileHover={status !== 'sending' ? { scale: 1.05 } : {}}
+                whileTap={status !== 'sending' ? { scale: 0.95 } : {}}
+                className="clush-btn-primary px-12 py-4 w-full md:w-auto text-lg font-bold flex items-center justify-center gap-3 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {status === 'sending' ? (
                   <>
@@ -212,7 +218,7 @@ const Contact = () => {
                      Send Message
                   </>
                 )}
-              </button>
+              </motion.button>
             </div>
           </form>
         )}

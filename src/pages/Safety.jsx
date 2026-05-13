@@ -145,8 +145,8 @@ const Safety = () => {
                     <div className="flex gap-4">
                        <motion.a
                           href="/contact"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
                           className="clush-btn-gradient px-10 py-4 font-bold rounded-2xl flex items-center gap-3 group shadow-md hover:shadow-lg"
                        >
                           <span>Have Questions?</span>
