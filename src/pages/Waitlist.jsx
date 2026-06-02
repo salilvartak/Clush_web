@@ -45,11 +45,11 @@ const Waitlist = () => {
     const { error } = await supabase
       .from('waitlist')
       .insert([{
-        name: form.name.trim(),
+        full_name: form.name.trim(),
         email: form.email.trim().toLowerCase(),
         age: form.age ? parseInt(form.age, 10) : null,
         gender: form.gender || null,
-        area: form.area.trim() || null,
+        location: form.area.trim() || null,
       }]);
 
     if (!error) {
