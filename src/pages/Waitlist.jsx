@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Sparkles, Star, Heart, CheckCircle2, Send, Mail, MapPin, Loader2, AlertCircle } from 'lucide-react';
+import { Sparkles, Star, Heart, CheckCircle2, Mail, MapPin, User, Loader2, AlertCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
@@ -19,14 +19,23 @@ const isValidEmail = (email) => {
   return true;
 };
 
+const GENDER_OPTIONS = ['Man', 'Woman', 'Non-binary', 'Prefer not to say'];
+
+const emptyForm = { name: '', email: '', age: '', gender: '', area: '' };
+
 const Waitlist = () => {
-  const [email, setEmail] = useState('');
+  const [form, setForm] = useState(emptyForm);
   const [status, setStatus] = useState('idle'); // idle | sending | success | duplicate | error | invalid
+
+  const set = (field) => (e) => {
+    setForm(prev => ({ ...prev, [field]: e.target.value }));
+    if (status !== 'idle') setStatus('idle');
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!isValidEmail(email)) {
+    if (!isValidEmail(form.email)) {
       setStatus('invalid');
       return;
     }
@@ -35,7 +44,13 @@ const Waitlist = () => {
 
     const { error } = await supabase
       .from('waitlist')
-      .insert([{ email: email.trim().toLowerCase() }]);
+      .insert([{
+        name: form.name.trim(),
+        email: form.email.trim().toLowerCase(),
+        age: form.age ? parseInt(form.age, 10) : null,
+        gender: form.gender || null,
+        area: form.area.trim() || null,
+      }]);
 
     if (!error) {
       setStatus('success');
@@ -45,6 +60,10 @@ const Waitlist = () => {
       setStatus('error');
     }
   };
+
+  const inputClass = "w-full bg-[var(--color-tan)] border border-[var(--color-bone)] rounded-2xl p-4 outline-none focus:border-[var(--color-rose)] focus:bg-white transition-all text-lg";
+  const inputWithIconClass = `${inputClass} pl-12`;
+  const labelClass = "text-xs uppercase tracking-widest font-bold text-[var(--color-ink-muted)] block ml-1";
 
   return (
     <div className="px-6 pb-24">
@@ -80,10 +99,10 @@ const Waitlist = () => {
               </div>
               <h2 className="text-4xl font-[Gabarito] font-bold italic mb-6">You're on the list.</h2>
               <p className="text-lg text-[var(--color-ink-muted)] mb-10 leading-relaxed font-[Figtree]">
-                Thank you for your interest. We'll reach out to <strong>{email}</strong> when a space becomes available in Pune.
+                Thank you, <strong>{form.name}</strong>. We'll reach out to <strong>{form.email}</strong> when a space becomes available in Pune.
               </p>
               <button
-                onClick={() => { setStatus('idle'); setEmail(''); }}
+                onClick={() => { setStatus('idle'); setForm(emptyForm); }}
                 className="text-[var(--color-rose)] font-bold underline hover:opacity-70 transition-opacity font-[Figtree]"
               >
                 Use a different email
@@ -99,18 +118,83 @@ const Waitlist = () => {
                 <Sparkles className="w-12 h-12 text-[var(--color-gold)]/20" />
               </div>
               <h2 className="text-3xl md:text-5xl font-[Gabarito] font-bold italic mb-8">Reserve Your Spot.</h2>
-              <form onSubmit={handleSubmit} className="space-y-8 font-[Figtree]">
+              <form onSubmit={handleSubmit} className="space-y-6 font-[Figtree]">
+
+                {/* Name */}
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold text-[var(--color-ink-muted)] block ml-1">Email Address</label>
+                  <label className={labelClass}>Full Name</label>
+                  <div className="relative">
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-ink-muted)]" />
+                    <input
+                      type="text"
+                      required
+                      value={form.name}
+                      onChange={set('name')}
+                      className={inputWithIconClass}
+                      placeholder="Your name"
+                    />
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div className="space-y-2">
+                  <label className={labelClass}>Email Address</label>
                   <div className="relative">
                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-ink-muted)]" />
                     <input
                       type="email"
                       required
-                      value={email}
-                      onChange={(e) => { setEmail(e.target.value); if (status !== 'idle') setStatus('idle'); }}
-                      className="w-full bg-[var(--color-tan)] border border-[var(--color-bone)] rounded-2xl p-4 pl-12 outline-none focus:border-[var(--color-rose)] focus:bg-white transition-all text-lg"
+                      value={form.email}
+                      onChange={set('email')}
+                      className={inputWithIconClass}
                       placeholder="you@example.com"
+                    />
+                  </div>
+                </div>
+
+                {/* Age & Gender side by side */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className={labelClass}>Age</label>
+                    <input
+                      type="number"
+                      required
+                      min="18"
+                      max="99"
+                      value={form.age}
+                      onChange={set('age')}
+                      className={inputClass}
+                      placeholder="e.g. 27"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className={labelClass}>Gender</label>
+                    <select
+                      required
+                      value={form.gender}
+                      onChange={set('gender')}
+                      className={`${inputClass} text-[var(--color-ink-muted)] appearance-none cursor-pointer`}
+                    >
+                      <option value="" disabled>Select</option>
+                      {GENDER_OPTIONS.map(g => (
+                        <option key={g} value={g}>{g}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Area */}
+                <div className="space-y-2">
+                  <label className={labelClass}>Area / Location</label>
+                  <div className="relative">
+                    <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-ink-muted)]" />
+                    <input
+                      type="text"
+                      required
+                      value={form.area}
+                      onChange={set('area')}
+                      className={inputWithIconClass}
+                      placeholder="Your city or neighborhood"
                     />
                   </div>
                 </div>
@@ -136,7 +220,7 @@ const Waitlist = () => {
                   </div>
                 )}
 
-                <div className="space-y-6">
+                <div className="space-y-6 pt-2">
                   <div className="flex items-center gap-3">
                     <input type="checkbox" className="w-5 h-5 rounded accent-[var(--color-rose)]" id="agree" required />
                     <label htmlFor="agree" className="text-sm text-[var(--color-ink-muted)] cursor-pointer">
@@ -154,7 +238,7 @@ const Waitlist = () => {
                       </>
                     ) : (
                       <>
-                        Request Invite 
+                        Request Invite
                       </>
                     )}
                   </button>
