@@ -54,6 +54,9 @@ const Waitlist = () => {
 
     if (!error) {
       setStatus('success');
+      supabase.functions.invoke('send-waitlist-confirmation', {
+        body: { name: form.name.trim(), email: form.email.trim().toLowerCase() },
+      }).catch(() => {});
     } else if (error.code === '23505') {
       setStatus('duplicate');
     } else {
@@ -234,11 +237,11 @@ const Waitlist = () => {
                   >
                     {status === 'sending' ? (
                       <>
-                        <Loader2 className="w-5 h-5 animate-spin" /> Reserving…
+                        <Loader2 className="w-5 h-5 animate-spin" /> Joining…
                       </>
                     ) : (
                       <>
-                        Request Invite
+                        Join Waitlist
                       </>
                     )}
                   </button>
