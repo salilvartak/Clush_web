@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Sparkles, Star, Heart, CheckCircle2, Mail, MapPin, User, Loader2, AlertCircle } from 'lucide-react';
@@ -26,10 +26,53 @@ const emptyForm = { name: '', email: '', age: '', gender: '', area: '' };
 const Waitlist = () => {
   const [form, setForm] = useState(emptyForm);
   const [status, setStatus] = useState('idle'); // idle | sending | success | duplicate | error | invalid
+  const [areaSuggestions, setAreaSuggestions] = useState([]);
+  const [showAreaSuggestions, setShowAreaSuggestions] = useState(false);
+  const areaFieldRef = useRef(null);
 
   const set = (field) => (e) => {
     setForm(prev => ({ ...prev, [field]: e.target.value }));
     if (status !== 'idle') setStatus('idle');
+  };
+
+  useEffect(() => {
+    const query = form.area.trim();
+    if (query.length < 3) {
+      setAreaSuggestions([]);
+      return;
+    }
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => {
+      fetch(
+        `https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&countrycodes=in&q=${encodeURIComponent(query)}`,
+        { signal: controller.signal, headers: { Accept: 'application/json' } }
+      )
+        .then((res) => res.json())
+        .then((data) => setAreaSuggestions(Array.isArray(data) ? data : []))
+        .catch(() => {});
+    }, 200);
+
+    return () => {
+      clearTimeout(timeout);
+      controller.abort();
+    };
+  }, [form.area]);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (areaFieldRef.current && !areaFieldRef.current.contains(e.target)) {
+        setShowAreaSuggestions(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const selectArea = (suggestion) => {
+    setForm(prev => ({ ...prev, area: suggestion.display_name }));
+    setAreaSuggestions([]);
+    setShowAreaSuggestions(false);
   };
 
   const handleSubmit = async (e) => {
@@ -189,16 +232,34 @@ const Waitlist = () => {
                 {/* Area */}
                 <div className="space-y-2">
                   <label className={labelClass}>Area / Location</label>
-                  <div className="relative">
+                  <div className="relative" ref={areaFieldRef}>
                     <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-ink-muted)]" />
                     <input
                       type="text"
                       required
+                      autoComplete="off"
                       value={form.area}
                       onChange={set('area')}
+                      onFocus={() => setShowAreaSuggestions(true)}
                       className={inputWithIconClass}
                       placeholder="Your city or neighborhood"
                     />
+                    {showAreaSuggestions && areaSuggestions.length > 0 && (
+                      <ul className="absolute z-10 top-full left-0 right-0 mt-2 bg-white border border-[var(--color-bone)] rounded-2xl shadow-xl overflow-hidden max-h-64 overflow-y-auto">
+                        {areaSuggestions.map((suggestion) => (
+                          <li key={suggestion.place_id}>
+                            <button
+                              type="button"
+                              onClick={() => selectArea(suggestion)}
+                              className="w-full text-left px-4 py-3 text-sm hover:bg-[var(--color-tan)] transition-colors flex items-start gap-3"
+                            >
+                              <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-[var(--color-rose)]" />
+                              <span>{suggestion.display_name}</span>
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 </div>
 
