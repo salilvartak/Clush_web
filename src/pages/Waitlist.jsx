@@ -147,12 +147,14 @@ const Waitlist = () => {
               <p className="text-lg text-[var(--color-ink-muted)] mb-10 leading-relaxed font-[Figtree]">
                 Thank you, <strong>{form.name}</strong>. We'll reach out to <strong>{form.email}</strong> when a space becomes available in Pune.
               </p>
-              <button
-                onClick={() => { setStatus('idle'); setForm(emptyForm); }}
+              <motion.button
+                onClick={() => { setStatus('idle'); setEmail(''); }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 className="text-[var(--color-rose)] font-bold underline hover:opacity-70 transition-opacity font-[Figtree]"
               >
                 Use a different email
-              </button>
+              </motion.button>
             </motion.div>
           ) : (
             <motion.div
@@ -291,10 +293,12 @@ const Waitlist = () => {
                       I agree to the <Link to="/legal/privacy" className="text-[var(--color-rose)] hover:underline">privacy policy</Link> and <Link to="/legal/terms" className="text-[var(--color-rose)] hover:underline">terms of service</Link>.
                     </label>
                   </div>
-                  <button
+                  <motion.button
                     type="submit"
                     disabled={status === 'sending'}
-                    className="clush-btn-primary px-12 py-5 w-full text-xl font-bold flex items-center justify-center gap-3 hover:scale-[1.02] transform transition-all group disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    whileHover={status !== 'sending' ? { scale: 1.05 } : {}}
+                    whileTap={status !== 'sending' ? { scale: 0.95 } : {}}
+                    className="clush-btn-primary px-12 py-5 w-full text-xl font-bold flex items-center justify-center gap-3 group disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {status === 'sending' ? (
                       <>
@@ -305,7 +309,7 @@ const Waitlist = () => {
                         Join Waitlist
                       </>
                     )}
-                  </button>
+                  </motion.button>
                 </div>
               </form>
             </motion.div>

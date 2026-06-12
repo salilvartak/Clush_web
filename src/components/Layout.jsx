@@ -22,9 +22,9 @@ const FeedbackModal = ({ isOpen, onClose }) => {
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             className="w-full max-w-lg bg-[var(--color-tan)] rounded-[32px] p-8 shadow-2xl border border-[var(--color-bone)] relative"
           >
-            <button onClick={onClose} className="absolute top-6 right-6 p-2 hover:bg-[var(--color-rose-pale)] rounded-full transition-colors">
+            <motion.button onClick={onClose} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="absolute top-6 right-6 p-2 hover:bg-[var(--color-rose-pale)] rounded-full transition-colors">
               <X className="w-5 h-5" />
-            </button>
+            </motion.button>
 
             {!submitted ? (
               <>
@@ -45,9 +45,9 @@ const FeedbackModal = ({ isOpen, onClose }) => {
                     placeholder="Share your thoughts..."
                     required
                   />
-                  <button type="submit" className="clush-btn-primary px-8 py-3 w-full font-bold flex items-center justify-center gap-2 group">
+                  <motion.button type="submit" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="clush-btn-primary px-8 py-3 w-full font-bold flex items-center justify-center gap-2 group">
                     Send Feedback <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  </motion.button>
                 </form>
               </>
             ) : (
@@ -59,7 +59,7 @@ const FeedbackModal = ({ isOpen, onClose }) => {
                 <p className="font-[Figtree] text-[var(--color-ink-muted)] mb-8">
                   We've received your feedback. Our team reviews every submission and we appreciate you helping make Clush better.
                 </p>
-                <button onClick={onClose} className="clush-btn-secondary px-8 py-3 font-bold">Close</button>
+                <motion.button onClick={onClose} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="clush-btn-secondary px-8 py-3 font-bold">Close</motion.button>
               </div>
             )}
           </motion.div>
@@ -139,12 +139,14 @@ const Layout = ({ children }) => {
             >
               Join Waitlist
             </NavLink>
-            <button
+            <motion.button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className="lg:hidden p-2 hover:bg-[var(--color-rose-pale)] rounded-full transition-colors order-first"
             >
               {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
+            </motion.button>
           </div>
         </div>
 
@@ -213,14 +215,16 @@ const Layout = ({ children }) => {
             <div className="flex flex-col gap-4">
               <h4 className="font-[Figtree] text-[11px] font-bold uppercase tracking-[0.1em] text-[var(--color-ink-muted)]">Early Access</h4>
               <p className="text-sm text-[var(--color-ink-muted)]">Launching in Pune, Maharashtra. Be the first to know when we go live.</p>
-              <NavLink
-                to="/join"
-                onClick={scrollToTop}
-                className="clush-btn-primary px-4 py-2.5 text-sm font-bold text-center rounded-xl shadow-md"
-                style={{ color: '#FFFFFF' }}
-              >
-                Join Waitlist
-              </NavLink>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <NavLink
+                  to="/join"
+                  onClick={scrollToTop}
+                  className="clush-btn-primary px-4 py-2.5 text-sm font-bold text-center rounded-xl shadow-md block"
+                  style={{ color: '#FFFFFF' }}
+                >
+                  Join Waitlist
+                </NavLink>
+              </motion.div>
             </div>
           </div>
 

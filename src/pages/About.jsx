@@ -4,8 +4,8 @@ import { Target, Heart, Sparkles } from 'lucide-react';
 
 import SrujanImg from '../assets/ai-images/srujan.jpg';
 import SalilImg from '../assets/ai-images/salil.jpg';
-import VisionImg from '../assets/vision.png';
-import MissionImg from '../assets/mission.png';
+import VisionImg from '../assets/vision.webp';
+import MissionImg from '../assets/mission.webp';
 
 const TeamCard = ({ name, role, bio, img, delay }) => (
   <motion.div 
@@ -86,7 +86,7 @@ const About = () => {
             </div>
             <h1 className="text-5xl md:text-[100px] font-[Gabarito] font-bold italic leading-[0.9] mb-12 tracking-tight">Crafting the <span className="text-[var(--color-emerald)]">Human</span> connection.</h1>
             <p className="text-lg md:text-2xl text-[var(--color-ink-muted)] font-[Figtree] leading-relaxed max-w-2xl mx-auto italic font-light mb-6">
-              A small team of romantics and engineers building the world's most intentional dating experience — launching first in Pune, Maharashtra.
+              Being built by a small team dedicated to the art of intentional dating. Launching first in Pune, Maharashtra.
             </p>
         </motion.div>
       </section>

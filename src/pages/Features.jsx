@@ -399,11 +399,13 @@ const ProgressIndicator = memo(function ProgressIndicator({ activeIndex, onDotCl
       style={{ position:'absolute', right:28, top:'50%', transform:'translateY(-50%)', zIndex:40, display:'flex', flexDirection:'column', gap:12, alignItems:'center' }}
     >
       {FEATURES.map((f, i) => (
-        <button
+        <motion.button
           key={f.id}
           onClick={() => onDotClick(i)}
           aria-label={`Go to feature ${i + 1}: ${f.headline.replace('\n', ' ')}`}
           aria-current={i === activeIndex ? 'step' : undefined}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           style={{
             width: i === activeIndex ? 6 : 5,
             height: i === activeIndex ? 22 : 5,
@@ -897,10 +899,12 @@ function FeaturesMobile() {
         style={{ position: 'fixed', right: 14, top: '50%', transform: 'translateY(-50%)', zIndex: 100, display: 'flex', flexDirection: 'column', gap: 9, alignItems: 'center' }}
       >
         {FEATURES.map((f, i) => (
-          <button
+          <motion.button
             key={f.id}
             onClick={() => sectionRefs.current[i]?.scrollIntoView({ behavior: 'smooth' })}
             aria-label={`Go to feature: ${f.headline.replace('\n', ' ')}`}
+            whileHover={{ scale: 1.4 }}
+            whileTap={{ scale: 0.85 }}
             style={{ width: i === activeIndex ? 5 : 4, height: i === activeIndex ? 18 : 4, borderRadius: 999, background: i === activeIndex ? f.accentColor : '#D4C9BF', border: 'none', cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)', padding: 0 }}
           />
         ))}
