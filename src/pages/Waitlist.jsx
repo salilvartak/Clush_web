@@ -1,29 +1,115 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Sparkles, Star, Heart, CheckCircle2, Send, Mail, MapPin, Loader2, AlertCircle } from 'lucide-react';
+import { Sparkles, Star, Heart, CheckCircle2, Mail, MapPin, User, Loader2, AlertCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+
+const isValidEmail = (email) => {
+  const trimmed = email.trim();
+  if (!EMAIL_REGEX.test(trimmed)) return false;
+  const [local, domain] = trimmed.split('@');
+  if (local.length < 1 || local.length > 64) return false;
+  if (domain.length < 3 || domain.length > 255) return false;
+  const domainParts = domain.split('.');
+  if (domainParts.some(part => part.length === 0)) return false;
+  const tld = domainParts[domainParts.length - 1];
+  if (tld.length < 2) return false;
+  return true;
+};
+
+const GENDER_OPTIONS = ['Man', 'Woman', 'Non-binary', 'Prefer not to say'];
+
+const emptyForm = { name: '', email: '', age: '', gender: '', area: '' };
+
 const Waitlist = () => {
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState('idle'); // idle | sending | success | duplicate | error
+  const [form, setForm] = useState(emptyForm);
+  const [status, setStatus] = useState('idle'); // idle | sending | success | duplicate | error | invalid
+  const [areaSuggestions, setAreaSuggestions] = useState([]);
+  const [showAreaSuggestions, setShowAreaSuggestions] = useState(false);
+  const areaFieldRef = useRef(null);
+
+  const set = (field) => (e) => {
+    setForm(prev => ({ ...prev, [field]: e.target.value }));
+    if (status !== 'idle') setStatus('idle');
+  };
+
+  useEffect(() => {
+    const query = form.area.trim();
+    if (query.length < 3) {
+      setAreaSuggestions([]);
+      return;
+    }
+
+    const controller = new AbortController();
+    const timeout = setTimeout(() => {
+      fetch(
+        `https://nominatim.openstreetmap.org/search?format=jsonv2&limit=5&countrycodes=in&q=${encodeURIComponent(query)}`,
+        { signal: controller.signal, headers: { Accept: 'application/json' } }
+      )
+        .then((res) => res.json())
+        .then((data) => setAreaSuggestions(Array.isArray(data) ? data : []))
+        .catch(() => {});
+    }, 200);
+
+    return () => {
+      clearTimeout(timeout);
+      controller.abort();
+    };
+  }, [form.area]);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (areaFieldRef.current && !areaFieldRef.current.contains(e.target)) {
+        setShowAreaSuggestions(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const selectArea = (suggestion) => {
+    setForm(prev => ({ ...prev, area: suggestion.display_name }));
+    setAreaSuggestions([]);
+    setShowAreaSuggestions(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isValidEmail(form.email)) {
+      setStatus('invalid');
+      return;
+    }
+
     setStatus('sending');
 
     const { error } = await supabase
       .from('waitlist')
-      .insert([{ email: email.trim().toLowerCase() }]);
+      .insert([{
+        full_name: form.name.trim(),
+        email: form.email.trim().toLowerCase(),
+        age: form.age ? parseInt(form.age, 10) : null,
+        gender: form.gender || null,
+        location: form.area.trim() || null,
+      }]);
 
     if (!error) {
       setStatus('success');
+      supabase.functions.invoke('send-waitlist-confirmation', {
+        body: { name: form.name.trim(), email: form.email.trim().toLowerCase() },
+      }).catch(() => {});
     } else if (error.code === '23505') {
       setStatus('duplicate');
     } else {
       setStatus('error');
     }
   };
+
+  const inputClass = "w-full bg-[var(--color-tan)] border border-[var(--color-bone)] rounded-2xl p-4 outline-none focus:border-[var(--color-rose)] focus:bg-white transition-all text-lg";
+  const inputWithIconClass = `${inputClass} pl-12`;
+  const labelClass = "text-xs uppercase tracking-widest font-bold text-[var(--color-ink-muted)] block ml-1";
 
   return (
     <div className="px-6 pb-24">
@@ -59,7 +145,7 @@ const Waitlist = () => {
               </div>
               <h2 className="text-4xl font-[Gabarito] font-bold italic mb-6">You're on the list.</h2>
               <p className="text-lg text-[var(--color-ink-muted)] mb-10 leading-relaxed font-[Figtree]">
-                Thank you for your interest. We'll reach out to <strong>{email}</strong> when a space becomes available in Pune.
+                Thank you, <strong>{form.name}</strong>. We'll reach out to <strong>{form.email}</strong> when a space becomes available in Pune.
               </p>
               <motion.button
                 onClick={() => { setStatus('idle'); setEmail(''); }}
@@ -80,21 +166,111 @@ const Waitlist = () => {
                 <Sparkles className="w-12 h-12 text-[var(--color-gold)]/20" />
               </div>
               <h2 className="text-3xl md:text-5xl font-[Gabarito] font-bold italic mb-8">Reserve Your Spot.</h2>
-              <form onSubmit={handleSubmit} className="space-y-8 font-[Figtree]">
+              <form onSubmit={handleSubmit} className="space-y-6 font-[Figtree]">
+
+                {/* Name */}
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-widest font-bold text-[var(--color-ink-muted)] block ml-1">Email Address</label>
+                  <label className={labelClass}>Full Name</label>
+                  <div className="relative">
+                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-ink-muted)]" />
+                    <input
+                      type="text"
+                      required
+                      value={form.name}
+                      onChange={set('name')}
+                      className={inputWithIconClass}
+                      placeholder="Your name"
+                    />
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div className="space-y-2">
+                  <label className={labelClass}>Email Address</label>
                   <div className="relative">
                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-ink-muted)]" />
                     <input
                       type="email"
                       required
-                      value={email}
-                      onChange={(e) => { setEmail(e.target.value); if (status !== 'idle') setStatus('idle'); }}
-                      className="w-full bg-[var(--color-tan)] border border-[var(--color-bone)] rounded-2xl p-4 pl-12 outline-none focus:border-[var(--color-rose)] focus:bg-white transition-all text-lg"
+                      value={form.email}
+                      onChange={set('email')}
+                      className={inputWithIconClass}
                       placeholder="you@example.com"
                     />
                   </div>
                 </div>
+
+                {/* Age & Gender side by side */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className={labelClass}>Age</label>
+                    <input
+                      type="number"
+                      required
+                      min="18"
+                      max="99"
+                      value={form.age}
+                      onChange={set('age')}
+                      className={inputClass}
+                      placeholder="e.g. 27"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className={labelClass}>Gender</label>
+                    <select
+                      required
+                      value={form.gender}
+                      onChange={set('gender')}
+                      className={`${inputClass} text-[var(--color-ink-muted)] appearance-none cursor-pointer`}
+                    >
+                      <option value="" disabled>Select</option>
+                      {GENDER_OPTIONS.map(g => (
+                        <option key={g} value={g}>{g}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Area */}
+                <div className="space-y-2">
+                  <label className={labelClass}>Area / Location</label>
+                  <div className="relative" ref={areaFieldRef}>
+                    <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-ink-muted)]" />
+                    <input
+                      type="text"
+                      required
+                      autoComplete="off"
+                      value={form.area}
+                      onChange={set('area')}
+                      onFocus={() => setShowAreaSuggestions(true)}
+                      className={inputWithIconClass}
+                      placeholder="Your city or neighborhood"
+                    />
+                    {showAreaSuggestions && areaSuggestions.length > 0 && (
+                      <ul className="absolute z-10 top-full left-0 right-0 mt-2 bg-white border border-[var(--color-bone)] rounded-2xl shadow-xl overflow-hidden max-h-64 overflow-y-auto">
+                        {areaSuggestions.map((suggestion) => (
+                          <li key={suggestion.place_id}>
+                            <button
+                              type="button"
+                              onClick={() => selectArea(suggestion)}
+                              className="w-full text-left px-4 py-3 text-sm hover:bg-[var(--color-tan)] transition-colors flex items-start gap-3"
+                            >
+                              <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-[var(--color-rose)]" />
+                              <span>{suggestion.display_name}</span>
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                </div>
+
+                {status === 'invalid' && (
+                  <div className="flex items-center gap-3 text-red-500 bg-red-50 border border-red-200 rounded-2xl px-5 py-4 text-sm">
+                    <AlertCircle className="w-5 h-5 shrink-0" />
+                    Please enter a valid email address.
+                  </div>
+                )}
 
                 {status === 'duplicate' && (
                   <div className="flex items-center gap-3 text-amber-600 bg-amber-50 border border-amber-200 rounded-2xl px-5 py-4 text-sm">
@@ -110,7 +286,7 @@ const Waitlist = () => {
                   </div>
                 )}
 
-                <div className="space-y-6">
+                <div className="space-y-6 pt-2">
                   <div className="flex items-center gap-3">
                     <input type="checkbox" className="w-5 h-5 rounded accent-[var(--color-rose)]" id="agree" required />
                     <label htmlFor="agree" className="text-sm text-[var(--color-ink-muted)] cursor-pointer">
@@ -126,11 +302,11 @@ const Waitlist = () => {
                   >
                     {status === 'sending' ? (
                       <>
-                        <Loader2 className="w-5 h-5 animate-spin" /> Reserving…
+                        <Loader2 className="w-5 h-5 animate-spin" /> Joining…
                       </>
                     ) : (
                       <>
-                        Request Invite 
+                        Join Waitlist
                       </>
                     )}
                   </motion.button>

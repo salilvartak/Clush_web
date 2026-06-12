@@ -113,8 +113,8 @@ const ClushPlus = () => {
             animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[var(--color-gold)]/10 text-[var(--color-gold)] font-bold text-xs uppercase tracking-widest mb-8 border border-[var(--color-gold)]/25 shadow-sm"
           >
-            <Crown className="w-4 h-4" />
-            <span className="text-[var(--color-emerald)]">Clush</span><span className="text-[var(--color-gold)]">+</span> Membership
+            
+            <span className="text-[var(--color-emerald)]">Clush</span><span className="text-[var(--color-gold)]">+</span>
           </motion.div>
 
           <motion.h1

@@ -137,7 +137,7 @@ const Layout = ({ children }) => {
               onClick={scrollToTop}
               className="clush-btn-primary px-4 md:px-6 py-2 md:py-2.5 italic text-xs md:text-sm font-bold tracking-tight rounded-full transition-transform hover:scale-105 active:scale-95"
             >
-              Early Access
+              Join Waitlist
             </NavLink>
             <motion.button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
